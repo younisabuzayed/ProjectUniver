@@ -11,8 +11,60 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Cart, Favorite, Orders,
          Profile } from '../screens';
 import HomeScreen from './HomeScreen';
+import Fonts from '../../assets/fonts';
+import { createStackNavigator } from '@react-navigation/stack';
 const Tab = createBottomTabNavigator();
-
+const Stack = createStackNavigator();
+const CartScreen = () =>
+{
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Cart"
+        component={Cart}
+        options={({navigation}) =>({
+          headerTitle: 'السلة',
+          headerRight: () =>
+          {
+            return (
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Search')}>
+                  <Ionicons name="share-social" size={30} color={'#BFBFBF'} />
+              </TouchableOpacity>
+            );
+          },
+          headerLeft: () => {
+              return (
+                <TouchableOpacity
+                  onPress={() => navigation.goBack()} >
+                    <MaterialIcons name="arrow-forward" size={25} color={'#AFAFAF'} style={{}} />
+                </TouchableOpacity>
+              );
+          },
+          headerStyle: {
+            backgroundColor: Colors.fernGreen,
+            height: 70,
+          },
+          headerTransparent: true,
+          headerRightContainerStyle:
+          {
+            marginRight: 24,
+          },
+          headerLeftContainerStyle: {
+              marginLeft: 22,
+          },
+          headerTitleAlign: 'center',
+          headerTitleStyle:
+          {
+            color: Colors.balck,
+            fontFamily: Fonts.Cairo_Bold,
+            fontSize: 18,
+            lineHeight: 30,
+          },
+          })} />
+    </Stack.Navigator>
+  )
+}
 const mainTabBottom = () =>
 {
   const CustomHome = (props) =>
@@ -41,6 +93,14 @@ const mainTabBottom = () =>
   {
     width: 30,
   };
+  const styleTitle =
+  {
+    fontSize: 9,
+    width: 33,
+    textAlign: 'center',
+    fontFamily: Fonts.Cairo_Regular,
+    color: Colors.fernGreen,
+  };
     return (
          <Tab.Navigator
            initialRouteName="HomeTab"
@@ -57,7 +117,7 @@ const mainTabBottom = () =>
                 alignItems:'center',
                 justifyContent: 'center',
               };
-              if (route.name === 'Cart')
+              if (route.name === 'CartScreen')
               {
                  return (
                  <View
@@ -68,7 +128,7 @@ const mainTabBottom = () =>
                        color={color}
                        style={styleIcon} />
                  {focused && <Text
-                               style={{fontSize: 9,width: 29, textAlign: 'center'}}>السلة</Text>}
+                               style={styleTitle}>السلة</Text>}
                  </View>
                 );
               }
@@ -82,7 +142,7 @@ const mainTabBottom = () =>
                         color={color}
                         style={[styleIcon,{textAlign:'center'}]} />
                       {focused && <Text
-                                    style={{fontSize: 9,width: 29, textAlign: 'center'}}>طلبات</Text>}
+                                    style={styleTitle}>طلبات</Text>}
                  </View>
                 );
               }
@@ -97,7 +157,7 @@ const mainTabBottom = () =>
                         color={color}
                         style={styleIcon} />
                       {focused && <Text
-                                    style={{fontSize: 9,width: 29, textAlign: 'center'}}>المفضلة</Text>}
+                                    style={[styleTitle, {width: 33}]}>المفضلة</Text>}
                  </View>
                 );
               }
@@ -112,16 +172,22 @@ const mainTabBottom = () =>
                          color={color}
                          style={styleIcon} />
                       {focused && <Text
-                                    style={{fontSize: 9,width: 29, textAlign: 'center'}}>صفحتي</Text>}
+                                    style={styleTitle}>صفحتي</Text>}
                  </View>
                 );
               }
             },
-            // tabBarBadge:55
            })}>
               <Tab.Screen
-               name="Cart"
-               component={Cart} />
+               name="CartScreen"
+               component={CartScreen}
+               options={{
+                tabBarBadge: 7,
+               tabBarBadgeStyle:
+               {
+                marginLeft: -20,
+               },
+               }} />
               <Tab.Screen
                name="Orders"
                component={Orders} />
@@ -141,16 +207,16 @@ const mainTabBottom = () =>
                       width: 60,
                       borderRadius: 30,
                     }}>
-                      <Entypo name="home" size={25} color={color} style={styleIcon} />
+                      <Entypo name="home" size={25} color={color} style={[styleIcon,{textAlign:'center'}]} />
                       {focused && <Text
-                                    style={{fontSize: 9,width: 29}}>الرئيسية</Text>}
+                                    style={styleTitle}>الرئيسية</Text>}
                   </View>
                 ),
                 tabBarButton: (props) => (
                   <CustomHome
                     style={{top: -100}}
                     {...props} />
-                )
+                ),
                 })}
                  />
              <Tab.Screen

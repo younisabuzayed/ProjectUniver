@@ -8,6 +8,7 @@ const Colors = {
     white: '#fff',
     balck: '#000',
     mercury: '#E8E8E8',
+    mercuryOpacity: 'rgba(232, 232, 232,0.58)',
     blueRibbon: '#0066FF',
     Monza: '#D20E0E',
     mineShaft: '#202020',
@@ -17,7 +18,8 @@ const Colors = {
     seashellSolid: '#f1f1f1',
     altoApprox:'#D5D5D5',
     strok: '#C1C1C1',
-
+    concrete:'#F2F2F2',
+    silver: '#B8B8B8',
 };
 
 export default Colors;

@@ -1,9 +1,13 @@
+import { useNavigation } from '@react-navigation/core';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 import React from 'react';
 import { View, Text, ScrollView, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import Colors from '../../../../assets/colors';
+import { Button } from '../../../components';
 import styles from './styles';
 
 const VerifyMobile = () => {
+    const navigation = useNavigation();
     return (
         <ScrollView
           keyboardShouldPersistTaps="handled"
@@ -23,7 +27,7 @@ const VerifyMobile = () => {
                         placeholderTextColor={'black'}
                         autoFocusOnLoad
                         codeInputFieldStyle={styles.codeInputFieldStyle}
-                        codeInputHighlightStyle={{borderColor: '#58B760'}}
+                        codeInputHighlightStyle={styles.codeInputHighlight}
                         onCodeFilled = {(code) => {
                             console.log(`Code is ${code}, you are good to go!`)
                         }}
@@ -32,21 +36,20 @@ const VerifyMobile = () => {
                     />
                     </View>
                     <View style={styles.buttonConfirmView}>
-                        <TouchableOpacity
-                            style={styles.buttonConfirm}
-                            onPress={() => this.confirmNumber()}>
-                            <View style={styles.buttonConfirmTextView}>
-                                <Text style={styles.buttonConfirmText}>تأكد</Text>
-                            </View>
-                        </TouchableOpacity>
+                    <Button
+                      active
+                      title={'إرسال'}
+                      onPress={() => navigation.navigate('ChangePassword')}
+                      marginBottom={13}
+                      backgroundColor= {Colors.fernGreen}
+                      styleButton={styles.buttonConfirm}
+                      titleStyle={styles.titleButton} />
                     </View>
                     <View style={styles.resendView}>
-                        <Text style={styles.resendTitleText}>لم تستلم الكود ؟</Text>
-                        <TouchableOpacity
-                            onPress={() => alert('resent')}
-                        >
-                            <Text style={styles.resendText}>إعادة إرسال</Text>
-                        </TouchableOpacity>
+                        <Button
+                          title='إعادة إرسال'
+                          onPress={() => alert('resent')}
+                          titleStyle={styles.resendText} />
                     </View>
                 </View>
             </View>

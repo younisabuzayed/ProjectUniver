@@ -4,9 +4,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 //Screens
 import { EditProfile, Home, Product, Search } from '../screens';
 import { MenuButton, SearchButton } from '../components';
-import Colors from '../../assets/colors';
-const Stack = createStackNavigator();
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Colors from '../../assets/colors';
+import Fonts from '../../assets/fonts';
+const Stack = createStackNavigator();
 
 const HomeScreen = () =>
 {
@@ -17,11 +18,15 @@ const HomeScreen = () =>
             name="HomeScreen"
             component={Home}
             options={({navigation}) =>({
-                headerTitle: () => {
-                    return (
-                        <SearchButton
-                          onPress={() => navigation.navigate('Search')} />
-                    );
+                headerTitle: 'الرئيسية',
+                headerRight: () =>
+                {
+                  return (
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('Search')}>
+                        <MaterialIcons name="search" size={30} color={Colors.white} />
+                    </TouchableOpacity>
+                  );
                 },
                 headerLeft: () => {
                     return (
@@ -33,13 +38,21 @@ const HomeScreen = () =>
                   backgroundColor: Colors.fernGreen,
                   height: 70,
                 },
-                headerTitleContainerStyle:
+                headerRightContainerStyle:
                 {
-                    marginRight: 10,
+                  marginRight: 24,
                 },
                 headerLeftContainerStyle: {
                     marginLeft: 22,
                 },
+                headerTitleAlign: 'center',
+                headerTitleStyle:
+                {
+                  color: Colors.white,
+                  fontFamily: Fonts.Cairo_Bold,
+                  fontSize: 18,
+                  lineHeight: 30,
+                }
             })} />
             <Stack.Screen
               name="Product"

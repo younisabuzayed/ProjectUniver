@@ -47,7 +47,38 @@ const styles = StyleSheet.create({
         height: 51,
         borderRadius: 8,
         backgroundColor: '#ECECEC',
-        color:'black',
+        color: Colors.balck,
+    },
+    codeInputHighlight:
+    {
+        borderColor: '#58B760',
+    },
+    buttonConfirmView:
+    {
+        marginTop: 70,
+    },
+    buttonConfirm:
+    {
+        marginLeft: 54,
+        marginRight: 54,
+    },
+    titleButton:
+    {
+        fontSize: 14,
+        lineHeight: 24,
+        fontFamily: Fonts.Roboto_Bold,
+        color: Colors.white,
+    },
+    resendView:
+    {
+        marginTop: 43,
+    },
+    resendText:
+    {
+        fontSize: 12,
+        lineHeight: 30,
+        fontFamily: Fonts.Cairo_Regular,
+        color: Colors.balck,
     },
 });
 

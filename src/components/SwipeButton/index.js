@@ -4,10 +4,11 @@ import { View, Text, Image, StyleSheet, Animated } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Octicons from 'react-native-vector-icons/Octicons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 const IconAnimated = Animated.createAnimatedComponent(MaterialCommunityIcons);
 import Colors from '../../../assets/colors';
+import Fonts from '../../../assets/fonts';
 
 
 const SwipeButton = ({renderLeftActions,renderRightActions, onPressMain, title,onSwipeableLeftOpen}) => {
@@ -26,7 +27,7 @@ const SwipeButton = ({renderLeftActions,renderRightActions, onPressMain, title,o
                 <IconAnimated
                   style={{transform:[{scale}]}}
                   name="delete"
-                  size={70}
+                  size={60}
                   color={Colors.Monza} />
             </TouchableOpacity>
           </View>
@@ -36,11 +37,12 @@ const SwipeButton = ({renderLeftActions,renderRightActions, onPressMain, title,o
         <Swipeable
           renderLeftActions={LeftAction}
           renderRightActions={renderRightActions}
-          onSwipeableLeftOpen={onSwipeableLeftOpen}>
+          onSwipeableLeftOpen={onSwipeableLeftOpen}
+          containerStyle={{marginBottom: 20}}>
             <View
               style={styles.swipeContainer} >
                <View
-                 style={[styles.imageProducts,{justifyContent:'center'}]} >
+                 style={[styles.imageProducts,{height: '100%', justifyContent:'center',marginLeft: 5}]} >
                    <Image
                      style={styles.imageProducts}
                      source={require('../../../assets/images/ZpHgR4U.png')}
@@ -53,7 +55,7 @@ const SwipeButton = ({renderLeftActions,renderRightActions, onPressMain, title,o
                     <Text
                       style={styles.description}
                       numberOfLines={1}
-                      ellipsizeMode="tail" >يحتوي الجهاز على العديد من المييزات الرائع</Text>
+                      ellipsizeMode="tail" >{`${44} شيكل`}</Text>
                 </View>
                 <View
                   style={styles.counterButtonAndNumber} >
@@ -65,7 +67,7 @@ const SwipeButton = ({renderLeftActions,renderRightActions, onPressMain, title,o
                     style={styles.counterNumber} >8</Text>
                   <TouchableOpacity
                     style={styles.iconCounter} >
-                      <FontAwesome name="minus" size={20} color={Colors.white}/>
+                      <Feather name="minus" size={20} color={Colors.white}/>
                   </TouchableOpacity>
                 </View>
             </View>
@@ -76,20 +78,19 @@ const SwipeButton = ({renderLeftActions,renderRightActions, onPressMain, title,o
 const styles = StyleSheet.create({
   swipeContainer:
   {
-    height: 100,
+    height: 75,
     flexDirection:'row',
     marginLeft: 15,
     marginRight: 15,
     justifyContent: 'space-between',
     borderRadius: 8,
-    backgroundColor:'rgba(236,236,236, 0.8)',
+    backgroundColor:Colors.white,
   },
   imageProducts:
   {
-      height: '100%',
+      height: 68,
+      width: 70,
       borderRadius: 4,
-      width: 120,
-      flex: 2,
       paddingRight: 25,
   },
   swipeContent:
@@ -97,15 +98,18 @@ const styles = StyleSheet.create({
     width: 100,
     justifyContent:'center',
     flex: 3,
+    marginLeft: 6,
   },
   title:
   {
     fontSize: 12,
+    fontFamily: Fonts.Cairo_Bold,
 
   },
   description:
   {
-    fontSize: 9,
+    fontSize: 12,
+    fontFamily: Fonts.Cairo_Bold,
     paddingLeft: 5,
     width: 150,
   },
@@ -113,16 +117,17 @@ const styles = StyleSheet.create({
   {
       alignItems:'center',
       justifyContent:'space-around',
+      flexDirection: 'row',
       height:'100%',
+      width: 100,
       paddingTop: 8,
       paddingBottom: 8,
-      flex: 1,
   },
   iconCounter:
   {
       height: 24,
       width: 24,
-      backgroundColor: Colors.texasRose,
+      backgroundColor: Colors.silver,
       borderRadius: 8,
       justifyContent: 'center',
       alignItems: 'center',
@@ -130,6 +135,7 @@ const styles = StyleSheet.create({
   counterNumber:
   {
     fontSize: 12,
+    fontFamily: Fonts.Cairo_Bold,
   },
   priceView:
   {

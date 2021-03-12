@@ -18,7 +18,7 @@ const Search = () => {
               style={styles.buttonBack}
               onPress={() => navigation.goBack()} >
                 <Ionicons
-                  name="arrow-back"
+                  name="arrow-forward"
                   size={25} />
             </TouchableOpacity>
             <Searchbar
@@ -27,7 +27,11 @@ const Search = () => {
               value={searchQuery}
               style={styles.searchbar}
               inputStyle={styles.textInput}
-              clearIcon={<Ionicons name="search" size={10}/>} />
+              clearIcon={<Ionicons name="search" size={10}  style={{transform: [{rotateY: '180deg'}]}}/>} />
+            </View>
+            <View
+              style={styles.historyByResearchContainer}>
+
             </View>
         </View>
     );

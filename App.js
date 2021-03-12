@@ -14,7 +14,6 @@ import { Provider } from 'react-redux';
 import { Provider as PaperProvider } from 'react-native-paper';
 import RootNavigation from './src/Navigations';
 import store from './src/redux/store';
-import ForgotPasswprd from './src/screens/Auth/ForgotPasssword';
 
 const App = () => {
   return (

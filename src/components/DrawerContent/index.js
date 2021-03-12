@@ -84,7 +84,7 @@ import Colors from '../../../assets/colors';
                                 />
                             )}
                             label="السلة"
-                            onPress={() => {props.navigation.navigate('Cart')}}
+                            onPress={() => {props.navigation.navigate('CartScreen')}}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (
