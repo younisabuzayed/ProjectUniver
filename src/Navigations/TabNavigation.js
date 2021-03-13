@@ -64,6 +64,43 @@ const CartScreen = () =>
           })} />
     </Stack.Navigator>
   )
+};
+const OrderScreen = () =>
+{
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Orders"
+        component={Orders}
+        options={({navigation}) =>({
+          headerTitle: 'الطلبات',
+          headerLeft: () => {
+              return (
+                <TouchableOpacity
+                  onPress={() => navigation.goBack()} >
+                    <MaterialIcons name="arrow-forward" size={25} color={'#AFAFAF'} style={{}} />
+                </TouchableOpacity>
+              );
+          },
+          headerStyle: {
+            backgroundColor: Colors.fernGreen,
+            height: 70,
+          },
+          headerTransparent: true,
+          headerLeftContainerStyle: {
+              marginLeft: 22,
+          },
+          headerTitleAlign: 'center',
+          headerTitleStyle:
+          {
+            color: Colors.balck,
+            fontFamily: Fonts.Cairo_Bold,
+            fontSize: 18,
+            lineHeight: 30,
+          },
+          })} />
+    </Stack.Navigator>
+  )
 }
 const mainTabBottom = () =>
 {
@@ -132,7 +169,7 @@ const mainTabBottom = () =>
                  </View>
                 );
               }
-              else if (route.name === 'Orders'){
+              else if (route.name === 'OrderScreen'){
                 return (
                   <View
                     style={styleItem} >
@@ -189,8 +226,8 @@ const mainTabBottom = () =>
                },
                }} />
               <Tab.Screen
-               name="Orders"
-               component={Orders} />
+               name="OrderScreen"
+               component={OrderScreen} />
               <Tab.Screen
                name="HomeTab"
                component={HomeScreen}

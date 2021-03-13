@@ -73,7 +73,7 @@ import Colors from '../../../assets/colors';
                                 />
                             )}
                             label="الطلبات"
-                            onPress={() => {props.navigation.navigate('Orders')}}
+                            onPress={() => {props.navigation.navigate('OrderScreen')}}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (
