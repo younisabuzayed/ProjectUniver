@@ -68,10 +68,10 @@ const Home = ({categories,categoriesAction,
                 style={styles.iconDiscount} >
                  <ImageBackground
                    style={styles.imageIconDiscount}
-                   source={require('../../../assets/images/iconDiscount.png')}
+                   source={require('../../../assets/images/iconDiscounts.png')}
                    resizeMode="stretch" >
                      <Text
-                       style={styles.discountText} >50%</Text>
+                       style={styles.discountText} >{`%${50}`}</Text>
                    </ImageBackground>
               </View>
               <View
@@ -80,10 +80,12 @@ const Home = ({categories,categoriesAction,
                     style={styles.ratingandtitleContainer} >
                     <Text
                       numberOfLines={1}
-                      style={styles.titleProducts}>{item.title}</Text>
+                      style={styles.titleProducts}
+                      ellipsizeMode="tail" >{item.title}</Text>
                     <View
                       style={styles.ratingContainer} >
-                      <Text>4.9</Text>
+                      <Text
+                        style={styles.ratingTitle} >4.9</Text>
                       <FontAwesome
                         name="star"
                         color="#FFB850" />
@@ -91,13 +93,17 @@ const Home = ({categories,categoriesAction,
                   </View>
                   <Text
                     numberOfLines={1}
-                    style={styles.titleProducts}>{"محلات القدوة"}</Text>
+                    style={styles.titleProductsStore}>{"محلات القدوة"}</Text>
                   <View
                     style={styles.iconAndPriceRow} >
                       <View
                         style={styles.price}>
                           <Text
-                            style={styles.priceProducts}>{`${item.price} شيكل`}</Text>
+                            style={styles.priceProducts}>
+                              {`${item.price}`}
+                              <Text
+                                style={styles.typeMoney} >ش</Text>
+                            </Text>
                           <View>
                           <Text
                             style={styles.orginalPrice}>
@@ -157,7 +163,6 @@ const Home = ({categories,categoriesAction,
          </>
         );
     };
-    // console.log(categories[0].products[0].title);
     if (categories !== null && products !== null)
     {
     return (
@@ -170,37 +175,38 @@ const Home = ({categories,categoriesAction,
          <View
            style={styles.flatListCatgoriesContainer} >
             <FlatList
-            data={categories}
-            keyExtractor={(item) => item.id}
-            horizontal
-            contentContainerStyle={styles.flatListCatgories}
-            showsHorizontalScrollIndicator={false}
-            renderItem={renderItemCategories} />
+              data={categories}
+              keyExtractor={(item) => item.id}
+              horizontal
+              contentContainerStyle={styles.flatListCatgories}
+              showsHorizontalScrollIndicator={false}
+              renderItem={renderItemCategories} />
          </View>
          <View
            style={styles.productsContainer} >
-            <Text>المنتجات الجديدة</Text>
+            <Text
+              style={styles.title}>المنتجات الجديدة</Text>
            <FlatList
-              data={products.slice(0,5)}
+              data={products.slice(0,4)}
               keyExtractor={(item) => item.id}
-              contentContainerStyle={{}}
+              contentContainerStyle={styles.itemProductsContainer}
+              numColumns={2}
               maxToRenderPerBatch={5}
               disableVirtualization={true}
-              horizontal
               showsHorizontalScrollIndicator={false}
               renderItem={renderItemProducts} />
-          {/* {products.map(renderItemProducts)} */}
+          {/* {products.slice(0,5).map(renderItemProducts)} */}
          </View>
          <View
            style={styles.productsContainer} >
             <Text>أعلى طلبا</Text>
            <FlatList
-              data={products.slice(0,5)}
+              data={products.slice(0,4)}
               keyExtractor={(item) => item.id}
               contentContainerStyle={{}}
+              numColumns={2}
               maxToRenderPerBatch={5}
               disableVirtualization={true}
-              horizontal
               showsHorizontalScrollIndicator={false}
               renderItem={renderItemProducts} />
           {/* {products.map(renderItemProducts)} */}

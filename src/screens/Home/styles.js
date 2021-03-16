@@ -49,11 +49,12 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.fernGreen,
         borderRadius: 8,
         justifyContent: 'center',
+        alignItems:'center',
     },
     categoriesTitle:
     {
-        fontSize: 14,
-        fontFamily: Fonts.Roboto_Regular,
+        fontSize: 12,
+        fontFamily: Fonts.Cairo_Bold,
         color: Colors.white,
         textAlign: 'center',
     },
@@ -65,6 +66,16 @@ const styles = StyleSheet.create({
         marginLeft: 15,
         marginRight: 15,
         marginTop: 30,
+    },
+    title:
+    {
+        fontSize: 14,
+        fontFamily: Fonts.Cairo_Bold,
+    },
+    itemProductsContainer:
+    {
+        justifyContent:'center',
+        alignItems: 'center',
     },
     productsInnerContainer:
     {
@@ -88,22 +99,24 @@ const styles = StyleSheet.create({
     },
     iconDiscount:
     {
-        width: 34,
-        height: 13,
+        width: 14,
+        height: 28,
         position: 'absolute',
         right: 0,
-        marginTop: 10,
+        marginRight: 10,
     },
     imageIconDiscount:
     {
-        width: 34,
-        height: 13,
+        width: 14,
+        height: 28,
+        justifyContent:'center',
     },
     discountText:
     {
-        fontSize: 9,
+        fontSize: 6,
         textAlign: 'center',
-        marginLeft: 5,
+        fontFamily: Fonts.Cairo_Bold,
+        color: Colors.white,
     },
     ContentProductsContainer:
     {
@@ -118,10 +131,11 @@ const styles = StyleSheet.create({
     titleProducts:
     {
         fontSize: 12,
-        fontFamily: Fonts.Roboto_Bold,
+        fontFamily: Fonts.Cairo_Regular,
         writingDirection: 'rtl',
         textAlign:'left',
         marginTop: 3,
+        marginLeft: 5,
         width: '60%',
     },
     ratingContainer:
@@ -132,6 +146,22 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: 30,
     },
+    ratingTitle:
+    {
+        fontSize: 9,
+        fontFamily: Fonts.Cairo_Regular,
+    },
+    titleProductsStore:
+    {
+        fontSize: 8,
+        fontFamily: Fonts.Cairo_Regular,
+        writingDirection: 'rtl',
+        textAlign:'left',
+        marginTop: 3,
+        marginLeft: 5,
+        width: '60%',
+
+    },
     iconAndPriceRow:
     {
         flexDirection:'row',
@@ -141,21 +171,29 @@ const styles = StyleSheet.create({
     price:
     {
         flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 14,
     },
     priceProducts:
     {
         fontSize: 14,
-        fontFamily: Fonts.Roboto_Bold,
+        fontFamily: Fonts.Cairo_Bold,
         writingDirection: 'rtl',
         color: Colors.mineShaft,
         lineHeight: 19,
     },
+    typeMoney:
+    {
+        fontSize: 9,
+        fontFamily: Fonts.Cairo_Regular,
+        color: '#9C9C9C',
+    },
     orginalPrice:
     {
         fontSize: 9,
-        fontFamily: Fonts.Roboto_Bold,
+        fontFamily: Fonts.Cairo_Bold,
         writingDirection: 'rtl',
-        color: 'red',
+        color: '#9C9C9C',
         lineHeight: 19,
         marginLeft: 2,
     },
