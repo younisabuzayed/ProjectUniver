@@ -32,7 +32,7 @@ const CategoriesAction = () =>
         try
         {
            const {data} = await axios.get(api + 'categories');
-           console.log('sdsd',data);
+        //    console.log('sdsd',data);
            dispatch(onCategoriesActionSuccess(data));
         } catch (error) {
             console.log('An error occurred:', error);

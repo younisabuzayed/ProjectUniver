@@ -5,6 +5,7 @@ export {default as ForgotPasssword } from './Auth/ForgotPasssword';
 export {default as VerifyMobile } from './Auth/VerifyMobile';
 
 export {default as Cart } from './Cart';
+export {default as Category } from './Category';
 export {default as EditProfile } from './EditProfile';
 export {default as Favorite } from './Favorite';
 export {default as Home } from './Home';

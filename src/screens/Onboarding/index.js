@@ -73,7 +73,7 @@ const Indicator = ({scrollX}) =>
                           margin: 10,
                           transform:[{scale}],
                           opacity},{width: dotWidth, height: 5}]} />
-                )
+                );
             })}
         </View>
     );

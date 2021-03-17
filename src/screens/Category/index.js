@@ -2,51 +2,37 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { View, Text, Animated, TouchableOpacity, Image, FlatList, ActivityIndicator, ScrollView, ImageBackground, PixelRatio } from 'react-native';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
-import Octicons from 'react-native-vector-icons/Octicons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { useNavigation } from '@react-navigation/native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
+import { useNavigation, useRoute } from '@react-navigation/native';
+//State Management
 import CategoriesAction from '../../redux/actions/CategoriesAction';
 import ProductsAction from '../../redux/actions/ProductsAction';
+
+// Styles and Icon
 import styles, { width } from './styles';
 import Colors from '../../../assets/colors';
-const ENTRIES1 = [
-    {
-        title: 'Beautiful and dramatic Antelope Canyon',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-        illustration: 'https://i.imgur.com/UYiroysl.jpg'
-    },
-    {
-        title: 'Earlier this morning, NYC',
-        subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/UPrs1EWl.jpg'
-    },
-    {
-        title: 'White Pocket Sunset',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
-        illustration: 'https://i.imgur.com/MABUbpDl.jpg'
-    },
-];
-const Home = ({categories,categoriesAction,
-               products, productsAction}) => {
+import Octicons from 'react-native-vector-icons/Octicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
+const Category = ({categories,categoriesAction}) => {
     const sliderRef = React.useRef();
+    const navigation = useNavigation()
+    const route = useRoute();
     const [activeDot, setActiveDot] = React.useState(0);
     React.useEffect(() => {
         categoriesAction();
-        productsAction();
+        navigation.setOptions({headerTitle: route.params.name});
     }, []);
-    const navigation = useNavigation();
+    const Categories = categories.filter((_, i) => _.category_id === route.params.idItems)[0];
+    const productsSelected = Categories.products;
+
     const renderItemCategories = ({item}) =>
     {
         return (
             <TouchableOpacity
-              style={styles.categoriesContainer}
-              onPress={() => navigation.navigate('Category',{
-                idItems: item.category_id,
-                name: item.name,
-              })} >
+              style={styles.categoriesContainer} >
              <Text
                style={styles.categoriesTitle} >{item.name}</Text>
             </TouchableOpacity>
@@ -54,7 +40,7 @@ const Home = ({categories,categoriesAction,
     };
     const RenderItemProducts = ({item}) =>
     {
-    const [favorite, setFavorite] = React.useState(false);
+    const [favorite, setFavorite] = React.useState(false)
         return (
             <TouchableOpacity
               style={styles.productsInnerContainer}
@@ -139,7 +125,7 @@ const Home = ({categories,categoriesAction,
         );
     };
     //Slider for Ads
-    const SliderContainer = () =>
+   /* const SliderContainer = () =>
     {
         return (
          <>
@@ -179,15 +165,15 @@ const Home = ({categories,categoriesAction,
                containerStyle={styles.PaginationContainer} />
          </>
         );
-    };
-    if (categories !== null && products !== null)
+    };*/
+    if (categories !== null)
     {
     return (
         <View
-          style={styles.homeContainer} >
+          style={styles.CategoryContainer} >
         <ScrollView>
          {/*Slider */}
-         <SliderContainer />
+         {/* <SliderContainer /> */}
          {/* FlatList Catgories */}
          <View
            style={styles.flatListCatgoriesContainer} >
@@ -204,7 +190,7 @@ const Home = ({categories,categoriesAction,
             <Text
               style={styles.title}>المنتجات الجديدة</Text>
            <FlatList
-              data={products.slice(0,4)}
+              data={productsSelected.slice(0,4)}
               keyExtractor={(item) => item.id}
               contentContainerStyle={styles.itemProductsContainer}
               columnWrapperStyle={{marginRight: 6, marginLeft: 6}}
@@ -216,11 +202,11 @@ const Home = ({categories,categoriesAction,
           {/* {products.slice(0,5).map(renderItemProducts)} */}
          </View>
          <View
-           style={styles.productsContainer} >
+           style={[styles.productsContaine,{marginBottom: 20}]} >
             <Text
               style={styles.title} >أعلى طلبا</Text>
             <FlatList
-              data={products.slice(0,4)}
+              data={productsSelected.slice(0,4)}
               keyExtractor={(item) => item.id}
               contentContainerStyle={styles.itemProductsContainer}
               columnWrapperStyle={{marginRight: 6, marginLeft: 6}}
@@ -260,4 +246,4 @@ const mapDispatchToProps = (dispatch) =>
         productsAction: () => dispatch(ProductsAction()),
     };
 };
-export default connect(mapStateToProps,mapDispatchToProps)(Home);
+export default connect(mapStateToProps,mapDispatchToProps)(Category);

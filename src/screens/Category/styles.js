@@ -4,7 +4,7 @@ import Fonts from '../../../assets/fonts';
 import { hp, wp } from '../../../assets/size';
 export const {width, height} = Dimensions.get('window');
 const styles = StyleSheet.create({
-    homeContainer:
+    CategoryContainer:
     {
         flex: 1,
         backgroundColor: Colors.seashellSolid,
@@ -61,17 +61,15 @@ const styles = StyleSheet.create({
     },
     productsContainer:
     {
-        // flexWrap: 'wrap',
-        // flexDirection: 'row',
-        // justifyContent:'space-around',
-        marginLeft: 15,
-        marginRight: 15,
         marginTop: 30,
+        marginBottom: 20,
     },
     title:
     {
         fontSize: 14,
         fontFamily: Fonts.Cairo_Bold,
+        marginLeft: 15,
+        marginRight: 15,
     },
     itemProductsContainer:
     {
@@ -83,6 +81,7 @@ const styles = StyleSheet.create({
         width: wp(45),
         height: hp('30%'),
         alignItems:'flex-start',
+        justifyContent:'space-between',
         backgroundColor: Colors.white,
         borderRadius: 8,
         marginTop: 25,

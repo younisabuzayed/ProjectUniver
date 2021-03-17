@@ -2,6 +2,8 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+//Styles and Icons
 import Colors from '../../assets/colors';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';

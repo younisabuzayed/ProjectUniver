@@ -52,15 +52,34 @@ const styles = StyleSheet.create({
     nameAndImageShopContainer:
     {
         flexDirection: 'row',
+        width: '60%',
     },
     avatar:
     {
         marginRight: 8,
     },
-    nameShop:
+    titleAndNameShop:
+    {
+        alignItems:'flex-start',
+        marginLeft: 10,
+        marginRight: 10,
+        width: '60%',
+
+    },
+    productTitle:
     {
         fontSize: 18,
-        fontFamily: Fonts.Roboto_Bold,
+        fontFamily: Fonts.Cairo_Bold,
+        writingDirection: 'rtl',
+        textAlign:'left',
+        color: Colors.titleProduct,
+        width: '60%',
+    },
+    nameShop:
+    {
+        fontSize: 9,
+        fontFamily: Fonts.Cairo_Regular,
+        color: Colors.nameShop,
     },
     priceContainer:
     {
@@ -70,23 +89,42 @@ const styles = StyleSheet.create({
     },
     priceNumber:
     {
-        fontSize: 32,
-        fontFamily: Fonts.Roboto_Bold,
-        color: Colors.carnation,
+        fontSize: 24,
+        fontFamily: Fonts.Cairo_Bold,
+        color: Colors.balck,
     },
     priceTitle:
     {
-        fontSize: 14,
-        fontFamily: Fonts.Roboto_Regular,
+        fontSize: 12,
+        fontFamily: Fonts.Cairo_Regular,
+        color: Colors.balck,
     },
-    productTitle:
+    ratingContainer:
+    {
+        marginLeft: 5,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: 40,
+        height: 25,
+    },
+    ratingTitle:
     {
         fontSize: 12,
-        fontFamily: Fonts.Roboto_Regular,
-        marginLeft: 10,
-        marginRight: 10,
-        writingDirection: 'rtl',
-        textAlign:'left',
+        fontFamily: Fonts.Cairo_Regular,
+    },
+    timeContainer:
+    {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems:'center',
+        height: 20,
+        marginLeft: 5,
+    },
+    texttime:
+    {
+        fontSize: 12,
+        fontFamily: Fonts.Cairo_Regular,
+        marginLeft: 2,
     },
     decriptiopnContainer:
     {
@@ -94,23 +132,41 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
     },
-    decriptiopnTitle:
-    {
-        fontSize: 14,
-        fontFamily: Fonts.Roboto_Bold,
-    },
     decriptiopnContent:
     {
-        fontSize: 14,
-        fontFamily: Fonts.Roboto_Regular,
+        fontSize: 12,
+        fontFamily: Fonts.Cairo_Regular,
     },
-    priceCounterContainer:
+    chooseContainer:
     {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
         marginTop: 20,
-        marginLeft: 10,
+        marginLeft: 20,
         marginRight: 10,
+    },
+    chooseTitle:
+    {
+        fontSize: 12,
+        fontFamily: Fonts.Cairo_Bold,
+    },
+    chooseButtons:
+    {
+        flexDirection:'row',
+        marginTop: 15,
+    },
+    buttonChoose:
+    {
+        backgroundColor: Colors.white,
+        elevation: 2,
+        width: 40,
+        height: 40,
+        borderRadius: 8,
+        marginLeft: 0,
+        marginRight: 18,
+    },
+    chooseImage:
+    {
+        height: 25,
+        width: 25,
     },
     counterContainer:
     {
@@ -140,9 +196,37 @@ const styles = StyleSheet.create({
         paddingBottom: 5,
         marginTop: 18,
     },
+    circle:
+    {
+        height: 60,
+        width: 60,
+        borderRadius: 30,
+        backgroundColor:'transparent',
+        position:'absolute',
+        bottom: -30,
+        alignSelf: 'center',
+        zIndex: 1,
+    },
     colorsContainer:
     {
         marginTop: 20,
+        backgroundColor: Colors.white,
+        height: 146,
+        alignItems: 'center',
+    },
+    strock:
+    {
+        height: 4,
+        width: 101,
+        backgroundColor: Colors.strok,
+        marginTop: 9,
+        borderRadius: 2,
+    },
+    titleColor:
+    {
+        fontSize: 12,
+        fontFamily: Fonts.Cairo_Regular,
+        marginTop: 12,
     },
     circleContainer:
     {

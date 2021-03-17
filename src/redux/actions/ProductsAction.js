@@ -33,7 +33,7 @@ const ProductsAction = () =>
         try
         {
             const {data} = await axios.get(api + 'products');
-            console.log('ProductsAction', data);
+            // console.log('ProductsAction', data);
             dispatch(onProductsActionSuccess(data));
         } catch (error)
         {

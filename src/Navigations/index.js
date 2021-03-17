@@ -40,7 +40,7 @@ const rootNavigation = () =>
 {
 
     return (
-        <NavigationContainer>
+        <NavigationContainer >
           <Stack.Navigator>
             <Stack.Screen
               name="Onboarding"

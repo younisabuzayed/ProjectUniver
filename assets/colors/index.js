@@ -20,6 +20,8 @@ const Colors = {
     strok: '#C1C1C1',
     concrete:'#F2F2F2',
     silver: '#B8B8B8',
+    titleProduct: '#6D6D6D',
+    nameShop:'#9C9C9C',
 };
 
 export default Colors;
