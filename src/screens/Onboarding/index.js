@@ -95,7 +95,6 @@ const Onboarding = () => {
         ref.current?.scrollToIndex({index: counter - 1, animated: true});
         setCounter(counter - 1);
     };
-    
     return (
         <View
           style={styles.container}>
@@ -122,17 +121,7 @@ const Onboarding = () => {
                         <View
                           style={styles.titleAndBack}>
                         <View
-                      style={styles.goBackIconContainer} >
-                        <Button
-                          onPress={() => navigation.goBack()}
-                          styleButton={styles.goBackIcon}
-                          children={<MaterialIcons
-                                      name="arrow-forward"
-                                      size={25}
-                                      color={'#AFAFAF'}/>} />
-                        </View>
-                        <View
-                          style={{flex: 1, marginLeft : -60}}>
+                          style={{flex: 1}}>
                             <Text
                               style={styles.titleOnboard}>{item.feature}</Text>
                         </View>

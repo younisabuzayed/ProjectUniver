@@ -3,12 +3,12 @@
 import React from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Avatar } from 'react-native-paper';
+import { Avatar, List } from 'react-native-paper';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 
 // Custom Component
-import { Button } from '../../components';
+import { Button, ColorSelction } from '../../components';
 import CategoriesAction from '../../redux/actions/CategoriesAction';
 import ProductsAction from '../../redux/actions/ProductsAction';
 
@@ -16,11 +16,12 @@ import ProductsAction from '../../redux/actions/ProductsAction';
 import styles from './styles';
 import Colors from '../../../assets/colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Feather from 'react-native-vector-icons/Feather';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Selection from '../../components/Selection';
 //choose Container
-
+const timeOut = 500;
 const Choose = ({isVisible, children,onBackdropPress}) =>
 {
   return (
@@ -28,6 +29,7 @@ const Choose = ({isVisible, children,onBackdropPress}) =>
      testID={'modal'}
      isVisible={isVisible}
      onBackdropPress={onBackdropPress}
+     animationOutTiming={timeOut}
      swipeDirection={['up', 'left', 'right', 'down']}
      style={{
         justifyContent: 'flex-end',
@@ -38,7 +40,12 @@ const Choose = ({isVisible, children,onBackdropPress}) =>
   )
 }
 const Product = ({productsAction, products}) => {
-  const [isVisible, setIsVisible] = React.useState(false)
+  const [isVisible, setIsVisible] = React.useState(false);
+  const [isVisibleMeasurements, setIsVisibleMeasurements] = React.useState(false);
+  const [isCheckedMeasurements, setIsCheckedMeasurements] = React.useState(false);
+  const [color, setColor] = React.useState(null);
+  const [measurements, setMeasurements] = React.useState(null);
+  console.log(measurements);
    React.useEffect(() => {
      productsAction();
    }, []);
@@ -69,6 +76,8 @@ const Product = ({productsAction, products}) => {
               </View>
               <View
                 style={styles.bodyContainer} >
+                <Text
+                  style={styles.productTitle} >{selectedProduct.title}</Text>
                   <View
                     style={styles.nameShopAndPriceProduct} >
                       <View
@@ -79,8 +88,6 @@ const Product = ({productsAction, products}) => {
                             style={styles.avatar} />
                           <View
                             style={styles.titleAndNameShop}>
-                            <Text
-                              style={styles.productTitle} >{selectedProduct.title}</Text>
                             <Text
                               style={styles.nameShop} >ريتال شوب</Text>
                             <View style={styles.priceContainer} >
@@ -139,7 +146,7 @@ const Product = ({productsAction, products}) => {
                               isVisible={isVisible}
                               onBackdropPress={() => setIsVisible(!isVisible)}>
                               <View
-                                style={{height: 200, backgroundColor:'transparent',}}>
+                                style={{height: 200, backgroundColor:'white'}}>
                                 <View
                                   style={styles.colorsContainer} >
                                     <View style={styles.strock} />
@@ -147,28 +154,37 @@ const Product = ({productsAction, products}) => {
                                       style={styles.titleColor} >الالوان</Text>
                                     <View
                                       style={styles.circleContainer} >
-                                    <View style={[styles.colorCircle,{backgroundColor: '#B2B2B2'}]} />
-                                    <View style={[styles.colorCircle,{backgroundColor: '#FF5050'}]} />
-                                    <View style={[styles.colorCircle,{backgroundColor: '#000639'}]} />
-                                    <View style={[styles.colorCircle,{backgroundColor: '#A3ACFE'}]} />
-                                    <View style={[styles.colorCircle,{backgroundColor: 'red'}]} />
-                                    <View style={[styles.colorCircle,{backgroundColor: 'yellow'}]} />
-                                    <View style={[styles.colorCircle,{backgroundColor: 'blue'}]} />
-                                    <View style={[styles.colorCircle,{backgroundColor: 'green'}]} />
-                                    <View style={[styles.colorCircle,{backgroundColor: 'black'}]} />
+                                      <ColorSelction
+                                        colors={['white','#B2B2B2', '#FF5050', '#000639', '#A3ACFE', 'red', 'yellow', 'blue', 'green', 'black']}
+                                        onChange={(color) => {
+                                          setColor(color);
+                                          setTimeout(() =>setIsVisible(!isVisible), timeOut);
+                                          }}
+                                         />
                                     </View>
-                                    <View
-                                      style={styles.circle} />
+                                    {/* <View
+                                      style={styles.circle} /> */}
                                 </View>
                               </View>
                             </Choose>
                         </Button>
                         <Button
-                          styleButton={styles.buttonChoose}>
+                          styleButton={styles.buttonChoose}
+                          onPress={() => setIsVisibleMeasurements(!isVisibleMeasurements)}>
                           <Image
                             source={require('../../../assets/images/scissors.png')}
                             style={styles.chooseImage}
                             resizeMode="contain" />
+                          <Choose
+                            isVisible={isVisibleMeasurements}
+                            onBackdropPress={() => setIsVisibleMeasurements(!isVisibleMeasurements)}>
+                              <View style={styles.colorsContainer}>
+                              <Text>المقاسات</Text>
+                              <Selection
+                                items={['50', '60', '80', '100']}
+                                onChange={(num) => setMeasurements(num)} />
+                              </View>
+                            </Choose>
                         </Button>
                         <Button
                           styleButton={[styles.buttonChoose]}>
@@ -176,6 +192,26 @@ const Product = ({productsAction, products}) => {
                             source={require('../../../assets/images/num.png')}
                             style={styles.chooseImage} />
                         </Button>
+                      </View>
+                  </View>
+                  <View
+                    style={styles.buttonAndCounterPriceContainer} >
+                     <Button
+                       active
+                       backgroundColor={Colors.fernGreen}
+                       styleButton={styles.buttonAddCard}
+                       title="اضافة الى السلة"
+                       children={ <FontAwesome5
+                          name="shopping-cart"
+                          size={20}
+                          color={Colors.white}
+                          style={{}} />
+                          }
+                       titleStyle={styles.buttonAddCardText} />
+                      <View
+                      style={styles.priceView}>
+                        <Text
+                          style={styles.counterPriceText} >1000ش</Text>
                       </View>
                   </View>
               </View>
@@ -219,3 +255,12 @@ export default connect(mapStateToProps,mapDispatchToProps)(Product);
   style={styles.priceView}>
   <Text>1000</Text>
   </View>*/
+/*  <View style={[styles.colorCircle,{backgroundColor: '#B2B2B2'}]} />
+      <View style={[styles.colorCircle,{backgroundColor: '#FF5050'}]} />
+      <View style={[styles.colorCircle,{backgroundColor: '#000639'}]} />
+      <View style={[styles.colorCircle,{backgroundColor: '#A3ACFE'}]} />
+      <View style={[styles.colorCircle,{backgroundColor: 'red'}]} />
+      <View style={[styles.colorCircle,{backgroundColor: 'yellow'}]} />
+      <View style={[styles.colorCircle,{backgroundColor: 'blue'}]} />
+      <View style={[styles.colorCircle,{backgroundColor: 'green'}]} />
+      <View style={[styles.colorCircle,{backgroundColor: 'black'}]} />*/

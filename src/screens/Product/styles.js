@@ -43,6 +43,18 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 10,
         backgroundColor: Colors.white,
         marginTop: width - 10,
+        paddingBottom: 50,
+    },
+    productTitle:
+    {
+        fontSize: 18,
+        fontFamily: Fonts.Cairo_Bold,
+        writingDirection: 'rtl',
+        textAlign:'left',
+        color: Colors.titleProduct,
+        width: '90%',
+        marginLeft: 15,
+        marginRight: 15,
     },
     nameShopAndPriceProduct:
     {
@@ -53,6 +65,7 @@ const styles = StyleSheet.create({
     {
         flexDirection: 'row',
         width: '60%',
+        marginTop: 10,
     },
     avatar:
     {
@@ -66,18 +79,9 @@ const styles = StyleSheet.create({
         width: '60%',
 
     },
-    productTitle:
-    {
-        fontSize: 18,
-        fontFamily: Fonts.Cairo_Bold,
-        writingDirection: 'rtl',
-        textAlign:'left',
-        color: Colors.titleProduct,
-        width: '60%',
-    },
     nameShop:
     {
-        fontSize: 9,
+        fontSize: 14,
         fontFamily: Fonts.Cairo_Regular,
         color: Colors.nameShop,
     },
@@ -186,16 +190,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginLeft: 5,
     },
-    priceView:
-    {
-        backgroundColor: Colors.altoApprox,
-        borderRadius: 15,
-        paddingLeft: 16,
-        paddingRight: 16,
-        paddingTop: 5,
-        paddingBottom: 5,
-        marginTop: 18,
-    },
     circle:
     {
         height: 60,
@@ -246,6 +240,42 @@ const styles = StyleSheet.create({
     {
         marginLeft: 30,
         marginRight: 30,
+    },
+    buttonAndCounterPriceContainer:
+    {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 50,
+    },
+    buttonAddCard:
+    {
+        flexDirection: 'row-reverse',
+        width:228,
+        marginRight: 0,
+        marginLeft: 0,
+    },
+    buttonAddCardText:
+    {
+        fontSize: 14,
+        fontFamily: Fonts.Cairo_Bold,
+        color: Colors.white,
+        marginRight: 5,
+    },
+    priceView:
+    {
+        width: 78,
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderColor: Colors.altoApprox,
+        borderWidth: 2,
+        borderRadius: 8,
+    },
+    counterPriceText:
+    {
+        fontSize: 14,
+        fontFamily: Fonts.Cairo_Regular,
     },
     bottomContainer:
     {
