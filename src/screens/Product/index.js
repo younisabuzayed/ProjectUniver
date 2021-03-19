@@ -3,7 +3,7 @@
 import React from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Avatar, List } from 'react-native-paper';
+import { Avatar, Badge, List } from 'react-native-paper';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 
@@ -11,6 +11,7 @@ import Modal from 'react-native-modal';
 import { Button, ColorSelction } from '../../components';
 import CategoriesAction from '../../redux/actions/CategoriesAction';
 import ProductsAction from '../../redux/actions/ProductsAction';
+import Selection from '../../components/Selection';
 
 //Style and Icons
 import styles from './styles';
@@ -19,7 +20,9 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Selection from '../../components/Selection';
+import Octicons from 'react-native-vector-icons/Octicons';
+import Entypo from 'react-native-vector-icons/Entypo';
+
 //choose Container
 const timeOut = 500;
 const Choose = ({isVisible, children,onBackdropPress}) =>
@@ -37,23 +40,56 @@ const Choose = ({isVisible, children,onBackdropPress}) =>
       }} >
          {children}
     </Modal>
-  )
-}
+  );
+};
+const Counter = ({onPressPlus, onPressMinus, counter}) =>
+{
+  return (
+    <View
+      style={styles.counterButtonAndNumber} >
+        <TouchableOpacity
+          style={styles.iconCounter}
+          onPress={onPressPlus} >
+            <Octicons name="plus" size={20} color={Colors.white}/>
+        </TouchableOpacity>
+        <Text
+          style={styles.counterNumber} >{counter}</Text>
+        <TouchableOpacity
+          style={styles.iconCounter}
+          onPress={onPressMinus} >
+            <Entypo name="minus" size={20} color={Colors.white}/>
+        </TouchableOpacity>
+    </View>
+  );
+};
+
 const Product = ({productsAction, products}) => {
+  React.useEffect(() => {
+    productsAction();
+  }, []);
+  const navigation = useNavigation();
+  const route = useRoute();
+  const itemProduct = route.params.idItem;
+  const nameCategory = route.params.nameCategory;
+  const selectedProduct = products.filter((_, i) => _.id === itemProduct)[0];
   const [isVisible, setIsVisible] = React.useState(false);
   const [isVisibleMeasurements, setIsVisibleMeasurements] = React.useState(false);
-  const [isCheckedMeasurements, setIsCheckedMeasurements] = React.useState(false);
+  const [isVisibleNumberItem, setIsVisibleNumberItem] = React.useState(false);
   const [color, setColor] = React.useState(null);
   const [measurements, setMeasurements] = React.useState(null);
+  const [counter, setCounter] = React.useState(1);
+  const [price, setPrice] = React.useState(selectedProduct.price);
+
+  const increase = () =>
+  {
+    setCounter(counter + 1);
+  }
+  const discrease = () =>
+  {
+    if (counter === 0) {return;}
+    setCounter(counter - 1);
+  };
   console.log(measurements);
-   React.useEffect(() => {
-     productsAction();
-   }, []);
-   const navigation = useNavigation();
-   const route = useRoute();
-   const itemProduct = route.params.idItem;
-   const nameCategory = route.params.nameCategory;
-   const selectedProduct = products.filter((_, i) => _.id === itemProduct)[0];
   //  const suggestProduct = products.filter((_, i) => _.categories[0].name === nameCategory[0].name);
 
     return (
@@ -148,10 +184,10 @@ const Product = ({productsAction, products}) => {
                               <View
                                 style={{height: 200, backgroundColor:'white'}}>
                                 <View
-                                  style={styles.colorsContainer} >
+                                  style={styles.choosesContainer} >
                                     <View style={styles.strock} />
                                     <Text
-                                      style={styles.titleColor} >الالوان</Text>
+                                      style={styles.title} >الالوان</Text>
                                     <View
                                       style={styles.circleContainer} >
                                       <ColorSelction
@@ -178,19 +214,42 @@ const Product = ({productsAction, products}) => {
                           <Choose
                             isVisible={isVisibleMeasurements}
                             onBackdropPress={() => setIsVisibleMeasurements(!isVisibleMeasurements)}>
-                              <View style={styles.colorsContainer}>
-                              <Text>المقاسات</Text>
+                              <View style={styles.choosesContainer}>
+                                <View style={styles.strock} />
+                              <Text
+                                style={styles.title}>المقاسات</Text>
                               <Selection
-                                items={['50', '60', '80', '100']}
-                                onChange={(num) => setMeasurements(num)} />
+                                items={['50', '60', '80', '100', '150']}
+                                onChange={(num) => {
+                                  setMeasurements(num);
+                                  setTimeout(() =>setIsVisibleMeasurements(!isVisibleMeasurements), timeOut);
+                                }} />
                               </View>
                             </Choose>
                         </Button>
                         <Button
-                          styleButton={[styles.buttonChoose]}>
+                          styleButton={[styles.buttonChoose]}
+                          onPress={() => setIsVisibleNumberItem(!isVisibleNumberItem)}>
+                          <View
+                            style={{position: 'absolute', top: -10, left: 0}}>
+                          <Badge style={{backgroundColor: Colors.carnation}}>{counter}</Badge>
+                          </View>
                           <Image
                             source={require('../../../assets/images/num.png')}
                             style={styles.chooseImage} />
+                          <Choose
+                            isVisible={isVisibleNumberItem}
+                            onBackdropPress={() => setIsVisibleNumberItem(!isVisibleNumberItem)}>
+                             <View style={styles.choosesContainer}>
+                                <View style={styles.strock} />
+                              <Text
+                                style={styles.title}>عدد المنتج</Text>
+                              <Counter
+                                counter={counter}
+                                onPressPlus={increase}
+                                onPressMinus={discrease} />
+                              </View>
+                          </Choose>
                         </Button>
                       </View>
                   </View>
@@ -211,7 +270,7 @@ const Product = ({productsAction, products}) => {
                       <View
                       style={styles.priceView}>
                         <Text
-                          style={styles.counterPriceText} >1000ش</Text>
+                          style={styles.counterPriceText} >{`${price * counter}ش`}</Text>
                       </View>
                   </View>
               </View>

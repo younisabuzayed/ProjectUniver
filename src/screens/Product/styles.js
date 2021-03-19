@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     {
         height: 24,
         width: 24,
-        backgroundColor: Colors.texasRose,
+        backgroundColor: Colors.silver,
         borderRadius: 8,
         justifyContent: 'center',
         alignItems: 'center',
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         zIndex: 1,
     },
-    colorsContainer:
+    choosesContainer:
     {
         marginTop: 20,
         backgroundColor: Colors.white,
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
         marginTop: 9,
         borderRadius: 2,
     },
-    titleColor:
+    title:
     {
         fontSize: 12,
         fontFamily: Fonts.Cairo_Regular,

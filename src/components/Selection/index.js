@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text } from 'react-native';
 import { Button } from '..';
 import Colors from '../../../assets/colors';
 import styles from './styles';
@@ -11,7 +11,8 @@ const Selection = ({items, onChange}) => {
         onChange(num);
       }, [onChange]);
     return (
-        <View>
+        <View
+          style={styles.selectionContainer}>
             {items.map((item, index) =>
             {
                 return <Button
@@ -21,10 +22,10 @@ const Selection = ({items, onChange}) => {
                         backgroundColor={measurements === item  ? Colors.fernGreen : Colors.seashellSolid}
                         onPress={() => onMeasurementsChange(item)}
                         title={item}
-                        titleStyle={{color: 'red'}} />;
+                        titleStyle={[styles.title,{color: measurements === item ? Colors.white : Colors.balck}]} />;
             })}
         </View>
-    )
-}
+    );
+};
 
 export default Selection;
