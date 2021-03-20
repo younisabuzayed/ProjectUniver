@@ -103,6 +103,43 @@ const OrderScreen = () =>
           })} />
     </Stack.Navigator>
   )
+};
+const FavoriteScreen = () =>
+{
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Favorite"
+        component={Favorite}
+        options={({navigation}) =>({
+          headerTitle: 'المفضلة',
+          headerLeft: () => {
+              return (
+                <TouchableOpacity
+                  onPress={() => navigation.goBack()} >
+                    <MaterialIcons name="arrow-forward" size={25} color={'#AFAFAF'} style={{}} />
+                </TouchableOpacity>
+              );
+          },
+          headerStyle: {
+            backgroundColor: Colors.fernGreen,
+            height: 70,
+          },
+          headerTransparent: true,
+          headerLeftContainerStyle: {
+              marginLeft: 22,
+          },
+          headerTitleAlign: 'center',
+          headerTitleStyle:
+          {
+            color: Colors.balck,
+            fontFamily: Fonts.Cairo_Bold,
+            fontSize: 18,
+            lineHeight: 30,
+          },
+          })} />
+    </Stack.Navigator>
+  )
 }
 const mainTabBottom = () =>
 {
@@ -185,7 +222,7 @@ const mainTabBottom = () =>
                  </View>
                 );
               }
-              else if (route.name === 'Favorite')
+              else if (route.name === 'FavoriteScreen')
               {
                 return  (
                   <View
@@ -259,8 +296,8 @@ const mainTabBottom = () =>
                 })}
                  />
              <Tab.Screen
-               name="Favorite"
-               component={Favorite} />
+               name="FavoriteScreen"
+               component={FavoriteScreen} />
              <Tab.Screen
                name="Profile"
                component={Profile} />

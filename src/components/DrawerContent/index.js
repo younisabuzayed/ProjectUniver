@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import {
@@ -32,7 +34,7 @@ import Colors from '../../../assets/colors';
                     <View style={styles.userInfoSection}>
                             <Avatar.Image
                                 source={{
-                                    uri: 'https://api.adorable.io/avatars/50/abott@adorable.png'
+                                    uri: 'https://api.adorable.io/avatars/50/abott@adorable.png',
                                 }}
                                 size={50}
                             />
@@ -62,7 +64,7 @@ import Colors from '../../../assets/colors';
                                 />
                             )}
                             label="المفضلة"
-                            onPress={() => {props.navigation.navigate('Favorite')}}
+                            onPress={() => {props.navigation.navigate('FavoriteScreen')}}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (
@@ -95,7 +97,7 @@ import Colors from '../../../assets/colors';
                                 />
                             )}
                             label="اللغة"
-                            onPress={() => {alert('ستتوفر قريبا')}}
+                            onPress={() => {alert('ستتوفر قريبا');}}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (
@@ -106,7 +108,7 @@ import Colors from '../../../assets/colors';
                                 />
                             )}
                             label="الدعم الفني"
-                            onPress={() => {props.navigation.navigate('BookmarkScreen')}}
+                            onPress={() => {props.navigation.navigate('BookmarkScreen');}}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (
@@ -227,4 +229,3 @@ const styles = StyleSheet.create({
   });
 
   export default DrawerContent;
-  
