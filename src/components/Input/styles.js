@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     title:
     {
         fontSize: 12,
-        fontFamily: Fonts.Roboto_Regular,
+        fontFamily: Fonts.Cairo_Regular,
         marginLeft: 8,
     },
     input:
@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         paddingRight: 15,
         paddingLeft: 15,
+        fontFamily: Fonts.Cairo_Regular,
     },
 });
 

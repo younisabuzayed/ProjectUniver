@@ -6,8 +6,13 @@ const styles = StyleSheet.create({
     signupContainer:
     {
         flex: 1,
-        height,
         backgroundColor: Colors.white,
+    },
+    imagePickerShow:
+    {
+        height: 66,
+        width: 66,
+        borderRadius: 3,
     },
     bodyContianer:
     {
@@ -22,7 +27,6 @@ const styles = StyleSheet.create({
     },
     bodyTitleAndDescription:
     {
-        flex: 0.10,
         height: 50,
         width: '100%',
         alignItems: 'center',
@@ -55,7 +59,7 @@ const styles = StyleSheet.create({
     titleInput:
     {
         fontSize: 12,
-        fontFamily: Fonts.Roboto_Regular,
+        fontFamily: Fonts.Cairo_Regular,
         marginLeft: 50,
         marginTop: 15,
     },
@@ -88,11 +92,29 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontFamily: Fonts.Cairo_Regular,
     },
-    inputWithEye:
+    imagesPickerContainer:
     {
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: Colors.mercury,
+        justifyContent:'center',
+    },
+    imagePicker:
+    {
+        marginTop: 15,
+    },
+    titleImagePicker:
+    {
+        fontSize: 12,
+        fontFamily: Fonts.Cairo_Regular,
+    },
+    buttonImagePicker:
+    {
+        height: 66,
+        width: 66,
+        marginLeft: 0,
+        marginRight: 0,
+        marginTop: 5,
+        borderRadius: 3,
     },
     buttonContainer:
     {
@@ -104,8 +126,7 @@ const styles = StyleSheet.create({
     titleButton:
     {
         fontSize: 18,
-        lineHeight: 24,
-        fontFamily: Fonts.Roboto_Bold,
+        fontFamily: Fonts.Cairo_Bold,
         color: Colors.white,
     },
 });

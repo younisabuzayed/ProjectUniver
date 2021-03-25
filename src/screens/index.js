@@ -17,5 +17,8 @@ export {default as Search } from './Search';
 
 //Buyer Screens
 export {default as CommercialRegister } from './BuyerScreen/CommercialRegister';
+export {default as MainScreenBuyer } from './BuyerScreen/MainScreenBuyer';
+export {default as OrdersBuyer } from './BuyerScreen/OrdersBuyer';
+
 
 

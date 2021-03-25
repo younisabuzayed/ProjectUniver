@@ -1,15 +1,17 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { View, Text, ScrollView, KeyboardAvoidingView, Image } from 'react-native';
 import DatePicker from 'react-native-date-picker';
+import * as ImagePicker from 'react-native-image-picker';
 import moment from 'moment';
 //Component
-import { Button, EyeShow, Input } from '../../../components';
+import { Button, Input } from '../../../components';
 //Styles
 import styles from './styles';
 import Colors from '../../../../assets/colors';
 import Modal from 'react-native-modal';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 const Choose = ({isVisible, children,onBackdropPress, timeOut}) =>
 {
   return (
@@ -37,8 +39,51 @@ const CommercialRegister = () => {
     const [date, setDate] = React.useState( new Date());
     const [isVisible, setIsVisible] = React.useState(false);
     const [isVisibleKind, setIsVisibleKind] = React.useState(false);
+    const [responseLogo, setResponseLogo] = React.useState(null);
+    const [responseLicence, setResponseLicence] = React.useState(null);
 
-
+    const onPressResponseLogo = () =>
+    {
+      ImagePicker.launchImageLibrary(
+        {
+          mediaType: 'photo',
+          includeBase64: false,
+          maxHeight: 200,
+          maxWidth: 200,
+        },
+        (response) => {
+          setResponseLogo(response);
+        },
+      );
+    };
+    const onPressResponseLicence = () =>
+    {
+      ImagePicker.launchImageLibrary(
+        {
+          mediaType: 'photo',
+          includeBase64: false,
+          maxHeight: 200,
+          maxWidth: 200,
+        },
+        (response) => {
+          setResponseLicence(response);
+        },
+      );
+    };
+    const ImageShow = ({data}) =>
+     {
+       return (
+        data === null
+        ? <MaterialIcons
+            name="add-a-photo"
+            size={25}
+            color={'#656565'} />
+        : <Image
+            source={{uri: data.uri}}
+            resizeMode="contain"
+            style={styles.imagePickerShow} />
+       );
+     };
 
     const refSecond = React.useRef();
     const refThird = React.useRef();
@@ -125,31 +170,61 @@ const CommercialRegister = () => {
                titleStyle={styles.buttonKindTitle}
                title={kind}
                onPress={() => setIsVisibleKind(!isVisibleKind)}
-               children={<MaterialIcons name="keyboard-arrow-down" size={20}/>} />
-                 <Choose
-                    isVisible={isVisibleKind}
-                    onBackdropPress={() => setIsVisibleKind(!isVisibleKind)} >
-                      <View
-                        style={[styles.modal,{height: 120}]}>
-                          <View style={styles.strock} />
-                          {['وجباتي','ملابس','هواتف'].map(item => {
-                            return (
-                              <Button
-                                key={item}
-                                title={item}
-                                onPress={() => onPressKind(item)}
-                                titleStyle={styles.buttonKindTitle}
-                                marginBottom={5} />
-                            );
-                          })}
-                      </View>
-                  </Choose>
+               children={<MaterialIcons
+                           name="keyboard-arrow-down"
+                           size={25}
+                           color={'#656565'} />} />
+             <Choose
+                isVisible={isVisibleKind}
+                onBackdropPress={() => setIsVisibleKind(!isVisibleKind)} >
+                  <View
+                    style={[styles.modal,{height: 120}]}>
+                      <View style={styles.strock} />
+                      {['وجباتي','ملابس','هواتف'].map(item => {
+                        return (
+                          <Button
+                            key={item}
+                            title={item}
+                            onPress={() => onPressKind(item)}
+                            titleStyle={styles.buttonKindTitle}
+                            marginBottom={5} />
+                        );
+                      })}
+                  </View>
+              </Choose>
              </View>
+             <View
+                style={styles.imagesPickerContainer}>
+                  <View
+                    style={[styles.imagePicker,{marginRight: 10}]} >
+                      <Text
+                        style={styles.titleImagePicker}>شعار المحل</Text>
+                      <Button
+                        styleButton={styles.buttonImagePicker}
+                        backgroundColor={Colors.mercury}
+                        children={<ImageShow
+                                    data={responseLogo} />}
+                        onPress={onPressResponseLogo} />
+
+                  </View>
+                  <View
+                    style={[styles.imagePicker,{marginLeft: 10}]} >
+                      <Text
+                        style={styles.titleImagePicker}>صورة ترخيص</Text>
+                      <Button
+                        styleButton={styles.buttonImagePicker}
+                        backgroundColor={Colors.mercury}
+                        children={<ImageShow
+                                    data={responseLicence} />}
+                        onPress={onPressResponseLicence} />
+                  </View>
+              </View>
+              {/* <Text>Res: {JSON.stringify(responseLogo)}</Text> */}
             <View
               style={styles.buttonContainer} >
             <Button
               active
-              title={'انشاء حساب'}
+              title={'انشاء حساب تاجر'}
               onPress={onPressCommercialRegister}
               marginBottom={13}
               backgroundColor= {Colors.fernGreen}
