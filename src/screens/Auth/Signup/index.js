@@ -2,9 +2,11 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { View, Text, ScrollView, KeyboardAvoidingView, Image } from 'react-native';
-import Colors from '../../../../assets/colors';
+//Component
 import { Button, EyeShow, Input } from '../../../components';
+//Styles
 import styles from './styles';
+import Colors from '../../../../assets/colors';
 
 const Signup = () => {
     const [email, setEmail] = React.useState('');

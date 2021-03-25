@@ -21,7 +21,7 @@ import Colors from '../../../assets/colors';
 
 // import{ AuthContext } from '../components/context';
 
- function DrawerContent(props) {
+ function DrawerContent({navigation},props) {
 
     const paperTheme = useTheme();
 
@@ -53,7 +53,7 @@ import Colors from '../../../assets/colors';
                                 />
                             )}
                             label="المعلومات الشخصية"
-                            onPress={() => {props.navigation.navigate('Profile')}}
+                            onPress={() => {navigation.navigate('Profile')}}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (
@@ -64,7 +64,7 @@ import Colors from '../../../assets/colors';
                                 />
                             )}
                             label="المفضلة"
-                            onPress={() => {props.navigation.navigate('FavoriteScreen')}}
+                            onPress={() => {navigation.navigate('FavoriteScreen')}}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (
@@ -75,7 +75,7 @@ import Colors from '../../../assets/colors';
                                 />
                             )}
                             label="الطلبات"
-                            onPress={() => {props.navigation.navigate('OrderScreen')}}
+                            onPress={() => {navigation.navigate('OrderScreen')}}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (
@@ -86,7 +86,7 @@ import Colors from '../../../assets/colors';
                                 />
                             )}
                             label="السلة"
-                            onPress={() => {props.navigation.navigate('CartScreen')}}
+                            onPress={() => {navigation.navigate('CartScreen')}}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (
@@ -108,7 +108,7 @@ import Colors from '../../../assets/colors';
                                 />
                             )}
                             label="الدعم الفني"
-                            onPress={() => {props.navigation.navigate('BookmarkScreen');}}
+                            onPress={() => {navigation.navigate('BookmarkScreen');}}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (
@@ -119,7 +119,7 @@ import Colors from '../../../assets/colors';
                                 />
                             )}
                             label="السياسات والشروط"
-                            onPress={() => {props.navigation.navigate('BookmarkScreen')}}
+                            onPress={() => {navigation.navigate('BookmarkScreen')}}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                            icon={({color, size}) => (
@@ -135,7 +135,7 @@ import Colors from '../../../assets/colors';
                         <DrawerItem
                             label="إضافة حساب تاجر"
                             labelStyle={styles.lableAddTrader }
-                            onPress={() => alert('sdd')} />
+                            onPress={() => navigation.navigate('CommercialRegister')} />
                     </Drawer.Section>
                     {/* <Drawer.Section title="Preferences">
                         <TouchableRipple onPress={() => {alert('dsdsd')}}>

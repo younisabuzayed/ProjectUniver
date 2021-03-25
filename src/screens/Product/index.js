@@ -25,7 +25,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 
 //choose Container
 const timeOut = 500;
-const Choose = ({isVisible, children,onBackdropPress}) =>
+const Choose = ({isVisible, children,onBackdropPress, timeOut}) =>
 {
   return (
     <Modal
@@ -180,6 +180,7 @@ const Product = ({productsAction, products}) => {
                             color={Colors.fernGreen} />
                             <Choose
                               isVisible={isVisible}
+                              timeOut={timeOut}
                               onBackdropPress={() => setIsVisible(!isVisible)}>
                               <View
                                 style={{height: 200, backgroundColor:'white'}}>
@@ -213,6 +214,7 @@ const Product = ({productsAction, products}) => {
                             resizeMode="contain" />
                           <Choose
                             isVisible={isVisibleMeasurements}
+                            timeOut={timeOut}
                             onBackdropPress={() => setIsVisibleMeasurements(!isVisibleMeasurements)}>
                               <View style={styles.choosesContainer}>
                                 <View style={styles.strock} />
@@ -239,6 +241,7 @@ const Product = ({productsAction, products}) => {
                             style={styles.chooseImage} />
                           <Choose
                             isVisible={isVisibleNumberItem}
+                            timeOut={timeOut}
                             onBackdropPress={() => setIsVisibleNumberItem(!isVisibleNumberItem)}>
                              <View style={styles.choosesContainer}>
                                 <View style={styles.strock} />

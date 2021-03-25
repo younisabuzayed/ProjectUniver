@@ -12,7 +12,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 //Screens
 import { Access, Login, Onboarding,
-         Signup, ForgotPasssword, VerifyMobile} from '../screens';
+         Signup, ForgotPasssword, VerifyMobile, CommercialRegister} from '../screens';
 //Custom Component
 import { DrawerContent} from '../components';
 import mainTabBottom from './TabNavigation';
@@ -41,7 +41,8 @@ const rootNavigation = () =>
 
     return (
         <NavigationContainer >
-          <Stack.Navigator>
+          <Stack.Navigator
+           initialRouteName="CommercialRegister" >
             <Stack.Screen
               name="Onboarding"
               component={Onboarding}
@@ -138,6 +139,24 @@ const rootNavigation = () =>
               options={{
                 headerShown: false,
               }}  />
+            <Stack.Screen
+              name="CommercialRegister"
+              component={CommercialRegister}
+              options={({navigation}) => ({
+                title:'',
+                headerLeft: () => {
+                    return (
+                      <TouchableOpacity
+                        onPress={() => navigation.goBack()} >
+                         <MaterialIcons name="arrow-forward" size={25} color={'#AFAFAF'} style={{}} />
+                      </TouchableOpacity>
+                    );
+                },
+              headerTransparent: true,
+              headerLeftContainerStyle:{
+                  paddingLeft: 15,
+                },
+              })} />
           </Stack.Navigator>
         </NavigationContainer>
     );

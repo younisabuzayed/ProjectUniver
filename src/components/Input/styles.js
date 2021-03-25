@@ -12,7 +12,9 @@ const styles = StyleSheet.create({
     },
     title:
     {
+        fontSize: 12,
         fontFamily: Fonts.Roboto_Regular,
+        marginLeft: 8,
     },
     input:
     {
