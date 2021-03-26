@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontFamily: Fonts.Cairo_Regular,
         marginLeft: 8,
+        marginBottom: 5,
     },
     input:
     {
@@ -25,6 +26,7 @@ const styles = StyleSheet.create({
         paddingRight: 15,
         paddingLeft: 15,
         fontFamily: Fonts.Cairo_Regular,
+        fontSize: 9,
     },
 });
 

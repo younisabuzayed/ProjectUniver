@@ -4,7 +4,8 @@ import styles from './styles';
 
 const Input = ({placeholder, title, children, inputStyle,
                 onChangeText, onSubmitEditing, returnKeyType, styleTitle,
-                styleRow, styleContainer, secureTextEntry, marginTop},ref) => {
+                styleRow, styleContainer, secureTextEntry, marginTop,
+                multiline, numberOfLines, textAlignVertical},ref) => {
     return (
         <View
           style={[styles.inputContainer,styleContainer,{marginTop}]}>
@@ -19,8 +20,11 @@ const Input = ({placeholder, title, children, inputStyle,
               returnKeyType={returnKeyType}
               secureTextEntry={secureTextEntry}
               ref={ref}
-              selectionColor={'#6200EE'}
+              selectionColor={'black'}
               textAlign={'right'}
+              multiline={multiline}
+              numberOfLines={numberOfLines}
+              textAlignVertical={textAlignVertical}
               />
             </View>
         </View>

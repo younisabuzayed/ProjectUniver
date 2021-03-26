@@ -12,7 +12,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 //Screens
 import { Access, Login, Onboarding,
-         Signup, ForgotPasssword, VerifyMobile, CommercialRegister, OrdersBuyer} from '../screens';
+         Signup, ForgotPasssword, VerifyMobile, CommercialRegister, OrdersBuyer, AddProduct} from '../screens';
 //Custom Component
 import { DrawerContent} from '../components';
 import mainTabBottom from './TabNavigation';
@@ -159,7 +159,7 @@ const rootNavigation = () =>
               })} />
               <Stack.Screen
               name="OrdersBuyer"
-              component={OrdersBuyer}
+              component={AddProduct}
               options={({navigation}) => ({
                 title:'',
                 headerLeft: () => {

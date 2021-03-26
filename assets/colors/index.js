@@ -22,6 +22,7 @@ const Colors = {
     silver: '#B8B8B8',
     titleProduct: '#6D6D6D',
     nameShop:'#9C9C9C',
+    iconTune: '#C4C4C4',
 };
 
 export default Colors;
