@@ -4,12 +4,17 @@ import Fonts from '../../../../assets/fonts';
 const {width, height} = Dimensions.get('window');
 const styles = StyleSheet.create({
 /* Add Product */
-    
+    addProductContainer:
+    {
+        backgroundColor: Colors.white,
+        flex: 1,
+    },
 /* Step 1 */
     step1Container:
     {
         flex: 1,
         paddingTop: 62,
+        backgroundColor: Colors.white,
     },
     titleInput:
     {
@@ -63,7 +68,7 @@ const styles = StyleSheet.create({
     checkeButton:
     {
         flexDirection:'row-reverse',
-        width: width - 200,
+        width: width - 210,
     },
     inputDescription:
     {
@@ -71,7 +76,83 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
 /* Step 2 */
+    step2Container:
+    {
+        flex: 1,
+        paddingTop: 62,
+    },
+    noteText:
+    {
+        fontSize: 9,
+        fontFamily: Fonts.Cairo_Regular,
+        marginLeft: 5,
+    },
 /* Step 3 */
+    step3Container:
+    {
+        flex: 1,
+        paddingTop: 62,
+    },
+    colorButtonTitle:
+    {
+        fontSize: 14,
+        fontFamily: Fonts.Cairo_Bold,
+        color: Colors.white,
+    },
+    ColorModal:
+    {
+        height: height - 80,
+        backgroundColor: Colors.white,
+        borderRadius: 8,
+    },
+    titleColor:
+    {
+        fontSize: 12,
+        fontFamily: Fonts.Cairo_Regular,
+        marginLeft: 36,
+        marginTop: 15,
+    },
+    colorsContainer:
+    {
+        backgroundColor: Colors.mercury,
+        width: width - 80,
+        borderRadius: 8,
+        marginLeft: 15,
+        marginRight: 15,
+        marginTop: 15,
+        flexDirection: 'row',
+        flexWrap:'wrap',
+        minHeight: 40,
+        marginBottom: 10,
+        justifyContent:'flex-start',
+        alignItems:'center',
+        alignSelf: 'center',
+    },
+    titleNoColor:
+    {
+        fontSize: 12,
+        fontFamily: Fonts.Cairo_Regular,
+        marginLeft: 10,
+        marginTop: 15,
+    },
+    circleColor:
+    {
+        height: 32,
+        width: 32,
+        borderRadius: 16,
+        alignSelf:'center',
+        marginTop: 5,
+    },
+    genderContainer:
+    {
+        justifyContent: 'flex-start',
+        marginLeft: 30,
+    },
+    grnder:
+    {
+        width: 64,
+        height: 30,
+    },
 /* Step 4 */
 
 });

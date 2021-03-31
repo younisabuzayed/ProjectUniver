@@ -5,7 +5,8 @@ import styles from './styles';
 const Input = ({placeholder, title, children, inputStyle,
                 onChangeText, onSubmitEditing, returnKeyType, styleTitle,
                 styleRow, styleContainer, secureTextEntry, marginTop,
-                multiline, numberOfLines, textAlignVertical},ref) => {
+                multiline, numberOfLines, textAlignVertical,autoCompleteType,
+                dataDetectorTypes, keyboardType},ref) => {
     return (
         <View
           style={[styles.inputContainer,styleContainer,{marginTop}]}>
@@ -25,7 +26,9 @@ const Input = ({placeholder, title, children, inputStyle,
               multiline={multiline}
               numberOfLines={numberOfLines}
               textAlignVertical={textAlignVertical}
-              />
+              autoCompleteType={autoCompleteType}
+              dataDetectorTypes={dataDetectorTypes}
+              keyboardType={keyboardType}  />
             </View>
         </View>
     );

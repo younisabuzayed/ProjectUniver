@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import Step1 from './Step1';
+import Step3 from './Step3';
+import styles from './styles';
 
 const AddProduct = () => {
     return (
-        <View>
-            <Step1 />
+        <View
+          style={styles.addProductContainer} >
+            <Step3 />
         </View>
     );
 };
