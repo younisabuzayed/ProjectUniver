@@ -1,12 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-shadow */
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import tinycolor from 'tinycolor2';
 import { TriangleColorPicker } from 'react-native-color-picker';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
-import { Button, Choose } from '../../../components';
+import { Button, Choose, Input } from '../../../components';
 //Styles and Icons
 import Colors from '../../../../assets/colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -56,6 +56,9 @@ const Step3 = () => {
     const [grnder, setGrnder] = React.useState([]);
     const [season, setSeason] = React.useState([]);
     const [size, setSize] = React.useState([]);
+    const [measurements, setMeasurements] = React.useState([]);
+    const [sizeNumber, setSizeNumber] = React.useState(null);
+    const deleteRef = React.useRef();
 
 
     const [isVisible, setIsVisible] = React.useState(false);
@@ -79,6 +82,12 @@ const Step3 = () => {
         } else {
           setSeason(prev => [...prev, select]);
         }
+    }
+    const onPressDelete = (itemRemove) =>
+    {
+      const newList = measurements.filter((item) => item !== itemRemove);
+ 
+      setMeasurements(newList);
     }
     const fontSection = {
         fontFamily: Fonts.Cairo_Regular,
@@ -198,14 +207,54 @@ const Step3 = () => {
                   onChange={(select) => setGrnder(select)} />
             </View>
             <View
-              style={{}}>
-                <Text
-                  style={styles.titleColor}>المقاسات</Text>
-                <Selection
-                  items={['رجالي','حريمي']}
-                  style={styles.genderContainer}
-                  styleButton={styles.grnder}
-                  onChange={(select) => setGrnder(select)} />
+              style={styles.sizesContainer}>
+                <Input
+                  placeholder="50"
+                  title="المقاسات"
+                  styleContainer={styles.sizeContainer}
+                  inputStyle={styles.inputSizes}
+                  styleRow={styles.sizesInnerContainer}
+                  styleTitle={styles.titleSize}
+                  onChangeText={ number => setSizeNumber(number)}
+                  children={
+                    <Button
+                      title="اضافة"
+                      active
+                      backgroundColor={Colors.fernGreen}
+                      styleButton={styles.sizeButton}
+                      titleStyle={styles.sizeButtonTitle}
+                      onPress={() =>{
+                        if(measurements.includes(sizeNumber)) return;
+                        setMeasurements([...measurements,sizeNumber]);
+                      }} />
+                  } />
+                  <View
+                      style={styles.sizesProductContainer} >
+                        {measurements.length !== 0
+                       ? measurements.map((item, index) =>
+                        {
+                            return (
+                                <TouchableOpacity
+                                  key={index}
+                                  style={styles.sizeProduct}
+                                  onPress={() => onPressDelete(item)}>
+                                    <View
+                                      style={styles.closeButton}
+                                       >
+                                        <Icon
+                                          name="close"
+                                          size={10}
+                                          color={Colors.silver} />
+                                    </View>
+                                    <Text
+                                      style={styles.itemSizeProductText}
+                                      ref={deleteRef}>{item.toString()}</Text>
+                                </TouchableOpacity>
+                            );
+                        })
+                       : <Text
+                           style={styles.titleNoColor} >لا يوجد مقاسات</Text>}
+                      </View>
             </View>
             <View
               style={{}}>
