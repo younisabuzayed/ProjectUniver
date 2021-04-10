@@ -1,0 +1,22 @@
+//Login
+export const LOGIN_STATE = 'LOGIN_STATE';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILED = 'LOGIN_FAILED';
+//Signup
+export const SIGNUP_STATE = 'SIGNUP_STATE';
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const SIGNUP_FAILED = 'SIGNUP_FAILED';
+//Profile
+export const PROFILE_STATE = 'PROFILE_STATE';
+export const PROFILE_SUCCESS = 'PROFILE_SUCCESS';
+export const PROFILE_FAILED = 'PROFILE_FAILED';
+// Products
+export const PRODUCTS_STATE = 'PRODUCTS_STATE';
+export const PRODUCTS_SUCCESS = 'PRODUCTS_SUCCESS';
+export const PRODUCTS_FAILED = 'PRODUCTS_FAILED';
+
+// Categories
+export const CATEGORIES_STATE = 'CATEGORIES_STATE';
+export const CATEGORIES_SUCCESS = 'CATEGORIES_SUCCESS';
+export const CATEGORIES_FAILED = 'CATEGORIES_FAILED';
+
