@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         backgroundColor: '#ECECEC',
         color: Colors.balck,
+        fontFamily: Fonts.Cairo_Regular,
     },
     codeInputHighlight:
     {

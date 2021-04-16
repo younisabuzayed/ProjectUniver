@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/core';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 import React from 'react';
-import { View, Text, ScrollView, KeyboardAvoidingView, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, Text, ScrollView, KeyboardAvoidingView, SafeAreaView } from 'react-native';
 import Colors from '../../../../assets/colors';
 import { Button } from '../../../components';
 import styles from './styles';
@@ -29,7 +29,7 @@ const VerifyMobile = () => {
                         codeInputFieldStyle={styles.codeInputFieldStyle}
                         codeInputHighlightStyle={styles.codeInputHighlight}
                         onCodeFilled = {(code) => {
-                            console.log(`Code is ${code}, you are good to go!`)
+                            console.log(`Code is ${code}, you are good to go!`);
                         }}
 
                         keyboardType={'number-pad'}
@@ -47,7 +47,7 @@ const VerifyMobile = () => {
                     </View>
                     <View style={styles.resendView}>
                         <Button
-                          title='إعادة إرسال'
+                          title="إعادة إرسال"
                           onPress={() => alert('resent')}
                           titleStyle={styles.resendText} />
                     </View>

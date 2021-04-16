@@ -17,10 +17,10 @@ export {default as Profile } from './Profile';
 export {default as Search } from './Search';
 
 //Seller Screens
-export {default as CommercialRegister } from './BuyerScreen/CommercialRegister';
-export {default as MainScreenBuyer } from './BuyerScreen/MainScreenBuyer';
-export {default as OrdersBuyer } from './BuyerScreen/OrdersBuyer';
-export {default as AddProduct } from './BuyerScreen/AddProduct';
+export {default as CommercialRegister } from './SellerScreen/CommercialRegister';
+export {default as MainScreenBuyer } from './SellerScreen/MainScreenBuyer';
+export {default as OrdersBuyer } from './SellerScreen/OrdersBuyer';
+export {default as AddProduct } from './SellerScreen/AddProduct';
 
 
 

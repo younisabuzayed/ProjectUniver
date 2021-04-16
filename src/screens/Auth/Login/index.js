@@ -66,7 +66,8 @@ const Login = ({LoginAction, login,error}) => {
 
       <SafeAreaView
         style={styles.loginContainer}>
-         <KeyboardAvoiding>
+         <KeyboardAvoiding
+          style={styles.loginInnerContainer}>
           <View
             style={styles.imageContainer} >
              <Image

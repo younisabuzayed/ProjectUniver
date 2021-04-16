@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
     },
     imageLogo:
     {
-        height: hp(20),
-        width: wp(22),
+        height: hp(15),
+        width: wp(10),
     },
     title:
     {

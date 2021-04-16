@@ -21,7 +21,7 @@ const Stack = createStackNavigator();
 const CartScreen = () =>
 {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator >
       <Stack.Screen
         name="Cart"
         component={Cart}
@@ -388,6 +388,7 @@ const MainTabBottom = () =>
            activeTintColor:Colors.fernGreen,
            style:barStyle,
            showLabel: false,
+           keyboardHidesTabBar: true,
           }}
           screenOptions={({route}) =>(
           {

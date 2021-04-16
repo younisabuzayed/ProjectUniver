@@ -54,6 +54,7 @@ const Signup = ({SignupAction, signup}) => {
             style={styles.imageContainer}  >
               <Image
                 source={require('../../../../assets/images/Iconbasket.png')}
+                resizeMode="contain"
                 style={styles.iconImage} />
           </View>
           <View

@@ -23,6 +23,7 @@ const Colors = {
     titleProduct: '#6D6D6D',
     nameShop:'#9C9C9C',
     iconTune: '#C4C4C4',
+    more:'#656565',
 };
 
 export default Colors;

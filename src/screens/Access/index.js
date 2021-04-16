@@ -40,7 +40,7 @@ const Access = () => {
                       title="انشاء حساب"
                       styleButton={styles.buttonSignup}
                       titleStyle={styles.buttonSignupTitle}
-                      onPress={() => navigation.navigate('Address')} />
+                      onPress={() => navigation.navigate('Signup')} />
                     <Button
                       title="الدخول كزائر"
                       styleButton={styles.guestAccess}

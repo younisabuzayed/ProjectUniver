@@ -11,16 +11,19 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.white,
         height: PixelRatio.get() === 3 ? hp('100%') : Platform.OS === 'android' ? hp('100%') : null,
     },
+    loginInnerContainer:
+    {
+        height: height - (PixelRatio.get() === 3 ? 80 : 25) ,
+        justifyContent: 'flex-end',
+    },
     imageContainer:
     {
-        justifyContent: 'flex-end',
         alignItems: 'center',
-        marginTop: 5,
     },
     iconImage:
     {
-        height: hp(20),
-        width: wp(22),
+        height: hp(17),
+        width: wp(12),
     },
     titleHeaderContainer:
     {
@@ -30,7 +33,6 @@ const styles = StyleSheet.create({
     {
         width: 200,
         fontSize: 18,
-        lineHeight: 30,
         fontFamily: Fonts.Cairo_Bold,
         textAlign: 'center',
         color: Colors.titleProduct,
