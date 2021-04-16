@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     {
         flex: 1,
         backgroundColor: Colors.white,
-        justifyContent:'space-between',
         height: PixelRatio.get() === 3 ? hp('100%') : Platform.OS === 'android' ? hp('100%') : null,
     },
     imageContainer:
@@ -44,7 +43,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 8,
         borderTopLeftRadius: 8,
         backgroundColor: Colors.grally,
-
+        height: 478,
     },
     bodyTitleAndStrock:
     {

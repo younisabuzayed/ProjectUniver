@@ -12,7 +12,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 //Screens
 import { Access, Login, Onboarding,
-         Signup, ForgotPasssword, VerifyMobile, CommercialRegister, OrdersBuyer, AddProduct} from '../screens';
+         Signup, ForgotPasssword, VerifyMobile, CommercialRegister, OrdersBuyer, AddProduct, Address} from '../screens';
 //Custom Component
 import { DrawerContent} from '../components';
 import MainTabBottom from './TabNavigation';
@@ -29,7 +29,6 @@ const rootDrawer = () =>
     <Drawer.Navigator
       drawerContent={props => <DrawerContent {...props} />}
       drawerStyle={{
-        marginVertical: 20,
         backgroundColor:'transparent',
       }} >
       <Drawer.Screen name={'mainTabBottom'} component={MainTabBottom} />
@@ -105,6 +104,12 @@ const rootNavigation = () =>
                   paddingLeft: 15,
                 },
               })} />
+            <Stack.Screen
+              name="Access"
+              component={Access}
+              options={{
+                headerShown: false,
+              }}  />
           </Stack.Navigator>
         </NavigationContainer>
     );
@@ -218,6 +223,24 @@ export const NoneTokenNavigation = () =>
             <Stack.Screen
               name="ChangePassword"
               component={ChangePassword}
+              options={({navigation}) => ({
+                title:'',
+                headerLeft: () => {
+                    return (
+                      <TouchableOpacity
+                        onPress={() => navigation.goBack()} >
+                         <MaterialIcons name="arrow-forward" size={25} color={'#AFAFAF'} style={{}} />
+                      </TouchableOpacity>
+                    );
+                },
+              headerTransparent: true,
+              headerLeftContainerStyle:{
+                  paddingLeft: 15,
+                },
+              })} />
+            <Stack.Screen
+              name="Address"
+              component={Address}
               options={({navigation}) => ({
                 title:'',
                 headerLeft: () => {

@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { Platform, Text, TouchableOpacity, View } from 'react-native';
+import { PixelRatio, Platform, Text, TouchableOpacity, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 //Styles and Icons
@@ -46,7 +46,7 @@ const CartScreen = () =>
           },
           headerStyle: {
             backgroundColor: Colors.fernGreen,
-            height: 70,
+            height: (PixelRatio.get() === 3 ? 90 : PixelRatio.get() === 2 ? 60 : 70),
           },
           headerTransparent: true,
           headerRightContainerStyle:
@@ -142,6 +142,46 @@ const FavoriteScreen = () =>
     </Stack.Navigator>
   );
 };
+const ProfileScreen = () =>
+{
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={({navigation}) =>({
+          headerTitle: 'الملف الشخصي',
+          headerLeft: () => {
+              return (
+                <TouchableOpacity
+                  onPress={() => navigation.goBack()} >
+                    <MaterialIcons
+                      name="arrow-forward"
+                      size={25}
+                      color={'#FFFF'}
+                      style={{}} />
+                </TouchableOpacity>
+              );
+          },
+          headerStyle: {
+            backgroundColor: Colors.fernGreen,
+            height: 90,
+          },
+          headerTransparent: true,
+          headerLeftContainerStyle: {
+              marginLeft: 22,
+          },
+          headerTitleAlign: 'center',
+          headerTitleStyle:
+          {
+            color: Colors.white,
+            fontFamily: Fonts.Cairo_Bold,
+            fontSize: 18,
+          },
+          })} />
+    </Stack.Navigator>
+  );
+};
 const MainTabBottom = () =>
 {
   const [token, setToken] = React.useState(null);
@@ -171,6 +211,13 @@ const MainTabBottom = () =>
             top: -20,
             borderRadius: 30,
             elevation: 1,
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 1,
+            },
+            shadowOpacity: 0.20,
+            shadowRadius: 1.41,
             }} >
          {props.children}
         </TouchableOpacity>
@@ -179,7 +226,7 @@ const MainTabBottom = () =>
   const barStyle =
   {
     backgroundColor: Colors.white,
-    height: (Platform.OS === 'ios' ? 70 : 50),
+    height: (PixelRatio.get() === 3 ? 70 : 55),
   };
   const styleIcon =
   {
@@ -204,8 +251,8 @@ const MainTabBottom = () =>
             style:barStyle,
             showLabel: false,
             tabStyle:{
-              marginTop: Platform.OS === 'ios' && 10,
-            }
+              // marginTop: Platform.OS === 'ios' && 10,
+            },
            }}
            screenOptions={({route}) =>(
            {
@@ -258,7 +305,7 @@ const MainTabBottom = () =>
                  </View>
                 );
               }
-              else if (route.name === 'Profile')
+              else if (route.name === 'ProfileScreen')
               {
                 return (
                   <View
@@ -283,7 +330,6 @@ const MainTabBottom = () =>
                tabBarBadgeStyle:
                {
                 marginLeft: -20,
-                marginTop: -10,
                },
                }} />
               <Tab.Screen
@@ -329,8 +375,8 @@ const MainTabBottom = () =>
                name="FavoriteScreen"
                component={FavoriteScreen} />
              <Tab.Screen
-               name="Profile"
-               component={Profile} />
+               name="ProfileScreen"
+               component={ProfileScreen} />
          </Tab.Navigator>
     );}
     else {
@@ -394,7 +440,7 @@ const MainTabBottom = () =>
                 </View>
                );
              }
-             else if (route.name === 'Profile')
+             else if (route.name === 'ProfileScreen')
              {
                return (
                  <View
@@ -458,7 +504,7 @@ const MainTabBottom = () =>
                 tabBarButton: props => <TouchableOpacity {...props} onPress={() => navigation.navigate('Access')} />,
               })} />
             <Tab.Screen
-              name="Profile"
+              name="ProfileScreen"
               component={Access}
               options = {({navigation}) => ({
                 tabBarButton: props => <TouchableOpacity {...props} onPress={() => navigation.navigate('Access')} />,

@@ -1,10 +1,10 @@
-import {StyleSheet} from 'react-native';
+import {PixelRatio, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
     favoriteContainer:
     {
         flex: 1,
-        paddingTop: 50,
+        paddingTop: PixelRatio.get() === 3 ? 80 : 60,
     },
     itemProductsContainer:
     {

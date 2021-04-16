@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, Platform, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, PixelRatio, Platform, Text, TouchableOpacity, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 //Screens
 import { Category, EditProfile, Home, Product, Search } from '../screens';
@@ -112,7 +112,7 @@ const HomeScreen = () =>
                 },
                 headerStyle: {
                   backgroundColor: Colors.fernGreen,
-                  height: 70,
+                  height: PixelRatio.get() === 3 ? 100 : 70,
                 },
                 headerRightContainerStyle:
                 {

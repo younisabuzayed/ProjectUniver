@@ -5,6 +5,8 @@ import LoginReducer from '../reducers/LoginReducer';
 import ProductsReducer from '../reducers/ProductsReducer';
 import SignupReducer from '../reducers/SignupReducer';
 import ProfileReducer from '../reducers/ProfileReducer';
+import EditProfileReducer from '../reducers/EditProfileReducer';
+
 
 const rootReducers = combineReducers({
     Login: LoginReducer,
@@ -12,7 +14,9 @@ const rootReducers = combineReducers({
     Categories: CategoriesReducer,
     Products: ProductsReducer,
     Profile: ProfileReducer,
+    EditProfile: EditProfileReducer,
 });
+
 
 const store = createStore(rootReducers, applyMiddleware(thunk));
 export default store;

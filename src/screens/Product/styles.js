@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     productContainer:
     {
         flex: 1,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.seashellSolid,
     },
     headerContainer:
     {
@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
     {
         fontSize: 12,
         fontFamily: Fonts.Cairo_Regular,
+        writingDirection: 'rtl',
     },
     chooseContainer:
     {
@@ -151,6 +152,7 @@ const styles = StyleSheet.create({
     {
         fontSize: 12,
         fontFamily: Fonts.Cairo_Bold,
+        writingDirection: 'rtl',
     },
     chooseButtons:
     {
@@ -166,6 +168,14 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         marginLeft: 0,
         marginRight: 18,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.20,
+        shadowRadius: 2.84,
+
     },
     chooseImage:
     {

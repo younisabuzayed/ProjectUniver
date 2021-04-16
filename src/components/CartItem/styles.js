@@ -34,11 +34,14 @@ const styles = StyleSheet.create({
       fontSize: 9,
       color: Colors.fernGreen,
       fontFamily: Fonts.Cairo_Regular,
+      writingDirection: 'rtl',
   },
   title:
   {
     fontSize: 12,
     fontFamily: Fonts.Cairo_Bold,
+    writingDirection: 'rtl',
+
 
   },
   description:
@@ -47,6 +50,8 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.Cairo_Bold,
     paddingLeft: 5,
     width: 150,
+    writingDirection: 'rtl',
+
   },
   /* Button Cancel */
   counterButtonAndNumber:

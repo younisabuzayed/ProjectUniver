@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 8,
         borderBottomRightRadius: 8,
         flexDirection: 'row',
-        justifyContent:'space-between',
         paddingTop: 20,
     },
     goBackIconContainer:
@@ -36,12 +35,12 @@ const styles = StyleSheet.create({
     nameScreenContainer:
     {
         alignItems: 'center',
-        justifyContent:'flex-start',
     },
     nameScreenText:
     {
         fontSize: 18,
         color: Colors.white,
+        textAlign: 'center',
     },
     deleteAccountContainer:
     {
@@ -64,8 +63,7 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         position: 'absolute',
-        bottom: 0,
-        marginBottom: -30,
+        bottom: -30,
     },
     contentContainer:
     {

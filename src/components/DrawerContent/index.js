@@ -2,27 +2,23 @@
 /* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { View, StyleSheet, SafeAreaView } from 'react-native';
-import {
-    Avatar,
-    Title,
-    Drawer,
-} from 'react-native-paper';
-import {
-    DrawerContentScrollView,
-    DrawerItem,
-} from '@react-navigation/drawer';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Colors from '../../../assets/colors';
+import { View, SafeAreaView } from 'react-native';
+import { Avatar, Title, Drawer } from 'react-native-paper';
+import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { connect } from 'react-redux';
 import ProfileAction from '../../redux/actions/ProfileAction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
-function DrawerContent({navigation, profileAction, profile},props) {
+//Styles and Icons
+import styles from './styles';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
+function DrawerContent({ profileAction, profile, error},props) {
+    const navigation = useNavigation();
     React.useEffect(() =>
     {
         profileAction();
@@ -32,7 +28,7 @@ function DrawerContent({navigation, profileAction, profile},props) {
         await AsyncStorage.clear();
         navigation.navigate('Access');
     };
-    console.log(profile);
+    console.log(error);
     return (
         <SafeAreaView style={styles.drawerContentContainer}>
             <DrawerContentScrollView {...props}>
@@ -59,7 +55,7 @@ function DrawerContent({navigation, profileAction, profile},props) {
                                 />
                             )}
                             label="المعلومات الشخصية"
-                            onPress={() => {navigation.navigate('Profile');}}
+                            onPress={() => {navigation.navigate('ProfileScreen');}}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (
@@ -143,100 +139,18 @@ function DrawerContent({navigation, profileAction, profile},props) {
                             labelStyle={styles.lableAddTrader }
                             onPress={() => navigation.navigate('CommercialRegister')} />
                     </Drawer.Section>
-                    {/* <Drawer.Section title="Preferences">
-                        <TouchableRipple onPress={() => {alert('dsdsd')}}>
-                            <View style={styles.preference}>
-                                <Text>Dark Theme</Text>
-                                <View pointerEvents="none">
-                                    <Switch value={paperTheme.dark}/>
-                                </View>
-                            </View>
-                        </TouchableRipple>
-                    </Drawer.Section> */}
                 </View>
             </DrawerContentScrollView>
-            {/* <Drawer.Section style={styles.bottomDrawerSection}>
-                <DrawerItem
-                    icon={({color, size}) => (
-                        <Icon
-                        name="exit-to-app"
-                        color={color}
-                        size={size}
-                        />
-                    )}
-                    label="Sign Out"
-                    onPress={() => alert('sdd')}
-                />
-            </Drawer.Section> */}
         </SafeAreaView>
     );
 }
 
-const styles = StyleSheet.create({
-    drawerContentContainer:
-    {
-        flex:1,
-        backgroundColor:Colors.white,
-        marginLeft:20,
-    },
-    drawerContent: {
-      flex: 1,
-    },
-    userInfoSection: {
-      justifyContent:'center',
-      alignItems:'center',
-      marginTop: 30,
-    },
-    title: {
-      fontSize: 16,
-      marginTop: 3,
-      fontWeight: 'bold',
-    },
-    caption: {
-      fontSize: 14,
-      lineHeight: 14,
-    },
-    row: {
-      marginTop: 20,
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    section: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginRight: 15,
-    },
-    paragraph: {
-      fontWeight: 'bold',
-      marginRight: 3,
-    },
-    drawerSection: {
-      marginTop: 15,
-    },
-    lableMargin:
-    {
-        marginLeft: -25,
-    },
-    lableAddTrader:
-    {
-        textAlign:'center',
-    },
-    bottomDrawerSection: {
-        marginBottom: 15,
-        borderTopColor: '#f4f4f4',
-        borderTopWidth: 1,
-    },
-    preference: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      paddingVertical: 12,
-      paddingHorizontal: 16,
-    },
-  });
+
   const mapStateToProps = (state) =>
   {
       return {
           profile: state.Profile.profile,
+          error: state.Profile.error,
       };
   };
   const mapDispatchToProps = (dispatch) =>

@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, PixelRatio, StyleSheet} from 'react-native';
 import Colors from '../../../assets/colors';
 import Fonts from '../../../assets/fonts';
 import { hp, wp } from '../../../assets/size';
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     },
     categoriesTitle:
     {
-        fontSize: 12,
+        fontSize:  hp(1.12),
         fontFamily: Fonts.Cairo_Bold,
         color: Colors.white,
         textAlign: 'center',
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.Cairo_Bold,
         marginLeft: 15,
         marginRight: 15,
+        writingDirection: 'rtl',
     },
     itemProductsContainer:
     {
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     productsInnerContainer:
     {
         width: wp(45),
-        height: hp('30%'),
+        height: PixelRatio.get() === 2 ? hp('32%') : PixelRatio.get() === 3 ? hp('25%') : hp('30%'),
         alignItems:'flex-start',
         justifyContent:'space-between',
         backgroundColor: Colors.white,

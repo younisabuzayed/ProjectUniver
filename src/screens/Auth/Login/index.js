@@ -14,6 +14,7 @@ import LoginActions from '../../../redux/actions/LoginActions';
 import styles from './styles';
 import Colors from '../../../../assets/colors';
 import { useNavigation } from '@react-navigation/native';
+import KeyboardAvoiding from '../../../components/KeyboardAvoiding';
 const url = 'https://sala-backend.herokuapp.com/connect/facebook/redirect';
 const Login = ({LoginAction, login,error}) => {
     const [email, setEmail] = React.useState('');
@@ -23,7 +24,7 @@ const Login = ({LoginAction, login,error}) => {
       // Bit of a hack to get the token from this URL...
       // implement yours in a safer way
       console.log(event.url.split('#')[1].split('=')[1].split('&')[0]);
-    }
+    };
     const _facebookLogin =() => {
       Linking.openURL([
         url,
@@ -35,11 +36,14 @@ const Login = ({LoginAction, login,error}) => {
     }
     React.useEffect(() => {
       Linking.addEventListener('url', _handleURL);
-      if (login?.jwt)
+    }, []);
+    React.useEffect(() =>
+    {
+      if(login?.jwt)
       {
         navigation.navigate('Main');
       }
-    }, [login]);
+    },[login])
     const refSecond = React.useRef();
     //Navigation
     const navigation = useNavigation();
@@ -53,17 +57,16 @@ const Login = ({LoginAction, login,error}) => {
     };
 
     //Function For send data for Api
-    const onPressLogin = async() =>
+    const onPressLogin = () =>
     {
       LoginAction(email,password);
+
     };
     return (
-        <ScrollView
-        keyboardShouldPersistTaps="handled"
-        showsVerticalScrollIndicator={false} >
-        <KeyboardAvoidingView enabled>
-        <SafeAreaView
-          style={styles.loginContainer}>
+
+      <SafeAreaView
+        style={styles.loginContainer}>
+         <KeyboardAvoiding>
           <View
             style={styles.imageContainer} >
              <Image
@@ -154,9 +157,9 @@ const Login = ({LoginAction, login,error}) => {
               onPress={() => navigation.navigate('Signup')} />
             </View>
           </View>
-        </SafeAreaView>
-        </KeyboardAvoidingView>
-        </ScrollView>
+       </KeyboardAvoiding>
+      </SafeAreaView>
+
     );
 };
 const mapStateToProps = state =>

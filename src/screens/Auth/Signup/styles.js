@@ -94,9 +94,9 @@ const styles = StyleSheet.create({
     andText:
     {
         fontSize: 12,
-        textAlign: 'center',
         marginBottom: 13,
         fontFamily: Fonts.Cairo_Regular,
+        textAlign: 'center',
     },
     titleButtonSocail:
     {

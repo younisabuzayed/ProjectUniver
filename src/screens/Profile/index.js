@@ -1,18 +1,57 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Avatar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Button } from '../../components';
+import Foundation from 'react-native-vector-icons/Foundation';
+import { connect } from 'react-redux';
+import ProfileAction from '../../redux/actions/ProfileAction';
+import * as ImagePicker from 'react-native-image-picker';
+
+//Style and Icons
 import styles from './styles';
 import Colors from '../../../assets/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import Foundation from 'react-native-vector-icons/Foundation';
+import EditProfileAction from '../../redux/actions/EditProfileAction';
 
-const Profile = () => {
+const Profile = ({profileAction, profile, editProfile, editProfileAction}) => {
+    const [images, setImage] = React.useState(null);
+
+    React.useEffect(()=> {
+      profileAction();
+    },[]);
     const navigation = useNavigation();
+    const pickImage = () => {
+        ImagePicker.launchImageLibrary(
+        {
+          mediaType: 'photo',
+          includeBase64: false,
+          maxHeight: 200,
+          maxWidth: 200,
+        },
+        (response) => {
+          setImage(response.uri);
+          editProfileAction(response.uri);
+
+        },
+      );
+            // let localUri = result.uri;
+      // let filename = localUri.split('/').pop();
+      // console.log('filename',filename)
+      // let match = /\.(\w+)$/.exec(filename);
+      // console.log('match',match)
+      // let type = match ? `image/${match[1]}` : `image`;
+      // console.log(type,'type')
+      // let formData = new FormData();
+      // formData.append('images', { uri: localUri, name: filename, type });
+      // console.log(formData);
+        // setImage(result.uri);
+    };
+    // console.log(images)
     const ContentBox = ({title, number, icon}) =>
     {
       return (
@@ -36,13 +75,13 @@ const Profile = () => {
       );
     };
     return (
-        <View
+        <SafeAreaView
           style={styles.profileContainer}>
             <View
               style={styles.headerContainer} >
                 <View
                   style={styles.headerTitleAndButtonContainer} >
-                    <View
+                    {/* <View
                       style={styles.goBackIconContainer} >
                         <Button
                           onPress={() => navigation.goBack()}
@@ -56,23 +95,24 @@ const Profile = () => {
                       style={styles.nameScreenContainer}>
                         <Text
                           style={styles.nameScreenText}>الملف الشخصي</Text>
-                    </View>
-                    <View
+                    </View> */}
+                    {/* <View
                       style={styles.deleteAccountContainer} >
                          <Button
                            title={'ألغاء الحساب'}
                            onPress={() => navigation.goBack()}
                            titleStyle={styles.deleteAccountTitle}
                            styleButton={styles.deleteAccountButton} />
-                    </View>
-                    <View
-                      style={styles.profileImageContainer} >
+                    </View> */}
+                    <TouchableOpacity
+                      style={styles.profileImageContainer}
+                      onPress={pickImage} >
                         <Avatar.Image
                           source={{
-                            uri: 'https://image.flaticon.com/icons/png/512/147/147144.png'
+                            uri: images !== null ? images : 'https://image.flaticon.com/icons/png/512/147/147144.png',
                           }}
                           size={70} />
-                    </View>
+                    </TouchableOpacity>
                 </View>
                 <View
                   style={styles.contentContainer} >
@@ -115,7 +155,7 @@ const Profile = () => {
                 <ContentBox
                   title="عدد الطلبيات"
                   number={`${100}`}
-                  icon={<FontAwesome5 
+                  icon={<FontAwesome5
                           name="clipboard-list"
                           size={18}
                           color={Colors.texasRose} />} />
@@ -134,8 +174,21 @@ const Profile = () => {
                           size={20}
                           color={'#ABABAB'} />} />
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
-
-export default Profile;
+const mapStateToProps = (state) =>
+{
+  return {
+    profile: state.Profile.profile,
+    editProfile: state.EditProfile.editProfile,
+  };
+};
+const mapDispatchToProps = (dispatch) =>
+{
+  return {
+    profileAction: () => dispatch(ProfileAction()),
+    editProfileAction: (profile_image) => dispatch(EditProfileAction(profile_image)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

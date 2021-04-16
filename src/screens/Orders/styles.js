@@ -1,6 +1,7 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, PixelRatio} from 'react-native';
 import Colors from '../../../assets/colors';
 import Fonts from '../../../assets/fonts';
+import { hp } from '../../../assets/size';
 
 const styles = StyleSheet.create({
     ordersContainer:
@@ -9,12 +10,16 @@ const styles = StyleSheet.create({
         padding: 10,
         paddingBottom: 0,
         backgroundColor: Colors.wildSand,
-        paddingTop: 64,
     },
     headerButton:
     {
         flexDirection: 'row',
         justifyContent:'center',
+        alignSelf: 'center',
+        marginTop: hp(7),
+        backgroundColor: Colors.white,
+        width: 340,
+        borderRadius: 8,
     },
     button:
     {

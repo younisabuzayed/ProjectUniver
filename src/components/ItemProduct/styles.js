@@ -1,13 +1,19 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, PixelRatio, StyleSheet} from 'react-native';
 import Colors from '../../../assets/colors';
 import Fonts from '../../../assets/fonts';
-import { hp, wp } from '../../../assets/size';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 export const {width, height} = Dimensions.get('window');
 const styles = StyleSheet.create({
     productsInnerContainer:
     {
         width: wp(45),
-        height: hp('30%'),
+        height: PixelRatio.get() === 2
+                ? hp('32%')
+                : PixelRatio.get() === 3
+                ? hp('26%')
+                : PixelRatio.get() === 2.75
+                ? hp('29%')
+                : hp('30%'),
         alignItems:'flex-start',
         backgroundColor: Colors.white,
         borderRadius: 8,
@@ -49,13 +55,13 @@ const styles = StyleSheet.create({
     },
     imageIconDiscount:
     {
-        width: 14,
-        height: 28,
+        width: 18,
+        height: 35,
         justifyContent:'center',
     },
     discountText:
     {
-        fontSize: 6,
+        fontSize: 9,
         textAlign: 'center',
         fontFamily: Fonts.Cairo_Bold,
         color: Colors.white,

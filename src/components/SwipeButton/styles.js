@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     {
       fontSize: 12,
       fontFamily: Fonts.Cairo_Bold,
+      writingDirection: 'rtl',
     },
     description:
     {
@@ -38,6 +39,7 @@ const styles = StyleSheet.create({
       fontFamily: Fonts.Cairo_Bold,
       paddingLeft: 5,
       width: 150,
+      writingDirection: 'rtl',
     },
     addressContainer:
     {
@@ -58,6 +60,7 @@ const styles = StyleSheet.create({
       fontSize: 9,
       fontFamily: Fonts.Cairo_Bold,
       color: Colors.nameShop,
+      writingDirection: 'rtl',
     },
     counterButtonAndNumber:
     {
@@ -74,6 +77,7 @@ const styles = StyleSheet.create({
         fontSize: 9,
         fontFamily: Fonts.Cairo_Bold,
         color: Colors.fernGreen,
+        writingDirection: 'rtl',
     },
     deliveredButton:
     {

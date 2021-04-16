@@ -13,7 +13,8 @@ const Access = () => {
               style={styles.HeaderContainer} >
                 <Image
                   source={require('../../../assets/images/Iconbasket.png')}
-                  style={styles.imageLogo} />
+                  style={styles.imageLogo}
+                  resizeMode="contain" />
                 <Text
                   style={styles.title} >اهلا وسهلا فيك في تطبيقنا</Text>
 
@@ -39,7 +40,7 @@ const Access = () => {
                       title="انشاء حساب"
                       styleButton={styles.buttonSignup}
                       titleStyle={styles.buttonSignupTitle}
-                      onPress={() => navigation.navigate('Signup')} />
+                      onPress={() => navigation.navigate('Address')} />
                     <Button
                       title="الدخول كزائر"
                       styleButton={styles.guestAccess}

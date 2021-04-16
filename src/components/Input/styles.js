@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.Cairo_Regular,
         marginLeft: 8,
         marginBottom: 5,
-        writingDirection: 'rtl'
+        writingDirection: 'rtl',
     },
     input:
     {

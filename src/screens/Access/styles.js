@@ -1,6 +1,7 @@
-import {StyleSheet} from 'react-native';
+import {PixelRatio, StyleSheet} from 'react-native';
 import Colors from '../../../assets/colors';
 import Fonts from '../../../assets/fonts';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const styles = StyleSheet.create({
     AccessContainer:
@@ -12,27 +13,25 @@ const styles = StyleSheet.create({
     {
         width:'100%',
         alignItems: 'center',
-        marginTop: 40,
-        marginBottom: 50,
+        marginBottom: 20,
     },
     imageLogo:
     {
-        width: 65,
-        height: 55,
+        height: hp(20),
+        width: wp(22),
     },
     title:
     {
         fontSize: 18,
-        marginTop: 21,
         fontFamily: Fonts.Cairo_Bold,
     },
     BodyContainer:
     {
-        marginTop: 20,
+        marginTop: PixelRatio.get() === 2 ? 0 : 20,
     },
     imageBodyContainer:
     {
-        width:'100%',
+        width:wp('100%'),
         alignItems:'center',
     },
     imageBody:

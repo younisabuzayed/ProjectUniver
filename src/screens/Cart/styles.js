@@ -1,6 +1,7 @@
-import {StyleSheet} from 'react-native';
+import {PixelRatio, StyleSheet} from 'react-native';
 import Colors from '../../../assets/colors';
 import Fonts from '../../../assets/fonts';
+import { hp } from '../../../assets/size';
 
 const styles = StyleSheet.create({
     cartContainer:
@@ -12,7 +13,7 @@ const styles = StyleSheet.create({
     bodyContainer:
     {
         flex: 2,
-        paddingTop: 8,
+        marginTop: PixelRatio.get() === 3 ? hp(5) : hp(6),
     },
     strok:
     {
@@ -90,6 +91,8 @@ const styles = StyleSheet.create({
     {
         fontSize: 12,
         fontFamily: Fonts.Cairo_Regular,
+        writingDirection: 'rtl',
+
     },
     titleButton:
     {

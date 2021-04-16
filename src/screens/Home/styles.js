@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     },
     categoriesTitle:
     {
-        fontSize: 12,
+        fontSize: hp(1.1),
         fontFamily: Fonts.Cairo_Bold,
         color: Colors.white,
         textAlign: 'center',

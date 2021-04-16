@@ -8,9 +8,9 @@ const onLoginActionsState = () =>
         type: LOGIN_STATE,
     };
 };
-const onLoginActionsSuccess = async(data) =>
+const onLoginActionsSuccess = (data) =>
 {
-    await AsyncStorage.setItem('data_token', JSON.stringify(data.jwt));
+    AsyncStorage.setItem('data_token', JSON.stringify(data.jwt));
     return {
         type: LOGIN_SUCCESS,
         payload: data,
@@ -43,9 +43,10 @@ const LoginActions = (email, password) =>
         {
            const {data} = await axios.post(api + 'auth/local', parms);
            console.log('sdsd',data.jwt);
-           handleResponse(dispatch,data);
+        //    handleResponse(dispatch,data)
            dispatch(onLoginActionsSuccess(data));
         } catch (error) {
+            dispatch(onLoginActionsFailed(error))
             console.log('An error occurred:', error);
         }
     }

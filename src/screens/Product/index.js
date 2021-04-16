@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
-import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Avatar, Badge, List } from 'react-native-paper';
 import { connect } from 'react-redux';
@@ -93,7 +93,7 @@ const Product = ({productsAction, products}) => {
   //  const suggestProduct = products.filter((_, i) => _.categories[0].name === nameCategory[0].name);
 
     return (
-        <View
+        <SafeAreaView
           style={styles.productContainer} >
             <ScrollView>
               <View
@@ -280,7 +280,7 @@ const Product = ({productsAction, products}) => {
               <View
                 style={styles.bottomContainer}  />
             </ScrollView>
-        </View>
+        </SafeAreaView>
     );
 };
 const mapStateToProps = (state) =>

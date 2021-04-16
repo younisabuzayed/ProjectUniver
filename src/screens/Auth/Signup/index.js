@@ -12,6 +12,7 @@ import SignupActions from '../../../redux/actions/SignupActions';
 import { useNavigation } from '@react-navigation/native';
 
 const Signup = ({SignupAction, signup}) => {
+    const [name, setName] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [phoneNumber, setPhoneNumber] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -20,12 +21,13 @@ const Signup = ({SignupAction, signup}) => {
     const refSecond = React.useRef();
     const refThird = React.useRef();
     const refFourth = React.useRef();
+    const refFifth = React.useRef();
     //Eye Show
     const [passwordbool, setpasswordbool] = React.useState(true);
     const [passwordboolConfirm, setpasswordboolConfirm] = React.useState(true);
     const [iconConfirm, setIconConfirm] = React.useState('show');
     const [icon, setIcon] = React.useState('show');
-    console.log('Sign Up', signup)
+    console.log('Sign Up', signup);
     const _onChangeIcon = () =>
     {
         setIcon(icon === 'show' ? 'hide' : 'show');
@@ -42,12 +44,12 @@ const Signup = ({SignupAction, signup}) => {
         SignupAction(email, password, phoneNumber);
     };
     return (
+        <SafeAreaView
+          style={styles.signupContainer}>
         <ScrollView
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false} >
         <KeyboardAvoidingView enabled>
-        <SafeAreaView
-          style={styles.signupContainer}>
           <View
             style={styles.imageContainer}  >
               <Image
@@ -67,7 +69,7 @@ const Signup = ({SignupAction, signup}) => {
                title="الاسم"
                returnKeyType="next"
                onSubmitEditing={() => { refSecond.current.focus(); }}
-               onChangeText={(email) => setEmail(email)}
+               onChangeText={(name) => setName(name)}
                autoCapitalize="none" />
              <Input
                 title="رقم الجوال"
@@ -77,11 +79,19 @@ const Signup = ({SignupAction, signup}) => {
                 ref={refSecond}
                 marginTop={15} />
               <Input
+                title="الايميل"
+                returnKeyType="next"
+                onSubmitEditing={() => { refFourth.current.focus(); }}
+                ref={refThird}
+                onChangeText={(name) => setName(name)}
+                autoCapitalize="none"
+                marginTop={15} />
+              <Input
                 title="كلمة المرور"
                 returnKeyType="next"
                 onChangeText={(password) => setPassword(password)}
-                onSubmitEditing={() => { refFourth.current.focus(); }}
-                ref={refThird}
+                onSubmitEditing={() => { refFifth.current.focus(); }}
+                ref={refFourth}
                 secureTextEntry={passwordbool}
                 inputStyle={{flex:1}}
                 styleRow={styles.inputWithEye}
@@ -94,7 +104,7 @@ const Signup = ({SignupAction, signup}) => {
                 title=" تأكيد كلمة المرور"
                 returnKeyType="done"
                 onChangeText={(passwordConfirm) => setPasswordConfirm(passwordConfirm)}
-                ref={refFourth}
+                ref={refFifth}
                 inputStyle={{flex:1}}
                 styleRow={styles.inputWithEye}
                 secureTextEntry={passwordboolConfirm}
@@ -149,9 +159,9 @@ const Signup = ({SignupAction, signup}) => {
               onPress={() => navigation.navigate('Signup')} />
             </View>
           </View>
-        </SafeAreaView>
         </KeyboardAvoidingView>
         </ScrollView>
+        </SafeAreaView>
     );
 };
 const mapStateToProps = state =>

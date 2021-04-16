@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
 import Colors from '../../../assets/colors';
 import { Button } from '../../components';
 import SwipeButton from '../../components/SwipeButton';
@@ -8,7 +8,7 @@ import styles from './styles';
 
 const Cart = () => {
     return (
-        <View
+        <SafeAreaView
           style={styles.cartContainer}>
             <ScrollView
               style={styles.bodyContainer}>
@@ -66,7 +66,7 @@ const Cart = () => {
 
                 </View>
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
 
