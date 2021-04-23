@@ -1,9 +1,9 @@
 import React from 'react';
-import { Dimensions, PixelRatio, Platform, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, PixelRatio, Platform, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 //Screens
-import { Category, EditProfile, Home, Product, Search } from '../screens';
-import { MenuButton, SearchButton } from '../components';
+import { Category, Home, Product } from '../screens';
+import { MenuButton } from '../components';
 //Styles and Fonts And Icons
 const { height } = Dimensions.get('window');
 import Colors from '../../assets/colors';
@@ -54,39 +54,13 @@ const HomeScreen = () =>
                   fontFamily: Fonts.Cairo_Bold,
                   fontSize: 18,
                   lineHeight: 30,
-                }
+                },
             })} />
             <Stack.Screen
               name="Product"
               component={Product}
               options={{
                 headerShown: false,
-              }} />
-            <Stack.Screen
-              name="Search"
-              component={Search}
-              options={{
-                headerShown: false,
-              }} />
-            <Stack.Screen
-              name="EditProfile"
-              component={EditProfile}
-              options={{
-                headerTitle: () => {
-                    return (
-                        <Text>المعلومات الشخصية</Text>
-                    );
-                },
-                headerLeft: () => {
-                    return (
-                      <MaterialIcons name="arrow-forward" size={25} color={'#AFAFAF'} style={{}} />
-                    );
-                },
-                headerTransparent: true,
-                headerLeftContainerStyle:{
-                  paddingLeft: 15,
-                },
-                headerTitleAlign:'center',
               }} />
             <Stack.Screen
               name="Category"
@@ -128,8 +102,9 @@ const HomeScreen = () =>
                   fontFamily: Fonts.Cairo_Bold,
                   fontSize: 18,
                   lineHeight: 30,
-                }
+                },
             })} />
+
       </Stack.Navigator>
     );
 };

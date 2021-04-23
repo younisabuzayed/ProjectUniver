@@ -73,7 +73,6 @@ const Search = () => {
                         color="#C2C2C2" />
                     </TouchableOpacity>
                 </View>
-                
             </View>
         </SafeAreaView>
     );

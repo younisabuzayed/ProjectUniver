@@ -1,18 +1,17 @@
 import {StyleSheet, Dimensions, Platform} from 'react-native';
 import Colors from '../../../assets/colors';
+import Fonts from '../../../assets/fonts';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     editProfileContainer:
     {
         flex: 1,
-        paddingTop: 30,
     },
-    logoView:
+    scrollView:
     {
-        marginTop: Platform.OS === 'android' ? 33 : 80,
-        alignItems: 'center',
-
+        paddingTop: 20,
+        marginTop: 50,
     },
     logoImage:
     {
@@ -34,6 +33,46 @@ const styles = StyleSheet.create({
     titleStyle:
     {
         marginLeft: 15,
+    },
+    dateContainer:
+    {
+        marginTop: 18,
+    },
+    dateTitle:
+    {
+        fontSize: 12,
+        fontFamily: Fonts.Cairo_Regular,
+        writingDirection: 'rtl',
+        marginBottom: 5,
+        marginLeft: 55,
+    },
+    buttonDate:
+    {
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between',
+        paddingLeft: 15,
+        paddingRight: 15,
+    },
+    buttonDateTitle:
+    {
+        fontSize:  12,
+        fontFamily: Fonts.Cairo_Regular,
+    },
+    dateModal:
+    {
+        backgroundColor: Colors.white,
+        height: 200,
+    },
+    buttonAddress:
+    {
+        paddingLeft: 15,
+        paddingRight: 15,
+        alignItems:'flex-start',
+    },
+    buttonAddressTitle:
+    {
+        fontSize:  12,
+        fontFamily: Fonts.Cairo_Regular,
     },
     buttonConfirmView:
     {

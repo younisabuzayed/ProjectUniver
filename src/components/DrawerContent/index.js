@@ -55,7 +55,7 @@ function DrawerContent({ profileAction, profile, error},props) {
                                 />
                             )}
                             label="المعلومات الشخصية"
-                            onPress={() => {navigation.navigate('ProfileScreen');}}
+                            onPress={() => {navigation.navigate('EditProfile');}}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (
@@ -121,7 +121,7 @@ function DrawerContent({ profileAction, profile, error},props) {
                                 />
                             )}
                             label="السياسات والشروط"
-                            onPress={() => {navigation.navigate('BookmarkScreen');}}
+                            onPress={() => {navigation.navigate('AboutUs');}}
                             labelStyle={styles.lableMargin} />
                        { profile !== null && <DrawerItem
                            icon={({color, size}) => (

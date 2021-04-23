@@ -21,6 +21,7 @@ const Colors = {
     concrete:'#F2F2F2',
     silver: '#B8B8B8',
     titleProduct: '#6D6D6D',
+    contentText:'#202020',
     nameShop:'#9C9C9C',
     iconTune: '#C4C4C4',
     more:'#656565',

@@ -1,3 +1,5 @@
+export { default as AddressContainer} from './AddressContainer';
+
 export { default as Button} from './Button';
 export { default as ColorSelction} from './ColorSelction';
 export { default as Choose} from './Choose';
