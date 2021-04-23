@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import Modal from 'react-native-modal';
 
-const Choose = ({isVisible, children,onBackdropPress, timeOut, modalStyle}) =>
+const Choose = ({isVisible, children,onBackdropPress, timeOut, modalStyle, swipeDirection}) =>
 {
   return (
     <Modal
@@ -11,7 +11,7 @@ const Choose = ({isVisible, children,onBackdropPress, timeOut, modalStyle}) =>
      isVisible={isVisible}
      onBackdropPress={onBackdropPress}
      animationOutTiming={timeOut}
-    //  swipeDirection={['up', 'left', 'right', 'down']}
+     swipeDirection={swipeDirection}
      animationIn="zoomInDown"
      animationOut="zoomOutUp"
      style={modalStyle} >

@@ -3,7 +3,7 @@ import { View, ScrollView, SafeAreaView, Platform, Text } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import moment from 'moment';
 
-import { Choose } from '../../components';
+import { AddressContainer, Choose } from '../../components';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
@@ -95,25 +95,20 @@ const EditProfile = () => {
                   style={styles.dateContainer}>
                     <Text style={styles.dateTitle}>موقعك الشخصي</Text>
                     <Button
-                    title={moment(date).format('DD-MM-YYYY')}
-                    onPress={() => setIsVisible(!isVisible)}
+                    title={'غزة- السدرة -شارع يافا'}
+                    onPress={() => setIsVisibleAdress(!isVisibleAddress)}
                     active
                     backgroundColor="#E8E8E8"
                     styleButton={styles.buttonAddress}
                     titleStyle={styles.buttonAddressTitle} />
                     <Choose
-                     isVisible={isVisibleAddress}
-                     onBackdropPress={() => setIsVisibleAdress(!isVisibleAddress)}>
+                      isVisible={isVisibleAddress}
+                      onBackdropPress={() => setIsVisibleAdress(!isVisibleAddress)}
+                      swipeDirection={['up', 'left', 'right', 'down']}
+                      modalStyle={styles.addressModalStyle} >
                         <View
-                          style={styles.dateModal}>
-                            <DatePicker
-                            date={date}
-                            onDateChange={(date) => setDate(date)}
-                            locale="ar-SA"
-                            mode={'date'}
-                            androidVariant={Platform.OS === 'ios'
-                                            ? 'iosClone'
-                                            : 'nativeAndroid'} />
+                          style={styles.addressModal}>
+                           <AddressContainer />
                         </View>
                     </Choose>
                 </View>

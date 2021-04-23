@@ -71,8 +71,18 @@ const styles = StyleSheet.create({
     },
     buttonAddressTitle:
     {
-        fontSize:  12,
+        fontSize: 12,
         fontFamily: Fonts.Cairo_Regular,
+    },
+    addressModalStyle:
+    {
+        justifyContent: 'flex-end',
+        margin: 0,
+        zIndex: 5
+    },
+    addressModal:
+    {
+        height: 488,
     },
     buttonConfirmView:
     {

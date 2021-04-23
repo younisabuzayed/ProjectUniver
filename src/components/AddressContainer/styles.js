@@ -9,23 +9,6 @@ const styles = StyleSheet.create({
     addressContainer:
     {
         flex: 1,
-        backgroundColor: Colors.white,
-    },
-    addressInnerContainer:
-    {
-        height: height - (PixelRatio.get() === 3 ? 80 : 25) ,
-        justifyContent: 'flex-end',
-    },
-    imageContainer:
-    {
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        marginTop: 5,
-    },
-    iconImage:
-    {
-        height: hp(20),
-        width: wp('100%'),
     },
     bodyContianer:
     {
@@ -35,7 +18,6 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 8,
         borderTopLeftRadius: 8,
         backgroundColor: Colors.grally,
-        marginTop: 32,
     },
     bodyTitleAndStrock:
     {
@@ -75,6 +57,7 @@ const styles = StyleSheet.create({
     {
         alignSelf:'flex-start',
         width: 264,
+        zIndex: 5,
     },
     styleRowButtonMenu:
     {

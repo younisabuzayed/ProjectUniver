@@ -15,44 +15,21 @@ import Colors from '../../../assets/colors';
 import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-const categoriesType = [
-  {
-    id: '1',
-    name:'وجبات سريعة',
-  },
-  {
-    id: '2',
-    name:'وجبات عائلية',
-  },
-  {
-    id: '3',
-    name:'ساندوتش',
-  },
-  {
-    id: '4',
-    name:'مشروبات',
-  },]
-const Category = ({categories,categoriesAction}) => {
-    const sliderRef = React.useRef();
-    const navigation = useNavigation()
+
+const AllProducts = ({categories,categoriesAction, products, productsAction}) => {
+    const navigation = useNavigation();
     const route = useRoute();
-    const [activeDot, setActiveDot] = React.useState(0);
     React.useEffect(() => {
         categoriesAction();
-        navigation.setOptions({headerTitle: route.params.name});
+        productsAction();
+        navigation.setOptions({headerTitle: route.params.nameTab});
     }, []);
-    const Categories = categories.filter((_, i) => _.category_id === route.params.idItems)[0];
-    const productsSelected = Categories.products;
 
     const renderItemCategories = ({item}) =>
     {
         return (
             <TouchableOpacity
-              style={styles.categoriesContainer}
-              onPress={() => navigation.navigate('AllProducts',{
-                nameTab: route.params.name,
-                name: item.name,
-              })} >
+              style={styles.categoriesContainer} >
              <Text
                style={styles.categoriesTitle} >{item.name}</Text>
             </TouchableOpacity>
@@ -144,73 +121,18 @@ const Category = ({categories,categoriesAction}) => {
             </TouchableOpacity>
         );
     };
-    //Slider for Ads
-   /* const SliderContainer = () =>
-    {
-        return (
-         <>
-            <View
-              style={styles.slider} >
-             <Carousel
-               ref={sliderRef}
-               data={ENTRIES1}
-               itemWidth={width - 30}
-               sliderWidth={width - 30}
-               firstItem={activeDot}
-               loop={true}
-               autoplay={true}
-               renderItem={({item}) =>
-               {
-                  return (
-                      <View>
-                        <Image
-                          source={{uri: item.illustration}}
-                          style={styles.imageCarousel} />
-                      </View>
-                  );
-               }}
-               onSnapToItem={(index) => setActiveDot(index)} />
-            </View>
-            <Pagination
-               dotsLength={ENTRIES1.length}
-               activeDotIndex={activeDot}
-               inactiveDotStyle={{width: 7}}
-               dotColor={Colors.texasRose}
-               dotStyle={{height: 7, width: 25}}
-               inactiveDotColor={Colors.gray}
-               inactiveDotOpacity={0.4}
-               inactiveDotScale={0.6}
-               carouselRef={sliderRef}
-               tappableDots={!!sliderRef}
-               containerStyle={styles.PaginationContainer} />
-         </>
-        );
-    };*/
     if (categories !== null)
     {
     return (
         <View
-          style={styles.CategoryContainer} >
+          style={styles.allProductsContainer} >
         <ScrollView>
-         {/*Slider */}
-         {/* <SliderContainer /> */}
-         {/* FlatList Catgories */}
-         <View
-           style={styles.flatListCatgoriesContainer} >
-            <FlatList
-              data={categoriesType}
-              keyExtractor={(item) => item.id}
-              horizontal
-              contentContainerStyle={styles.flatListCatgories}
-              showsHorizontalScrollIndicator={false}
-              renderItem={renderItemCategories} />
-         </View>
          <View
            style={styles.productsContainer} >
             <Text
-              style={styles.title}>المنتجات الجديدة</Text>
+              style={styles.title}>{route.params.name}</Text>
            <FlatList
-              data={productsSelected.slice(0,4)}
+              data={products}
               keyExtractor={(item) => item.id}
               contentContainerStyle={styles.itemProductsContainer}
               columnWrapperStyle={{marginRight: 6, marginLeft: 6}}
@@ -220,22 +142,6 @@ const Category = ({categories,categoriesAction}) => {
               showsHorizontalScrollIndicator={false}
               renderItem={({item}) =><RenderItemProducts item={item} />} />
           {/* {products.slice(0,5).map(renderItemProducts)} */}
-         </View>
-         <View
-           style={[styles.productsContaine,{marginBottom: 20}]} >
-            <Text
-              style={styles.title} >أعلى طلبا</Text>
-            <FlatList
-              data={productsSelected.slice(0,4)}
-              keyExtractor={(item) => item.id}
-              contentContainerStyle={styles.itemProductsContainer}
-              columnWrapperStyle={{marginRight: 6, marginLeft: 6}}
-              numColumns={2}
-              maxToRenderPerBatch={5}
-              disableVirtualization={true}
-              showsHorizontalScrollIndicator={false}
-              renderItem={({item}) =><RenderItemProducts item={item} />} />
-          {/* {products.map(renderItemProducts)} */}
          </View>
         </ScrollView>
         </View>
@@ -266,4 +172,4 @@ const mapDispatchToProps = (dispatch) =>
         productsAction: () => dispatch(ProductsAction()),
     };
 };
-export default connect(mapStateToProps,mapDispatchToProps)(Category);
+export default connect(mapStateToProps,mapDispatchToProps)(AllProducts);

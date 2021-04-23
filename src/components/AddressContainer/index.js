@@ -52,14 +52,7 @@ const AddressContainer = () => {
 
     return (
 
-         <KeyboardAvoiding style={styles.addressInnerContainer}>
-          <View
-            style={styles.imageContainer} >
-             <Image
-               source={require('../../../assets/images/address.png')}
-               style={styles.iconImage}
-               resizeMode="contain" />
-          </View>
+         <KeyboardAvoiding>
           <View
             style={styles.bodyContianer}>
              <View
