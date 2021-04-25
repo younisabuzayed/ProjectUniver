@@ -9,13 +9,13 @@ const styles = StyleSheet.create({
         padding: 10,
         paddingBottom: 0,
         backgroundColor: Colors.wildSand,
-        paddingTop: 64,
     },
     headerButton:
     {
         flexDirection: 'row',
         justifyContent:'center',
         backgroundColor: Colors.white,
+        paddingTop: 50,
     },
     button:
     {

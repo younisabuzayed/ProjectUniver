@@ -16,9 +16,23 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+const logo = 'https://mostaql.hsoubcdn.com/uploads/539862-dj0ow-1558106924-5cded32cf36b5.jpg';
 
 function DrawerContent({ profileAction, profile, error},props) {
     const navigation = useNavigation();
+    const [token, setToken] = React.useState(null);
+   React.useEffect(() => {
+      getToken();
+   }, []);
+   const getToken = async() => {
+       try {
+         const jsonValue = await AsyncStorage.getItem('data_token');
+         return jsonValue != null ? setToken(JSON.parse(jsonValue)) : null;
+         } catch (e) {
+         // error reading value
+         console.log('Get toke App Token Error', e);
+         }
+       };
     React.useEffect(() =>
     {
         profileAction();
@@ -30,18 +44,25 @@ function DrawerContent({ profileAction, profile, error},props) {
     };
     console.log(error);
     return (
-        <SafeAreaView style={styles.drawerContentContainer}>
-            <DrawerContentScrollView {...props}>
-                <View style={styles.drawerContent}>
-                    <View style={styles.userInfoSection}>
+        <SafeAreaView
+          style={styles.drawerContentContainer}>
+            <DrawerContentScrollView
+              {...props}>
+                <View
+                  style={styles.drawerContent}>
+                    <View
+                      style={styles.userInfoSection}>
                             <Avatar.Image
-                                source={{
-                                    uri: 'https://api.adorable.io/avatars/50/abott@adorable.png',
-                                }}
-                                size={50}
-                            />
-                            <View style={{alignItems:'center'}}>
-                                <Title style={styles.title}>{profile !== null ? profile.username : 'username'}</Title>
+                                source={{uri: 'https://api.adorable.io/avatars/50/abott@adorable.png'}}
+                                size={80} />
+                            <View
+                              style={styles.name}>
+                                <Title
+                                  style={styles.title}>
+                                    {profile !== null
+                                      ? profile.username
+                                      : 'username'}
+                                </Title>
                             </View>
                     </View>
 
@@ -49,10 +70,9 @@ function DrawerContent({ profileAction, profile, error},props) {
                         <DrawerItem
                             icon={({color, size}) => (
                                 <Icon
-                                name="account-outline"
-                                color={color}
-                                size={size}
-                                />
+                                  name="account-outline"
+                                  color={color}
+                                  size={size} />
                             )}
                             label="المعلومات الشخصية"
                             onPress={() => {navigation.navigate('EditProfile');}}
@@ -60,10 +80,9 @@ function DrawerContent({ profileAction, profile, error},props) {
                         <DrawerItem
                             icon={({color, size}) => (
                                 <MaterialIcons
-                                name="favorite"
-                                color={color}
-                                size={size}
-                                />
+                                  name="favorite"
+                                  color={color}
+                                  size={size} />
                             )}
                             label="المفضلة"
                             onPress={() => {navigation.navigate('FavoriteScreen');}}
@@ -71,10 +90,9 @@ function DrawerContent({ profileAction, profile, error},props) {
                         <DrawerItem
                             icon={({color, size}) => (
                                 <FontAwesome5
-                                name="clipboard-list"
-                                color={color}
-                                size={size}
-                                />
+                                  name="clipboard-list"
+                                  color={color}
+                                  size={size} />
                             )}
                             label="الطلبات"
                             onPress={() => {navigation.navigate('OrderScreen');}}
@@ -82,10 +100,9 @@ function DrawerContent({ profileAction, profile, error},props) {
                         <DrawerItem
                             icon={({color, size}) => (
                                 <FontAwesome5
-                                name="shopping-cart"
-                                color={color}
-                                size={size}
-                                />
+                                  name="shopping-cart"
+                                  color={color}
+                                  size={size} />
                             )}
                             label="السلة"
                             onPress={() => {navigation.navigate('CartScreen');}}
@@ -93,10 +110,9 @@ function DrawerContent({ profileAction, profile, error},props) {
                         <DrawerItem
                             icon={({color, size}) => (
                                 <MaterialIcons
-                                name="language"
-                                color={color}
-                                size={size}
-                                />
+                                  name="language"
+                                  color={color}
+                                  size={size} />
                             )}
                             label="اللغة"
                             onPress={() => {alert('ستتوفر قريبا');}}
@@ -104,10 +120,9 @@ function DrawerContent({ profileAction, profile, error},props) {
                         <DrawerItem
                             icon={({color, size}) => (
                                 <MaterialIcons
-                                name="send"
-                                color={color}
-                                size={size}
-                                />
+                                  name="send"
+                                  color={color}
+                                  size={size} />
                             )}
                             label="الدعم الفني"
                             onPress={() => {navigation.navigate('BookmarkScreen');}}
@@ -115,29 +130,48 @@ function DrawerContent({ profileAction, profile, error},props) {
                         <DrawerItem
                             icon={({color, size}) => (
                                 <FontAwesome
-                                name="align-right"
-                                color={color}
-                                size={size}
-                                />
+                                  name="align-right"
+                                  color={color}
+                                  size={size} />
                             )}
                             label="السياسات والشروط"
                             onPress={() => {navigation.navigate('AboutUs');}}
                             labelStyle={styles.lableMargin} />
-                       { profile !== null && <DrawerItem
-                           icon={({color, size}) => (
-                             <FontAwesome
-                               name="sign-out"
-                               color={color}
-                               size={size}
-                              />
+                        {profile !== null
+                           && <DrawerItem
+                                icon={({color, size}) => (
+                                    <FontAwesome
+                                      name="sign-out"
+                                      color={color}
+                                      size={size} />
                             )}
                             label="الخروج"
                             onPress={logout}
                             labelStyle={styles.lableMargin} />}
-                        <DrawerItem
-                            label="إضافة حساب تاجر"
-                            labelStyle={styles.lableAddTrader }
-                            onPress={() => navigation.navigate('CommercialRegister')} />
+                        {token && <>
+                            {profile === null
+                              ? <DrawerItem
+                                  label="إضافة حساب تاجر"
+                                  labelStyle={styles.lableAddTrader }
+                                  onPress={() => navigation.navigate('CommercialRegister')} />
+                              : <View
+                                  style={styles.mainProfile}>
+                                    <Avatar.Image
+                                      source={{uri: logo}}
+                                      size={24}
+                                      style={styles.avatar} />
+                                    <View
+                                      style={styles.name}>
+                                        <Title
+                                          style={styles.titleProfile}>
+                                            {profile !== null
+                                              ? profile.username
+                                              : 'username'}
+                                        </Title>
+                                    </View>
+                                </View>
+                            }
+                        </>}
                     </Drawer.Section>
                 </View>
             </DrawerContentScrollView>

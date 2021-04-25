@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react'
-import { View, Text } from 'react-native';
+import React from 'react';
+import { View, Text, FlatList, Platform } from 'react-native';
 import { Button } from '..';
 import Colors from '../../../assets/colors';
 import styles from './styles';
@@ -39,17 +39,24 @@ export const SelectionMulti = ({items, onChange, style, styleButton}) => {
       if (isSelected)
       {
         setMeasurements((prev) => prev.filter((i) => i !== item));
-        onChange(item)
+        onChange(item);
       } else {
         setMeasurements(prev => [...prev, item]);
-        onChange(item)
+        onChange(item);
       }
-    },[onChange])
+    },[onChange]);
   return (
       <View
         style={[styles.selectionContainer, style]}>
-          {items.map((item, index) =>
-          {
+          <FlatList
+            data={items}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={Platform.OS === 'android' && {flexDirection:'row-reverse'}}
+            inverted={Platform.OS === 'android' ? true : false}
+            keyExtractor={(index) => index.toString() }
+            renderItem={({item, index}) =>
+            {
               const isSelected = measurements.filter((i) => i === item).length > 0;
               return <Button
                       key={item}
@@ -59,7 +66,7 @@ export const SelectionMulti = ({items, onChange, style, styleButton}) => {
                       onPress={() => onPressSelectionMulti(item, index, isSelected)}
                       title={item}
                       titleStyle={[styles.title,{color: isSelected === true ? Colors.white : Colors.balck}]} />;
-          })}
+            }} />
       </View>
   );
 };

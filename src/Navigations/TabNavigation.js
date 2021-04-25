@@ -18,6 +18,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+const sizeIcons = 20;
 const CartScreen = () =>
 {
   return (
@@ -268,7 +269,7 @@ const MainTabBottom = () =>
                    style={styleItem} >
                      <FontAwesome5
                        name="shopping-cart"
-                       size={20}
+                       size={sizeIcons}
                        color={color}
                        style={styleIcon} />
                  {focused && <Text
@@ -282,7 +283,7 @@ const MainTabBottom = () =>
                     style={styleItem} >
                       <FontAwesome5
                         name="clipboard-list"
-                        size={25}
+                        size={sizeIcons}
                         color={color}
                         style={[styleIcon,{textAlign:'center'}]} />
                       {focused && <Text
@@ -297,7 +298,7 @@ const MainTabBottom = () =>
                     style={styleItem} >
                       <MaterialIcons
                         name="favorite"
-                        size={25}
+                        size={sizeIcons}
                         color={color}
                         style={styleIcon} />
                       {focused && <Text
@@ -312,7 +313,7 @@ const MainTabBottom = () =>
                     style={styleItem} >
                        <Ionicons
                          name="person"
-                         size={25}
+                         size={sizeIcons}
                          color={color}
                          style={styleIcon} />
                       {focused && <Text
@@ -359,7 +360,7 @@ const MainTabBottom = () =>
                       shadowRadius: 1.41,
                       elevation: 2,
                     }}>
-                      <Entypo name="home" size={25} color={color} style={[styleIcon,{textAlign:'center'}]} />
+                      <Entypo name="home" size={sizeIcons} color={color} style={[styleIcon,{textAlign:'center'}]} />
                       {focused && <Text
                                     style={styleTitle}>الرئيسية</Text>}
                   </View>
@@ -404,7 +405,7 @@ const MainTabBottom = () =>
                   style={styleItem} >
                     <FontAwesome5
                       name="shopping-cart"
-                      size={20}
+                      size={sizeIcons}
                       color={color}
                       style={styleIcon} />
                 {focused && <Text
@@ -418,7 +419,7 @@ const MainTabBottom = () =>
                    style={styleItem} >
                      <FontAwesome5
                        name="clipboard-list"
-                       size={25}
+                       size={sizeIcons}
                        color={color}
                        style={[styleIcon,{textAlign:'center'}]} />
                      {focused && <Text
@@ -433,7 +434,7 @@ const MainTabBottom = () =>
                    style={styleItem} >
                      <MaterialIcons
                        name="favorite"
-                       size={25}
+                       size={sizeIcons}
                        color={color}
                        style={styleIcon} />
                      {focused && <Text
@@ -448,7 +449,7 @@ const MainTabBottom = () =>
                    style={styleItem} >
                       <Ionicons
                         name="person"
-                        size={25}
+                        size={sizeIcons}
                         color={color}
                         style={styleIcon} />
                      {focused && <Text
@@ -486,7 +487,7 @@ const MainTabBottom = () =>
                      width: 60,
                      borderRadius: 30,
                    }}>
-                     <Entypo name="home" size={25} color={color} style={[styleIcon,{textAlign:'center'}]} />
+                     <Entypo name="home" size={sizeIcons} color={color} style={[styleIcon,{textAlign:'center'}]} />
                      {focused && <Text
                                    style={styleTitle}>الرئيسية</Text>}
                  </View>

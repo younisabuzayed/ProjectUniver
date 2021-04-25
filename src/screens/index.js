@@ -20,8 +20,8 @@ export {default as AboutUs } from './AboutUs';
 
 //Seller Screens
 export {default as CommercialRegister } from './SellerScreen/CommercialRegister';
-export {default as MainScreenBuyer } from './SellerScreen/MainScreenBuyer';
-export {default as OrdersBuyer } from './SellerScreen/OrdersBuyer';
+export {default as MainScreenSeller } from './SellerScreen/MainScreenSeller';
+export {default as OrdersSeller } from './SellerScreen/OrdersSeller';
 export {default as AddProduct } from './SellerScreen/AddProduct';
 
 

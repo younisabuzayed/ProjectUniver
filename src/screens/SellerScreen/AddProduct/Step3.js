@@ -2,12 +2,14 @@
 /* eslint-disable no-shadow */
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import styles from './styles';
 import tinycolor from 'tinycolor2';
 import { TriangleColorPicker } from 'react-native-color-picker';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
+
+//Component
 import { Button, Choose, Input } from '../../../components';
 //Styles and Icons
+import styles from './styles';
 import Colors from '../../../../assets/colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Fonts from '../../../../assets/fonts';
@@ -73,7 +75,7 @@ const Step3 = () => {
         } else {
             setSize(prev => [...prev, select]);
         }
-    }
+    };
     const onChangeSeason = (select) => {
         const isSelected = season.filter((i) => i === select).length > 0;
         if (isSelected){
@@ -82,20 +84,22 @@ const Step3 = () => {
         } else {
           setSeason(prev => [...prev, select]);
         }
-    }
+    };
     const onPressDelete = (itemRemove) =>
     {
       const newList = measurements.filter((item) => item !== itemRemove);
- 
+
       setMeasurements(newList);
-    }
+    };
     const fontSection = {
         fontFamily: Fonts.Cairo_Regular,
+        writingDirection: 'rtl',
         };
     const selectText = {
         fontFamily: Fonts.Cairo_Bold,
         fontSize: 14,
         marginLeft: 15,
+        writingDirection: 'rtl',
         };
     return (
         <View
@@ -166,36 +170,37 @@ const Step3 = () => {
                     titleStyle={styles.colorButtonTitle}
                     styleButton={{marginTop: 10}}
                     onPress={() => {
-                        if(colors.includes(color)) return;
+                        if (colors.includes(color)) {return;}
                         setColors([...colors,color]);
                         }} />
               </View>
           </Choose>
           <View>
-          <SectionedMultiSelect
-            styles={{
-                chipText:fontSection,
-                chipsWrapper:{marginLeft: 40},
-                selectToggle:{marginLeft: 18, marginRight: 10, marginTop: 15, marginBottom: 15}}}
-            items={items}
-            IconRenderer={Icon}
-            uniqueKey="id"
-            subKey="children"
-            selectText="اختار النواع"
-            selectedText=""
-            confirmText="تأكيد"
-            searchPlaceholderText="بحث عن انواع"
-            showDropDowns={true}
-            readOnlyHeadings={true}
-            onSelectedItemsChange={onSelectedItemsChange}
-            selectedItems={selectedItem}
-            colors={{primary: Colors.fernGreen}}
-            itemFontFamily={fontSection}
-            confirmFontFamily={fontSection}
-            subItemFontFamily={fontSection}
-            searchTextFontFamily={fontSection}
-            selectTextStyles={selectText} />
-            </View>
+            <SectionedMultiSelect
+              styles={{
+                  chipText:fontSection,
+                  chipsWrapper:{marginLeft: 40},
+                  selectToggle:{marginLeft: 18, marginRight: 10, marginTop: 15, marginBottom: 15},
+                  selectToggleText: selectText,
+                  modalWrapper:{ marginTop: 50}}}
+              items={items}
+              IconRenderer={Icon}
+              uniqueKey="id"
+              subKey="children"
+              selectText="اختار النواع"
+              selectedText=""
+              confirmText="تأكيد"
+              searchPlaceholderText="بحث عن انواع"
+              showDropDowns={true}
+              readOnlyHeadings={true}
+              onSelectedItemsChange={onSelectedItemsChange}
+              selectedItems={selectedItem}
+              colors={{primary: Colors.fernGreen}}
+              itemFontFamily={fontSection}
+              confirmFontFamily={fontSection}
+              subItemFontFamily={fontSection}
+              searchTextFontFamily={fontSection} />
+          </View>
             <View
               style={{}}>
                 <Text
@@ -207,61 +212,11 @@ const Step3 = () => {
                   onChange={(select) => setGrnder(select)} />
             </View>
             <View
-              style={styles.sizesContainer}>
-                <Input
-                  placeholder="50"
-                  title="المقاسات"
-                  styleContainer={styles.sizeContainer}
-                  inputStyle={styles.inputSizes}
-                  styleRow={styles.sizesInnerContainer}
-                  styleTitle={styles.titleSize}
-                  onChangeText={ number => setSizeNumber(number)}
-                  children={
-                    <Button
-                      title="اضافة"
-                      active
-                      backgroundColor={Colors.fernGreen}
-                      styleButton={styles.sizeButton}
-                      titleStyle={styles.sizeButtonTitle}
-                      onPress={() =>{
-                        if(measurements.includes(sizeNumber)) return;
-                        setMeasurements([...measurements,sizeNumber]);
-                      }} />
-                  } />
-                  <View
-                      style={styles.sizesProductContainer} >
-                        {measurements.length !== 0
-                       ? measurements.map((item, index) =>
-                        {
-                            return (
-                                <TouchableOpacity
-                                  key={index}
-                                  style={styles.sizeProduct}
-                                  onPress={() => onPressDelete(item)}>
-                                    <View
-                                      style={styles.closeButton}
-                                       >
-                                        <Icon
-                                          name="close"
-                                          size={10}
-                                          color={Colors.silver} />
-                                    </View>
-                                    <Text
-                                      style={styles.itemSizeProductText}
-                                      ref={deleteRef}>{item.toString()}</Text>
-                                </TouchableOpacity>
-                            );
-                        })
-                       : <Text
-                           style={styles.titleNoColor} >لا يوجد مقاسات</Text>}
-                      </View>
-            </View>
-            <View
               style={{}}>
                 <Text
                   style={styles.titleColor}>الحجم</Text>
                 <SelectionMulti
-                  items={['كبير','متوسط','صغير']}
+                  items={['XL', 'L', 'M', 'S', 'XS']}
                   style={styles.genderContainer}
                   styleButton={styles.grnder}
                   onChange={onChangeSize} />

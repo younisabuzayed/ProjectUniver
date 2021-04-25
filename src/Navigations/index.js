@@ -17,9 +17,11 @@ import Fonts from '../../assets/fonts';
 import { Access, Login, Onboarding,
          Signup, ForgotPasssword, VerifyMobile, CommercialRegister, AddProduct, Address, AboutUs, EditProfile, Search} from '../screens';
 //Custom Component
-import { DrawerContent} from '../components';
+import { DrawerContent, DrawerContentSeller} from '../components';
 import MainTabBottom from './TabNavigation';
 import ChangePassword from '../screens/Auth/ChangePassword';
+import SellerScreen from './SellerScreen';
+import styles from './styles';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -35,6 +37,20 @@ const rootDrawer = () =>
         backgroundColor:'transparent',
       }} >
       <Drawer.Screen name={'mainTabBottom'} component={MainTabBottom} />
+    </Drawer.Navigator>
+  );
+};
+const rootDrawerSeller = () =>
+{
+  return (
+    <Drawer.Navigator
+      drawerContent={props => <DrawerContentSeller {...props} />}
+      drawerStyle={{
+        backgroundColor:'transparent',
+      }} >
+      <Drawer.Screen
+        name={'SellerScreen'}
+        component={SellerScreen} />
     </Drawer.Navigator>
   );
 };
@@ -94,10 +110,15 @@ const rootNavigation = () =>
                 },
               })} />
               <Stack.Screen
-              name="OrdersBuyer"
+              name="AddPrdouct"
               component={AddProduct}
               options={({navigation}) => ({
-                title:'',
+                headerTitle: () => {
+                    return (
+                        <Text
+                          style={styles.titleStyle} >إضافة منتنج</Text>
+                    );
+                },
                 headerLeft: () => {
                     return (
                       <TouchableOpacity
@@ -106,9 +127,25 @@ const rootNavigation = () =>
                       </TouchableOpacity>
                     );
                 },
-              headerTransparent: true,
-              headerLeftContainerStyle:{
-                  paddingLeft: 15,
+                headerTransparent: true,
+                headerLeftContainerStyle:{
+                    paddingLeft: 15,
+                  },
+                headerStyle: {
+                    backgroundColor: Colors.fernGreen,
+                    height: height / (Platform.OS === 'ios' ?  9 : 12),
+                  },
+                headerRightContainerStyle:
+                {
+                    marginRight: 24,
+                },
+                headerTitleAlign: 'center',
+                headerTitleStyle:
+                {
+                    color: Colors.white,
+                    fontFamily: Fonts.Cairo_Bold,
+                    fontSize: 18,
+                    lineHeight: 30,
                 },
               })} />
             <Stack.Screen
@@ -180,6 +217,12 @@ const rootNavigation = () =>
              <Stack.Screen
               name="Search"
               component={Search}
+              options={{
+                headerShown: false,
+              }} />
+            <Stack.Screen
+              name="SellerScreen"
+              component={rootDrawerSeller}
               options={{
                 headerShown: false,
               }} />
@@ -360,10 +403,15 @@ export const NoneTokenNavigation = () =>
                 },
               })} />
               <Stack.Screen
-                name="OrdersBuyer"
+                name="AddProduct"
                 component={AddProduct}
                 options={({navigation}) => ({
-                  title:'',
+                  headerTitle: () => {
+                    return (
+                        <Text
+                          style={styles.titleStyle} >إضافة منتنج</Text>
+                    );
+                },
                   headerLeft: () => {
                     return (
                       <TouchableOpacity
@@ -375,6 +423,22 @@ export const NoneTokenNavigation = () =>
                 headerTransparent: true,
                 headerLeftContainerStyle:{
                   paddingLeft: 15,
+                },
+                headerStyle: {
+                  backgroundColor: Colors.fernGreen,
+                  height: height / (Platform.OS === 'ios' ?  9 : 12),
+                },
+                headerRightContainerStyle:
+                {
+                  marginRight: 24,
+                },
+                headerTitleAlign: 'center',
+                headerTitleStyle:
+                {
+                  color: Colors.white,
+                  fontFamily: Fonts.Cairo_Bold,
+                  fontSize: 18,
+                  lineHeight: 30,
                 },
               })} />
             <Stack.Screen

@@ -73,7 +73,7 @@ const Step1 = () => {
                style={styles.titleInput}>نوع الصنف</Text>
             <Button
               active
-              title={selected.length === 0 ? "اختار صنف ونوع الصنف": titleButtonChecked}
+              title={selected.length === 0 ? 'اختار صنف ونوع الصنف' : titleButtonChecked}
               backgroundColor={Colors.mercury}
               styleButton={styles.KindCategoryButton}
               titleStyle={styles.KindCategoryButtonTitle}
@@ -147,7 +147,7 @@ const Step1 = () => {
                                     onPress={() => handleChange(dataCloth,setDataCloth,item.id)}
                                     theme={{
                                         colors:{text:Colors.iconTune, disabled: styles.iconTune}}} />
-                                      )
+                                      );
                                     }} />
                         </View>
                     </RadioButton.Group>

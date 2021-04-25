@@ -7,8 +7,8 @@ const styles = StyleSheet.create({
   {
     height: 75,
     flexDirection:'row',
-    marginLeft: 15,
-    marginRight: 15,
+    marginLeft: 20,
+    marginRight: 20,
     justifyContent: 'space-between',
     borderRadius: 8,
     backgroundColor:Colors.white,
@@ -67,6 +67,15 @@ const styles = StyleSheet.create({
   {
       width: 64,
       height: 21,
+      borderRadius: 8,
+  },
+  iconPlus:
+  {
+      height: 24,
+      width: 24,
+      backgroundColor: Colors.fernGreen,
+      justifyContent: 'center',
+      alignItems:'center',
       borderRadius: 8,
   },
   textCancel:

@@ -90,6 +90,11 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.Cairo_Regular,
         color: Colors.titleProduct,
     },
+    itemProductsContainer:
+    {
+        backgroundColor: Colors.concrete,
+        flex: 1,
+    },
 });
 
 export default styles;

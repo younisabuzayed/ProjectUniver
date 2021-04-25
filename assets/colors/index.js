@@ -25,6 +25,7 @@ const Colors = {
     nameShop:'#9C9C9C',
     iconTune: '#C4C4C4',
     more:'#656565',
+    circle: '#E6E6E6',
 };
 
 export default Colors;

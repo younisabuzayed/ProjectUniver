@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     {
         flex: 1,
         backgroundColor: Colors.white,
+        paddingTop: 30,
     },
     imagePickerShow:
     {
@@ -62,6 +63,7 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.Cairo_Regular,
         marginLeft: 50,
         marginTop: 15,
+        writingDirection:'rtl',
     },
     buttonDate:
     {

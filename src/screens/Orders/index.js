@@ -24,8 +24,14 @@ const Orders = () => {
     {
       return (
         <View>
-          <CartItem />
-          <CartItem />
+          <CartItem
+            textState="قيد الوصول"
+            cancel
+            width={100} />
+          <CartItem
+            textState="قيد الوصول"
+            cancel
+            width={100} />
         </View>
       );
     };
@@ -33,7 +39,10 @@ const Orders = () => {
     {
       return (
         <View>
-          <CartItemSwipe />
+          <CartItemSwipe
+            textState="تم استلام"
+            add
+            width={50} />
         </View>
       );
     };

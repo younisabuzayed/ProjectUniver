@@ -5,6 +5,7 @@ import { View, Text, ScrollView, KeyboardAvoidingView, Image } from 'react-nativ
 import DatePicker from 'react-native-date-picker';
 import * as ImagePicker from 'react-native-image-picker';
 import moment from 'moment';
+import { useNavigation } from '@react-navigation/native';
 //Component
 import { Button, Input } from '../../../components';
 //Styles
@@ -41,7 +42,7 @@ const CommercialRegister = () => {
     const [isVisibleKind, setIsVisibleKind] = React.useState(false);
     const [responseLogo, setResponseLogo] = React.useState(null);
     const [responseLicence, setResponseLicence] = React.useState(null);
-
+    const navigation = useNavigation();
     const onPressResponseLogo = () =>
     {
       ImagePicker.launchImageLibrary(
@@ -92,6 +93,7 @@ const CommercialRegister = () => {
     const onPressCommercialRegister = () =>
     {
         // console.log(email, password);
+        navigation.navigate('SellerScreen');
     };
     const onPressKind = (item) =>
     {

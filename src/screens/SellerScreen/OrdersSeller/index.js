@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-lone-blocks */
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, SafeAreaView } from 'react-native';
 import Colors from '../../../../assets/colors';
 import { Button, SwipeButton, SwipeButtonBuyer } from '../../../components';
 import CartItem, { CartItemSwipe } from '../../../components/CartItem';
@@ -41,7 +41,7 @@ const OrdersBuyer = () => {
       );
     };
     return (
-        <View
+        <SafeAreaView
           style={styles.ordersBuyerContainer}>
             <View
               style={styles.headerButton}>
@@ -82,7 +82,7 @@ const OrdersBuyer = () => {
               style={styles.cartItemsContainer}>
               <OldOrders />
             </View>}
-        </View>
+        </SafeAreaView>
     );
 };
 

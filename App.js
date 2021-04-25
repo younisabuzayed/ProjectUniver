@@ -16,7 +16,7 @@
  import store from './src/redux/store';
  import AsyncStorage from '@react-native-async-storage/async-storage';
  console.disableYellowBox = true;
- 
+
  const App = () => {
    const [token, setToken] = React.useState(null);
    React.useEffect(() => {
@@ -30,15 +30,15 @@
          // error reading value
          console.log('Get toke App Token Error', e);
          }
- 
+
          // if (value !== null){
          //   const blocksArray = JSON.parse(value);
          //   setToken(blocksArray);
          //   console.log(blocksArray)
          // }
        };
-       console.log(token)
- 
+       console.log(token);
+
    return (
      <Provider
        store={store} >
@@ -49,7 +49,6 @@
      </Provider>
    );
  };
- 
- 
+
+
  export default App;
- 

@@ -21,9 +21,9 @@ const styles = StyleSheet.create({
     title:
     {
         fontSize: 14,
-        fontFamily: Fonts.Cairo_Bold,
+        fontFamily: Fonts.Cairo_Regular,
         color: Colors.balck,
-    }
+    },
 });
 
 export default styles;

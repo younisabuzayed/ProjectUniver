@@ -1,14 +1,18 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, Animated } from 'react-native';
+
+//Component
 import { Swipeable } from 'react-native-gesture-handler';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Button } from '..';
 
 //Styles and Fonts
 import styles from './styles';
 import Colors from '../../../assets/colors';
+import Octicons from 'react-native-vector-icons/Octicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 const IconAnimated = Animated.createAnimatedComponent(MaterialCommunityIcons);
-const CartItem = () => {
+const CartItem = ({textState, cancel, add, width}) => {
     return (
       <View
         style={styles.cartItemContainer} >
@@ -22,7 +26,7 @@ const CartItem = () => {
           <View
             style={styles.cartItemContent}>
               <Text
-                style={styles.conditionText}>قيد الانتظار</Text>
+                style={styles.conditionText}>{textState}</Text>
               <Text
                  style={styles.title}>لابتوب ماك</Text>
               <Text
@@ -31,17 +35,22 @@ const CartItem = () => {
                 ellipsizeMode="tail" >{`${44} شيكل`}</Text>
           </View>
           <View
-            style={styles.counterButtonAndNumber} >
-            <Button
+            style={[styles.counterButtonAndNumber,{width}]} >
+            {cancel && <Button
               title="الغاء الطلبية"
               backgroundColor={Colors.carnation}
               styleButton={styles.cancelButton}
-              titleStyle={styles.textCancel} />
+              titleStyle={styles.textCancel} />}
+            {add && <Button
+              backgroundColor={Colors.carnation}
+              styleButton={styles.iconPlus}
+              titleStyle={styles.textCancel}
+              children={<Octicons name="plus" size={20} color={Colors.white} />} />}
           </View>
       </View>
     );
 };
-export const CartItemSwipe = ({renderRightActions,onSwipeableLeftOpen}) => {
+export const CartItemSwipe = ({renderRightActions,onSwipeableLeftOpen, textState, add, width}) => {
   const LeftAction = (progress, dragX) =>
     {
         const scale = dragX.interpolate({
@@ -69,7 +78,10 @@ export const CartItemSwipe = ({renderRightActions,onSwipeableLeftOpen}) => {
           renderRightActions={renderRightActions}
           onSwipeableLeftOpen={onSwipeableLeftOpen}
           containerStyle={{marginBottom: 20}}>
-            <CartItem />
+            <CartItem
+              textState={textState}
+              add={add}
+              width={width} />
           </Swipeable>
   );
 };

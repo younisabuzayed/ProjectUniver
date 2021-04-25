@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { Text, View } from 'react-native';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Colors from '../../../../assets/colors';
 import { Button } from '../../../components';
 import Step1 from './Step1';
@@ -56,6 +57,18 @@ const AddProduct = () => {
                 <Steps
                   index={4}
                   backgroundColor={move >= 4 && Colors.fernGreen} />
+            </View>
+            <View
+              style={styles.noteForProductContainer}>
+                <Text
+                  style={styles.noteForProductText}>الاختيار مواصفات منتجك حسب الصنف الذي تضيفه </Text>
+                <View
+                  style={styles.circleView} >
+                    <FontAwesome5
+                      name="exclamation"
+                      color="#FFB850"
+                      size={15} />
+                </View>
             </View>
             {move === 1 && <Step1 />}
             {move === 2 && <Step2 />}

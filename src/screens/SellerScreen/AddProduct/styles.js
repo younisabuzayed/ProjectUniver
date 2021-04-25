@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, PixelRatio, StyleSheet} from 'react-native';
 import Colors from '../../../../assets/colors';
 import Fonts from '../../../../assets/fonts';
 const {width, height} = Dimensions.get('window');
@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     {
         backgroundColor: Colors.white,
         flex: 1,
+        paddingTop: PixelRatio.get() === 3 ? 80 : 30,
     },
     stepsContainer:
     {
@@ -38,10 +39,41 @@ const styles = StyleSheet.create({
         width: 26,
         marginLeft: -1,
     },
+    noteForProductContainer:
+    {
+        height: 32,
+        marginLeft: 15,
+        marginRight: 15,
+        backgroundColor: Colors.wildSand,
+        borderRadius: 8,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingLeft: 12,
+        paddingRight: 12,
+        marginTop: 27,
+    },
+    noteForProductText:
+    {
+        fontSize: 12,
+        fontFamily: Fonts.Cairo_Regular,
+        color: Colors.fernGreen,
+        writingDirection: 'rtl',
+    },
+    circleView:
+    {
+        height: 24,
+        width: 24,
+        backgroundColor: Colors.circle,
+        borderRadius: 12,
+        alignItems:'center',
+        justifyContent:'center',
+    },
     nextAndPrevContainer:
     {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        marginBottom: 25,
     },
     titleNextAndPrev:
     {
@@ -52,7 +84,7 @@ const styles = StyleSheet.create({
     step1Container:
     {
         flex: 1,
-        paddingTop: 30,
+        paddingTop: 21,
         backgroundColor: Colors.white,
     },
     titleInput:
@@ -62,6 +94,7 @@ const styles = StyleSheet.create({
         marginLeft: 50,
         marginTop: 15,
         marginBottom: 5,
+        writingDirection: 'rtl',
     },
     KindCategoryButton:
     {
@@ -74,6 +107,7 @@ const styles = StyleSheet.create({
     {
         fontSize: 9,
         fontFamily: Fonts.Cairo_Regular,
+        writingDirection: 'rtl',
     },
     KindCategoryModal:
     {
@@ -87,6 +121,7 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.Cairo_Regular,
         marginTop: 12,
         textAlign: 'center',
+        writingDirection: 'rtl',
     },
     radioButton:
     {
@@ -97,6 +132,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontFamily:Fonts.Cairo_Regular,
         color: Colors.balck,
+        writingDirection: 'rtl',
     },
     checkeContainer:
     {
@@ -118,25 +154,28 @@ const styles = StyleSheet.create({
     step2Container:
     {
         flex: 1,
-        paddingTop: 30,
+        paddingTop: 21,
     },
     noteText:
     {
         fontSize: 9,
         fontFamily: Fonts.Cairo_Regular,
         marginLeft: 5,
+        writingDirection: 'rtl',
+        marginTop: -8,
+        marginBottom: 18,
     },
 /* Step 3 */
     step3Container:
     {
         flex: 1,
-        paddingTop: 30,
     },
     colorButtonTitle:
     {
         fontSize: 14,
         fontFamily: Fonts.Cairo_Bold,
         color: Colors.white,
+        writingDirection: 'rtl',
     },
     ColorModal:
     {
@@ -150,6 +189,7 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.Cairo_Regular,
         marginLeft: 36,
         marginTop: 15,
+        writingDirection: 'rtl',
     },
     colorsContainer:
     {
@@ -173,6 +213,7 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.Cairo_Regular,
         marginLeft: 10,
         marginTop: 15,
+        writingDirection: 'rtl',
     },
     circleColor:
     {
@@ -195,70 +236,6 @@ const styles = StyleSheet.create({
     sizesContainer:
     {
     },
-    sizeContainer:
-    {
-        marginLeft: 0,
-    },
-    titleSize:
-    {
-        fontSize: 12,
-        fontFamily: Fonts.Cairo_Regular,
-        marginLeft: 36,
-        marginTop: 15,
-    },
-    sizesInnerContainer:
-    {
-        flexDirection: 'row-reverse',
-        alignItems:'center',
-        justifyContent: 'space-between',
-        height: 40,
-    },
-    inputSizes:
-    {
-        width: 70,
-        height: 40,
-        fontSize: 14,
-        marginLeft: 39,
-        marginBottom: 0,
-    },
-    sizeButton:
-    {
-        marginLeft: 0,
-        marginRight: 0,
-        width: 80,
-    },
-    sizeButtonTitle:
-    {
-        fontSize: 14,
-        fontFamily: Fonts.Cairo_Bold,
-        color: Colors.white,
-    },
-    sizesProductContainer:
-    {
-        backgroundColor: Colors.mercury,
-        width: width - 80,
-        borderRadius: 8,
-        marginLeft: 35,
-        marginRight: 15,
-        marginTop: 25,
-        paddingLeft: 5,
-        paddingTop: 5,
-        flexDirection: 'row',
-        flexWrap:'wrap',
-        minHeight: 40,
-        justifyContent:'flex-start',
-        alignItems:'center',
-    },
-    sizeProduct:
-    {
-        minWidth: 24,
-        height: 24,
-        borderRadius: 8,
-        backgroundColor: Colors.silver,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft: 5,
-    },
     closeButton:{
         width: 10,
         height: 10,
@@ -275,12 +252,14 @@ const styles = StyleSheet.create({
         color: Colors.white,
         paddingLeft: 2,
         paddingRight: 2,
+        writingDirection: 'rtl',
+
     },
 /* Step 4 */
     step4Container:
     {
         flex: 1,
-        paddingTop: 30,
+        paddingTop: 21,
     },
     titlePhotoProduct:
     {

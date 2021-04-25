@@ -1,21 +1,31 @@
 /* eslint-disable no-alert */
 import React from 'react';
-import { View, Text, TouchableOpacity, SafeAreaView, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, TouchableOpacity, SafeAreaView, TouchableWithoutFeedback, FlatList } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 //Components
-import { Button } from '../../components';
+import { Button, ItemProduct } from '../../components';
 //Styles and Icons
 import styles, { height } from './styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Colors from '../../../assets/colors';
+import { connect } from 'react-redux';
+import CategoriesAction from '../../redux/actions/CategoriesAction';
+import ProductsAction from '../../redux/actions/ProductsAction';
 
-const Search = () => {
+const Search = ({products, productsAction}) => {
+    React.useEffect(() =>
+    {
+      productsAction();
+    },[]);
     const [searchQuery, setSearchQuery] = React.useState('');
+    const [productSearch, setProductSearch] = React.useState([]);
     const onChangeSearch = query => setSearchQuery(query);
-    const [more, setMore] = React.useState(false);
+    const filterProducts = products.filter(i => i.title.includes(searchQuery));
+    console.log(products.categories);
+    const [more, setMore] = React.useState(true);
     const navigation = useNavigation();
     return (
         <SafeAreaView
@@ -51,7 +61,7 @@ const Search = () => {
                     </View>
                 </View>
             </View>
-            <View
+            {searchQuery === '' && <View
               style={[styles.historyByResearchContainer,more && {height: height / 4}]} >
                 <Button
                   title="المزيد"
@@ -73,10 +83,34 @@ const Search = () => {
                         color="#C2C2C2" />
                     </TouchableOpacity>
                 </View>
-            </View>
+            </View>}
+            {searchQuery !== '' &&
+            <FlatList
+              data={filterProducts}
+              keyExtractor={(item) => item.id}
+              contentContainerStyle={styles.itemProductsContainer}
+              columnWrapperStyle={{marginRight: 6, marginLeft: 6}}
+              numColumns={2}
+              maxToRenderPerBatch={5}
+              disableVirtualization={true}
+              showsHorizontalScrollIndicator={false}
+              renderItem={({item}) =><ItemProduct item={item} navigation={navigation} />} />}
         </SafeAreaView>
     );
 };
-
-export default Search;
+const mapStateToProps = (state) =>
+{
+    return {
+        categories: state.Categories.categories,
+        products: state.Products.products,
+    };
+};
+const mapDispatchToProps = (dispatch) =>
+{
+    return {
+        categoriesAction: () => dispatch(CategoriesAction()),
+        productsAction: () => dispatch(ProductsAction()),
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
 
