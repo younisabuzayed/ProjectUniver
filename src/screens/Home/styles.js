@@ -42,15 +42,24 @@ const styles = StyleSheet.create({
     {
         justifyContent: 'space-between',
         width: width * 1.3,
+        paddingLeft: 10,
     },
     categoriesContainer:
     {
-        width : 88,
+        width : 90,
         height: 40,
         backgroundColor: Colors.fernGreen,
         borderRadius: 8,
         justifyContent: 'center',
         alignItems:'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.20,
+        shadowRadius: 1.41,
+        elevation: 2,
     },
     categoriesTitle:
     {

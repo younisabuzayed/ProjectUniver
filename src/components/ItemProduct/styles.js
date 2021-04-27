@@ -1,4 +1,4 @@
-import {Dimensions, PixelRatio, StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import Colors from '../../../assets/colors';
 import Fonts from '../../../assets/fonts';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -7,20 +7,20 @@ const styles = StyleSheet.create({
     productsInnerContainer:
     {
         width: wp(45),
-        height: PixelRatio.get() === 2
-                ? hp('32%')
-                : PixelRatio.get() === 3
-                ? hp('26%')
-                : PixelRatio.get() === 2.75
-                ? hp('29%')
-                : hp('30%'),
         alignItems:'flex-start',
         backgroundColor: Colors.white,
         borderRadius: 8,
         marginTop: 25,
         marginLeft: 5,
         marginRight: 5,
-
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.20,
+        shadowRadius: 1.41,
+        elevation: 2,
     },
     imageProductsContaier:
     {
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     {
         fontSize: 12,
         fontFamily: Fonts.Cairo_Regular,
+        color: Colors.contentText,
         writingDirection: 'rtl',
         textAlign:'left',
         marginTop: 3,
@@ -98,11 +99,13 @@ const styles = StyleSheet.create({
     {
         fontSize: 9,
         fontFamily: Fonts.Cairo_Regular,
+        color: Colors.titleProduct,
     },
     titleProductsStore:
     {
         fontSize: 8,
         fontFamily: Fonts.Cairo_Regular,
+        color: Colors.itemNameStore,
         writingDirection: 'rtl',
         textAlign:'left',
         marginTop: 3,
@@ -134,14 +137,15 @@ const styles = StyleSheet.create({
     {
         fontSize: 9,
         fontFamily: Fonts.Cairo_Regular,
-        color: '#9C9C9C',
+        color: Colors.nameShop,
+        padding: 5,
     },
     orginalPrice:
     {
         fontSize: 9,
         fontFamily: Fonts.Cairo_Bold,
         writingDirection: 'rtl',
-        color: '#9C9C9C',
+        color: Colors.itemNameStore,
         lineHeight: 19,
         marginLeft: 2,
     },
@@ -164,6 +168,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems:'center',
         borderRadius: 8,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.20,
+        shadowRadius: 1.41,
+        elevation: 2,
     },
 });
 

@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     {
         fontSize: 18,
         fontFamily: Fonts.Cairo_Bold,
+        color: Colors.titleProduct,
     },
     BodyContainer:
     {

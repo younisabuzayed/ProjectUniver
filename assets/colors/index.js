@@ -26,6 +26,7 @@ const Colors = {
     iconTune: '#C4C4C4',
     more:'#656565',
     circle: '#E6E6E6',
+    itemNameStore:'#AFAFAF',
 };
 
 export default Colors;

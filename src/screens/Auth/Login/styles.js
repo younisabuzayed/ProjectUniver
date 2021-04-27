@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     },
     loginInnerContainer:
     {
-        height: height - (PixelRatio.get() === 3 ? 80 : 25) ,
+        height: height - 5 ,
         justifyContent: 'flex-end',
     },
     imageContainer:
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 8,
         borderTopLeftRadius: 8,
         backgroundColor: Colors.grally,
-        height: 478,
+        height: PixelRatio.get() === 3 ? hp(63) : hp(67),
     },
     bodyTitleAndStrock:
     {

@@ -16,9 +16,10 @@ import HomeScreen from './HomeScreen';
 import Fonts from '../../assets/fonts';
 import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from './styles';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-const sizeIcons = 20;
+const sizeIcons = 18;
 const CartScreen = () =>
 {
   return (
@@ -28,15 +29,15 @@ const CartScreen = () =>
         component={Cart}
         options={({navigation}) =>({
           headerTitle: 'السلة',
-          headerRight: () =>
-          {
-            return (
-              <TouchableOpacity
-                onPress={() => navigation.navigate('Search')}>
-                  <Ionicons name="share-social" size={30} color={'#BFBFBF'} />
-              </TouchableOpacity>
-            );
-          },
+          // headerRight: () =>
+          // {
+          //   return (
+          //     <TouchableOpacity
+          //       onPress={() => navigation.navigate('Search')}>
+          //         <Ionicons name="share-social" size={30} color={'#BFBFBF'} />
+          //     </TouchableOpacity>
+          //   );
+          // },
           headerLeft: () => {
               return (
                 <TouchableOpacity
@@ -231,15 +232,6 @@ const MainTabBottom = () =>
   };
   const styleIcon =
   {
-    width: 30,
-  };
-  const styleTitle =
-  {
-    fontSize: 9,
-    width: 33,
-    textAlign: 'center',
-    fontFamily: Fonts.Cairo_Regular,
-    color: Colors.fernGreen,
   };
    if (token !== null)
    {
@@ -251,43 +243,38 @@ const MainTabBottom = () =>
             activeTintColor:Colors.fernGreen,
             style:barStyle,
             showLabel: false,
-            tabStyle:{
-              // marginTop: Platform.OS === 'ios' && 10,
-            },
            }}
            screenOptions={({route}) =>(
            {
+
             tabBarIcon: ({color, focused}) => {
-              const styleItem = {
-                alignItems:'center',
-                justifyContent: 'center',
-              };
+              const marginTop = focused ? 10 : 0;
               if (route.name === 'CartScreen')
               {
                  return (
                  <View
-                   style={styleItem} >
+                   style={[styles.styleIconsBar,{marginTop}]} >
                      <FontAwesome5
                        name="shopping-cart"
                        size={sizeIcons}
                        color={color}
                        style={styleIcon} />
                  {focused && <Text
-                               style={styleTitle}>السلة</Text>}
+                               style={styles.styleTitle}>السلة</Text>}
                  </View>
                 );
               }
               else if (route.name === 'OrderScreen'){
                 return (
                   <View
-                    style={styleItem} >
+                    style={[styles.styleIconsBar,{marginTop}]} >
                       <FontAwesome5
                         name="clipboard-list"
                         size={sizeIcons}
                         color={color}
                         style={[styleIcon,{textAlign:'center'}]} />
                       {focused && <Text
-                                    style={styleTitle}>طلبات</Text>}
+                                    style={styles.styleTitle}>طلبات</Text>}
                  </View>
                 );
               }
@@ -295,14 +282,14 @@ const MainTabBottom = () =>
               {
                 return  (
                   <View
-                    style={styleItem} >
+                    style={[styles.styleIconsBar,{marginTop}]} >
                       <MaterialIcons
                         name="favorite"
                         size={sizeIcons}
                         color={color}
                         style={styleIcon} />
                       {focused && <Text
-                                    style={[styleTitle, {width: 33}]}>المفضلة</Text>}
+                                    style={[styles.styleTitle, {width: 33, marginLeft: 7}]}>المفضلة</Text>}
                  </View>
                 );
               }
@@ -310,14 +297,14 @@ const MainTabBottom = () =>
               {
                 return (
                   <View
-                    style={styleItem} >
+                    style={[styles.styleIconsBar,{marginTop}]} >
                        <Ionicons
                          name="person"
                          size={sizeIcons}
                          color={color}
                          style={styleIcon} />
                       {focused && <Text
-                                    style={styleTitle}>صفحتي</Text>}
+                                    style={styles.styleTitle}>صفحتي</Text>}
                  </View>
                 );
               }
@@ -328,10 +315,7 @@ const MainTabBottom = () =>
                component={CartScreen}
                options={{
                 tabBarBadge: 7,
-               tabBarBadgeStyle:
-               {
-                marginLeft: -20,
-               },
+                tabBarBadgeStyle: styles.tabBarBadge,
                }} />
               <Tab.Screen
                name="OrderScreen"
@@ -343,26 +327,10 @@ const MainTabBottom = () =>
                 title:'',
                 tabBarIcon: ({color, focused}) => (
                   <View
-                    style={{
-                      alignItems:'center',
-                      justifyContent: 'center',
-                      position:'absolute',
-                      backgroundColor:Colors.white,
-                      height: 60,
-                      width: 60,
-                      borderRadius: 30,
-                      shadowColor: '#000',
-                      shadowOffset: {
-                        width: 0,
-                        height: 1,
-                      },
-                      shadowOpacity: 0.20,
-                      shadowRadius: 1.41,
-                      elevation: 2,
-                    }}>
+                    style={styles.mainButton}>
                       <Entypo name="home" size={sizeIcons} color={color} style={[styleIcon,{textAlign:'center'}]} />
                       {focused && <Text
-                                    style={styleTitle}>الرئيسية</Text>}
+                                    style={styles.styleTitle}>الرئيسية</Text>}
                   </View>
                 ),
                 tabBarButton: (props) => (
@@ -394,36 +362,32 @@ const MainTabBottom = () =>
           screenOptions={({route}) =>(
           {
            tabBarIcon: ({color, focused}) => {
-             const styleItem = {
-               alignItems:'center',
-               justifyContent: 'center',
-             };
              if (route.name === 'CartScreen')
              {
                 return (
                 <View
-                  style={styleItem} >
+                  style={styles.styleIconsBar} >
                     <FontAwesome5
                       name="shopping-cart"
                       size={sizeIcons}
                       color={color}
                       style={styleIcon} />
                 {focused && <Text
-                              style={styleTitle}>السلة</Text>}
+                              style={styles.styleTitle}>السلة</Text>}
                 </View>
                );
              }
              else if (route.name === 'OrderScreen'){
                return (
                  <View
-                   style={styleItem} >
+                   style={styles.styleIconsBar} >
                      <FontAwesome5
                        name="clipboard-list"
                        size={sizeIcons}
                        color={color}
                        style={[styleIcon,{textAlign:'center'}]} />
                      {focused && <Text
-                                   style={styleTitle}>طلبات</Text>}
+                                   style={styles.styleTitle}>طلبات</Text>}
                 </View>
                );
              }
@@ -431,14 +395,14 @@ const MainTabBottom = () =>
              {
                return  (
                  <View
-                   style={styleItem} >
+                   style={styles.styleIconsBar} >
                      <MaterialIcons
                        name="favorite"
                        size={sizeIcons}
                        color={color}
                        style={styleIcon} />
                      {focused && <Text
-                                   style={[styleTitle, {width: 33}]}>المفضلة</Text>}
+                                   style={[styles.styleTitle, {width: 33}]}>المفضلة</Text>}
                 </View>
                );
              }
@@ -446,14 +410,14 @@ const MainTabBottom = () =>
              {
                return (
                  <View
-                   style={styleItem} >
+                   style={styles.styleIconsBar} >
                       <Ionicons
                         name="person"
                         size={sizeIcons}
                         color={color}
                         style={styleIcon} />
                      {focused && <Text
-                                   style={styleTitle}>صفحتي</Text>}
+                                   style={styles.styleTitle}>صفحتي</Text>}
                 </View>
                );
              }
@@ -489,7 +453,7 @@ const MainTabBottom = () =>
                    }}>
                      <Entypo name="home" size={sizeIcons} color={color} style={[styleIcon,{textAlign:'center'}]} />
                      {focused && <Text
-                                   style={styleTitle}>الرئيسية</Text>}
+                                   style={styles.styleTitle}>الرئيسية</Text>}
                  </View>
                ),
                tabBarButton: (props) => (

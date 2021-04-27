@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Dimensions, Platform, Text, TouchableOpacity } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -254,7 +254,11 @@ export const NoneTokenNavigation = () =>
     }),
   };
     return (
-        <NavigationContainer >
+        <NavigationContainer
+          theme={{
+            ...DefaultTheme,
+            dark: false,
+          }} >
           <Stack.Navigator
            initialRouteName="Onboarding"
            screenOptions={opacityTransition} >

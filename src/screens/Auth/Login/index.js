@@ -63,7 +63,6 @@ const Login = ({LoginAction, login,error}) => {
 
     };
     return (
-
       <SafeAreaView
         style={styles.loginContainer}>
          <KeyboardAvoiding

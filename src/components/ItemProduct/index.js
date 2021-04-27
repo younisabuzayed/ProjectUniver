@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ImageBackground, PixelRatio } from 'react-native';
 
 //Styles and Icons
 import Colors from '../../../assets/colors';
 import styles, {width} from './styles';
 import Octicons from 'react-native-vector-icons/Octicons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const ItemProduct = ({item, navigation}) =>
     {
@@ -37,11 +37,11 @@ const ItemProduct = ({item, navigation}) =>
               <TouchableOpacity
                 style={styles.iconFavorite}
                 onPress={() => setFavorite(!favorite)} >
-                  <MaterialIcons
+                  <Fontisto
                     name={favorite === true
-                          ? 'favorite'
-                          : 'favorite-outline'}
-                    size={20}
+                          ? 'heart'
+                          : 'heart-alt'}
+                    size={14}
                     color={favorite === true
                           ? Colors.carnation
                           : Colors.balck} />
@@ -72,7 +72,7 @@ const ItemProduct = ({item, navigation}) =>
                         style={styles.price}>
                           <Text
                             style={styles.priceProducts}>
-                              {`${item.price}`}
+                              {`${item.price} `}
                               <Text
                                 style={styles.typeMoney} >ش</Text>
                             </Text>
