@@ -20,6 +20,7 @@ const Colors = {
     strok: '#C1C1C1',
     concrete:'#F2F2F2',
     silver: '#B8B8B8',
+    tundora: '#484848',
     titleProduct: '#6D6D6D',
     contentText:'#202020',
     nameShop:'#9C9C9C',
@@ -27,6 +28,7 @@ const Colors = {
     more:'#656565',
     circle: '#E6E6E6',
     itemNameStore:'#AFAFAF',
+    alertBackground: '#EFEFEF',
 };
 
 export default Colors;

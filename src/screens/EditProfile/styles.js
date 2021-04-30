@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     {
         justifyContent: 'flex-end',
         margin: 0,
-        zIndex: 5
+        zIndex: 5,
     },
     addressModal:
     {
@@ -99,18 +99,28 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         backgroundColor: Colors.fernGreen,
     },
-    buttonConfirmTextView:
-    {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-
-    },
     buttonConfirmText:
     {
         fontSize: 14,
         color: Colors.white,
+        writingDirection: 'rtl',
+    },
+    buttonDeleteAccountView:
+    {
+        width: width,
+        height: 45,
+        marginTop: 32,
+    },
+    buttonDeleteAccount:
+    {
+
+        alignItems: 'center',
+        justifyContent:'center',
+    },
+    buttonDeleteAcountText:
+    {
+        fontSize: 14,
+        color: Colors.tundora,
         writingDirection: 'rtl',
     },
 

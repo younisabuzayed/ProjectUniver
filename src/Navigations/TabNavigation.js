@@ -29,15 +29,6 @@ const CartScreen = () =>
         component={Cart}
         options={({navigation}) =>({
           headerTitle: 'السلة',
-          // headerRight: () =>
-          // {
-          //   return (
-          //     <TouchableOpacity
-          //       onPress={() => navigation.navigate('Search')}>
-          //         <Ionicons name="share-social" size={30} color={'#BFBFBF'} />
-          //     </TouchableOpacity>
-          //   );
-          // },
           headerLeft: () => {
               return (
                 <TouchableOpacity

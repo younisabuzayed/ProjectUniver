@@ -10,6 +10,7 @@ import Button from '../../components/Button';
 //Styles and Icons
 import styles from './styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -20,7 +21,7 @@ const EditProfile = () => {
     const [password, setPassword] = useState('');
     const [date, setDate] = React.useState( new Date());
     const [isVisible, setIsVisible] = React.useState(false);
-    const [isVisibleAddress, setIsVisibleAdress] = React.useState(false);
+    const navigation = useNavigation();
 
     return (
         <SafeAreaView style={styles.editProfileContainer}>
@@ -66,15 +67,15 @@ const EditProfile = () => {
                   style={styles.dateContainer}>
                     <Text style={styles.dateTitle}>تاريخ الميلاد</Text>
                     <Button
-                    title={moment(date).format('DD-MM-YYYY')}
-                    onPress={() => setIsVisible(!isVisible)}
-                    active
-                    backgroundColor="#E8E8E8"
-                    styleButton={styles.buttonDate}
-                    titleStyle={styles.buttonDateTitle}
-                    children={<FontAwesome5
-                                name="calendar-alt"
-                                size={15} />} />
+                      title={moment(date).format('DD-MM-YYYY')}
+                      onPress={() => setIsVisible(!isVisible)}
+                      active
+                      backgroundColor="#E8E8E8"
+                      styleButton={styles.buttonDate}
+                      titleStyle={styles.buttonDateTitle}
+                      children={<FontAwesome5
+                                  name="calendar-alt"
+                                  size={15} />} />
                     <Choose
                       isVisible={isVisible}
                       onBackdropPress={() => setIsVisible(!isVisible)}>
@@ -95,30 +96,26 @@ const EditProfile = () => {
                   style={styles.dateContainer}>
                     <Text style={styles.dateTitle}>موقعك الشخصي</Text>
                     <Button
-                    title={'غزة- السدرة -شارع يافا'}
-                    onPress={() => setIsVisibleAdress(!isVisibleAddress)}
-                    active
-                    backgroundColor="#E8E8E8"
-                    styleButton={styles.buttonAddress}
-                    titleStyle={styles.buttonAddressTitle} />
-                    <Choose
-                      isVisible={isVisibleAddress}
-                      onBackdropPress={() => setIsVisibleAdress(!isVisibleAddress)}
-                      swipeDirection={['up', 'left', 'right', 'down']}
-                      modalStyle={styles.addressModalStyle} >
-                        <View
-                          style={styles.addressModal}>
-                           <AddressContainer />
-                        </View>
-                    </Choose>
+                      title={'غزة- السدرة -شارع يافا'}
+                      onPress={() => navigation.navigate('Address')}
+                      active
+                      backgroundColor="#E8E8E8"
+                      styleButton={styles.buttonAddress}
+                      titleStyle={styles.buttonAddressTitle} />
                 </View>
             </View>
             <View style={styles.buttonConfirmView}>
                 <Button
-                    styleButton={styles.buttonConfirm}
-                    active
-                    title="حفظ تعديل"
-                    titleStyle={styles.buttonConfirmText} />
+                  styleButton={styles.buttonConfirm}
+                  active
+                  title="حفظ تعديل"
+                  titleStyle={styles.buttonConfirmText} />
+            </View>
+            <View style={styles.buttonDeleteAccountView}>
+                <Button
+                  styleButton={styles.buttonDeleteAccount}
+                  title="الغاء الحساب"
+                  titleStyle={styles.buttonDeleteAcountText} />
             </View>
         </ScrollView>
         </SafeAreaView>
@@ -132,3 +129,19 @@ const mapStateToProps = state => {
     };
 };
 export default EditProfile;
+
+
+/*
+  const [isVisibleAddress, setIsVisibleAdress] = React.useState(false);
+
+() => setIsVisibleAdress(!isVisibleAddress)
+<Choose
+  isVisible={isVisibleAddress}
+  onBackdropPress={() => setIsVisibleAdress(!isVisibleAddress)}
+  swipeDirection={['up', 'left', 'right', 'down']}
+  modalStyle={styles.addressModalStyle} >
+    <View
+      style={styles.addressModal}>
+        <AddressContainer />
+    </View>
+</Choose> */

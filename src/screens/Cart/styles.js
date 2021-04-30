@@ -25,16 +25,28 @@ const styles = StyleSheet.create({
     },
     buttomContainer:
     {
-        height: 250,
         paddingTop: 5,
+        paddingBottom: 21
+    },
+    rowProductsCounter:
+    {
+        flexDirection:'row',
+        justifyContent: 'space-between',
+        marginLeft: 22,
+        marginRight: 22,
+    },
+    titleLable:
+    {
+        fontSize: 12,
+        fontFamily: Fonts.Cairo_Regular,
     },
     totalContainer:
     {
         flexDirection: 'row',
         justifyContent:'space-between',
         padding: 10,
-        marginLeft: 25,
-        marginRight: 25,
+        marginLeft: 5,
+        marginRight: 10,
     },
     totalText:
     {

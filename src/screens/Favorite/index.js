@@ -20,7 +20,10 @@ const Favorite = ({products}) => {
               maxToRenderPerBatch={5}
               disableVirtualization={true}
               showsHorizontalScrollIndicator={false}
-              renderItem={({item}) =><ItemProduct item={item} navigation={navigation} />} />
+              renderItem={({item}) =><ItemProduct
+                                       item={item}
+                                       navigation={navigation}
+                                       onChange={(bool) => console.log(bool) } />} />
         </View>
     );
 };

@@ -66,6 +66,18 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.Cairo_Bold,
         color: Colors.white,
     },
+    icon:
+    {
+        shadowColor: Colors.balck,
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.18,
+        shadowRadius: 1.00,
+
+        elevation: 1,
+    },
     ContentProductsContainer:
     {
         padding: 5,

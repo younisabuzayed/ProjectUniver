@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { View, Text, Image, Animated } from 'react-native';
@@ -14,7 +15,10 @@ import styles from './styles';
 
 const SwipeButton = ({renderLeftActions,renderRightActions, title,
                       onSwipeableLeftOpen, price, counter,
-                      onPressMinus, onPressPlus, onPressDelete, image}) => {
+                      onChange, onPressSwipe, image},ref) => {
+
+
+  const [counterProducts, setCounterProducts] = React.useState(counter);
   const LeftAction = (progress, dragX) =>
     {
         const scale = dragX.interpolate({
@@ -25,7 +29,7 @@ const SwipeButton = ({renderLeftActions,renderRightActions, title,
         return (
           <View style={{ justifyContent:'center', alignItems:'center'}} >
             <TouchableOpacity
-              onPress={onPressDelete}
+              onPress={onPressSwipe}
               >
                 <IconAnimated
                   style={{transform:[{scale}]}}
@@ -36,9 +40,20 @@ const SwipeButton = ({renderLeftActions,renderRightActions, title,
           </View>
         );
     };
+    React.useEffect(() => (
+      onChange(counterProducts)
+    ),[counterProducts]);
+    const onPressPlus = () => {
+      setCounterProducts(counterProducts + 1);
+    };
+    const onPressMiuns = () => {
+      if (counterProducts <= 1) {return;}
+      setCounterProducts(counterProducts - 1);
+    };
     return (
         <Swipeable
           renderLeftActions={LeftAction}
+          ref={ref}
           renderRightActions={renderRightActions}
           onSwipeableLeftOpen={onSwipeableLeftOpen}
           containerStyle={{marginBottom: 20}}>
@@ -68,10 +83,10 @@ const SwipeButton = ({renderLeftActions,renderRightActions, title,
                       <Octicons name="plus" size={20} color={Colors.white}/>
                   </TouchableOpacity>
                   <Text
-                    style={styles.counterNumber} >{counter}</Text>
+                    style={styles.counterNumber} >{counterProducts}</Text>
                   <TouchableOpacity
                     style={styles.iconCounter}
-                    onPress={onPressMinus} >
+                    onPress={onPressMiuns} >
                       <Feather name="minus" size={20} color={Colors.white}/>
                   </TouchableOpacity>
                 </View>
@@ -147,4 +162,4 @@ export const SwipeButtonBuyer = ({renderLeftActions,renderRightActions, onPressM
 };
 
 
-export default SwipeButton;
+export default React.forwardRef(SwipeButton);

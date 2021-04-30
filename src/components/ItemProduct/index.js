@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, ImageBackground, PixelRatio } from 'react-native';
 
@@ -7,9 +8,14 @@ import styles, {width} from './styles';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-const ItemProduct = ({item, navigation}) =>
+const priceDiscount = 10;
+const ItemProduct = ({item, navigation, onChange}) =>
     {
         const [favorite, setFavorite] = React.useState(false);
+        const onPressFavorite = () =>{
+          setFavorite(!favorite);
+          onChange(!favorite);
+        };
         return (
             <TouchableOpacity
               style={styles.productsInnerContainer}
@@ -31,12 +37,12 @@ const ItemProduct = ({item, navigation}) =>
                    source={require('../../../assets/images/iconDiscounts.png')}
                    resizeMode="stretch" >
                      <Text
-                       style={styles.discountText} >{`%${50}`}</Text>
+                       style={styles.discountText} >{`%${Math.round((priceDiscount / item.price) * 100)}`}</Text>
                    </ImageBackground>
               </View>
               <TouchableOpacity
                 style={styles.iconFavorite}
-                onPress={() => setFavorite(!favorite)} >
+                onPress={onPressFavorite} >
                   <Fontisto
                     name={favorite === true
                           ? 'heart'
@@ -44,7 +50,8 @@ const ItemProduct = ({item, navigation}) =>
                     size={14}
                     color={favorite === true
                           ? Colors.carnation
-                          : Colors.balck} />
+                          : Colors.balck}
+                    style={styles.icon} />
               </TouchableOpacity>
               <View
                 style={styles.ContentProductsContainer} >
@@ -79,7 +86,7 @@ const ItemProduct = ({item, navigation}) =>
                           <View>
                           <Text
                             style={styles.orginalPrice}>
-                              {`بدل ${200}`}</Text>
+                              {`بدل ${priceDiscount}`}</Text>
                               <View
                                 style={styles.prevPrice} />
                           </View>

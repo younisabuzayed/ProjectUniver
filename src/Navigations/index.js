@@ -148,6 +148,24 @@ const rootNavigation = () =>
                     lineHeight: 30,
                 },
               })} />
+              <Stack.Screen
+              name="Address"
+              component={Address}
+              options={({navigation}) => ({
+                title:'',
+                headerLeft: () => {
+                    return (
+                      <TouchableOpacity
+                        onPress={() => navigation.goBack()} >
+                         <MaterialIcons name="arrow-forward" size={25} color={'#AFAFAF'} style={{}} />
+                      </TouchableOpacity>
+                    );
+                },
+              headerTransparent: true,
+              headerLeftContainerStyle:{
+                  paddingLeft: 15,
+                },
+              })} />
             <Stack.Screen
               name="Access"
               component={Access}
