@@ -1,4 +1,4 @@
-import { StyleSheet} from 'react-native';
+import { PixelRatio, StyleSheet} from 'react-native';
 import Colors from '../../../assets/colors';
 import Fonts from '../../../assets/fonts';
 
@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     {
         flex: 1,
         backgroundColor: Colors.white,
+        paddingTop: PixelRatio.get() === 3 ? 80 : 60,
     },
     descriptionContainer:
     {
@@ -30,6 +31,9 @@ const styles = StyleSheet.create({
         width: 292,
         textAlign: 'left',
         marginTop: 17,
+    },
+    AccordionContainer:
+    {
     },
     headerTerms:
     {
@@ -64,6 +68,29 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.Cairo_Regular,
         color: Colors.contentText,
         writingDirection: 'rtl',
+    },
+    sectionContentContainer:
+    {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 8,
+    },
+    sectionContent:
+    {
+        writingDirection: 'rtl',
+        fontFamily: Fonts.Cairo_Regular,
+        textAlign:'left',
+    },
+    iconContainer:
+    {
+        justifyContent:'center',
+        alignItems: 'center',
+        width: 30,
+    },
+    iconNameText:
+    {
+        fontSize: 9,
+        color: Colors.fernGreen,
     },
 });
 

@@ -125,7 +125,7 @@ function DrawerContent({ profileAction, profile, error},props) {
                                   size={size} />
                             )}
                             label="الدعم الفني"
-                            onPress={() => {navigation.navigate('BookmarkScreen');}}
+                            onPress={() => {navigation.navigate('Support');}}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (

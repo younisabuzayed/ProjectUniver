@@ -17,6 +17,7 @@ export {default as Product } from './Product';
 export {default as Profile } from './Profile';
 export {default as Search } from './Search';
 export {default as AboutUs } from './AboutUs';
+export {default as Support} from './Support';
 
 //Seller Screens
 export {default as CommercialRegister } from './SellerScreen/CommercialRegister';

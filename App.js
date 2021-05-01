@@ -42,7 +42,6 @@
    return (
      <Provider
        store={store} >
-       <StatusBar barStyle="default" />
        <PaperProvider>
        {token ? (<RootNavigation />) : (<NoneTokenNavigation />)}
        </PaperProvider>
