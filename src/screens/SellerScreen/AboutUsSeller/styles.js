@@ -1,6 +1,7 @@
 import { PixelRatio, StyleSheet} from 'react-native';
-import Colors from '../../../assets/colors';
-import Fonts from '../../../assets/fonts';
+import Colors from '../../../../assets/colors';
+import Fonts from '../../../../assets/fonts';
+
 
 const styles = StyleSheet.create({
     aboutusContainer:

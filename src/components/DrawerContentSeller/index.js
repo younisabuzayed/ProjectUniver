@@ -92,7 +92,7 @@ function DrawerContentSeller({ profileAction, profile, error},props) {
                               size={size} />
                           )}
                           label="الاحصائيات"
-                          onPress={() => {navigation.navigate('CartScreen');}}
+                          onPress={() => {navigation.navigate('Dashboard');}}
                           labelStyle={styles.lableMargin} />
                         <DrawerItem
                           icon={({color, size}) => (

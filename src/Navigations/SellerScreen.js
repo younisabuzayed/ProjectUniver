@@ -11,7 +11,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 //Screens
-import { Home, OrdersSeller, Product, Profile } from '../screens';
+import { Dashboard, Home, OrdersSeller, Product, Profile } from '../screens';
 import Fonts from '../../assets/fonts';
 import { createStackNavigator } from '@react-navigation/stack';
 import styles from './styles';
@@ -38,7 +38,7 @@ const HomeScreen = () =>
                     <View
                       style={styles.sellerSearchNoti}>
                         <TouchableOpacity
-                          onPress={() => navigation.navigate('Search')}>
+                          onPress={() => navigation.navigate('Notification')}>
                             <Ionicons name="notifications" size={30} color={Colors.white} />
                         </TouchableOpacity>
                         <TouchableOpacity
@@ -88,6 +88,45 @@ const HomeScreen = () =>
                     return (
                         <Text
                           style={styles.titleStyle} >الاشعارات</Text>
+                    );
+                },
+                  headerLeft: () => {
+                    return (
+                      <TouchableOpacity
+                        onPress={() => navigation.goBack()} >
+                         <MaterialIcons name="arrow-forward" size={25} color={'#AFAFAF'} style={{}} />
+                      </TouchableOpacity>
+                    );
+                },
+                headerTransparent: true,
+                headerLeftContainerStyle:{
+                  paddingLeft: 15,
+                },
+                headerStyle: {
+                  backgroundColor: Colors.fernGreen,
+                  height: height / (Platform.OS === 'ios' ?  9 : 12),
+                },
+                headerRightContainerStyle:
+                {
+                  marginRight: 24,
+                },
+                headerTitleAlign: 'center',
+                headerTitleStyle:
+                {
+                  color: Colors.white,
+                  fontFamily: Fonts.Cairo_Bold,
+                  fontSize: 18,
+                  lineHeight: 30,
+                },
+              })} />
+             <Stack.Screen
+                name="Dashboard"
+                component={Dashboard}
+                options={({navigation}) => ({
+                  headerTitle: () => {
+                    return (
+                        <Text
+                          style={styles.titleStyle} >الاحصائيات</Text>
                     );
                 },
                   headerLeft: () => {

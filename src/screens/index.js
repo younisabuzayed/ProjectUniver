@@ -21,9 +21,10 @@ export {default as Support} from './Support';
 
 //Seller Screens
 export {default as CommercialRegister } from './SellerScreen/CommercialRegister';
-export {default as MainScreenSeller } from './SellerScreen/MainScreenSeller';
+export {default as Dashboard } from './SellerScreen/Dashboard';
 export {default as OrdersSeller } from './SellerScreen/OrdersSeller';
 export {default as AddProduct } from './SellerScreen/AddProduct';
+export {default as AboutUsSeller } from './SellerScreen/AboutUsSeller';
 
 
 
