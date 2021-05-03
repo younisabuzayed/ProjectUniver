@@ -1,6 +1,7 @@
 
 export { default as AddressContainer} from './AddressContainer';
 export { default as Selection } from './Selection';
+export  {default as SliderContainer} from './SliderContainer';
 
 export { default as Button} from './Button';
 export { default as ColorSelction} from './ColorSelction';

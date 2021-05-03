@@ -1,13 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-shadow */
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 import tinycolor from 'tinycolor2';
 import { TriangleColorPicker } from 'react-native-color-picker';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 
 //Component
-import { Button, Choose, Input } from '../../../components';
+import { Button, Choose } from '../../../components';
 //Styles and Icons
 import styles from './styles';
 import Colors from '../../../../assets/colors';

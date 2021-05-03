@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { PixelRatio, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, PixelRatio, Platform, Text, TouchableOpacity, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 //Styles and Icons
@@ -9,14 +9,119 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Octicons from 'react-native-vector-icons/Octicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 //Screens
-import { OrdersSeller, Profile } from '../screens';
-import HomeScreen from './HomeScreen';
+import { Home, OrdersSeller, Product, Profile } from '../screens';
 import Fonts from '../../assets/fonts';
 import { createStackNavigator } from '@react-navigation/stack';
 import styles from './styles';
+import { MenuButton } from '../components';
+import Notification from '../screens/SellerScreen/Notification';
+import HomeSeller from '../screens/SellerScreen/HomeSeller';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+const { height } = Dimensions.get('window');
+
+const HomeScreen = () =>
+{
+    return (
+        <Stack.Navigator
+        initialRouteName="HomeScreen" >
+          <Stack.Screen
+            name="HomeScreen"
+            component={HomeSeller}
+            options={({navigation}) =>({
+                headerTitle: 'حساب تاجر',
+                headerRight: () =>
+                {
+                  return (
+                    <View
+                      style={styles.sellerSearchNoti}>
+                        <TouchableOpacity
+                          onPress={() => navigation.navigate('Search')}>
+                            <Ionicons name="notifications" size={30} color={Colors.white} />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          onPress={() => navigation.navigate('Search')}>
+                            <MaterialIcons name="search" size={30} color={Colors.white} />
+                        </TouchableOpacity>
+                    </View>
+                  );
+                },
+                headerLeft: () => {
+                    return (
+                      <MenuButton
+                        onPress={() => navigation.toggleDrawer()} />
+                    );
+                },
+                headerStyle: {
+                  backgroundColor: Colors.fernGreen,
+                  height: height / (Platform.OS === 'ios' ?  9 : 12),
+                },
+                headerRightContainerStyle:
+                {
+                  marginRight: 24,
+                },
+                headerLeftContainerStyle: {
+                    marginLeft: 22,
+                },
+                headerTitleAlign: 'center',
+                headerTitleStyle:
+                {
+                  color: Colors.white,
+                  fontFamily: Fonts.Cairo_Bold,
+                  fontSize: 18,
+                  lineHeight: 30,
+                },
+            })} />
+            <Stack.Screen
+              name="Product"
+              component={Product}
+              options={{
+                headerShown: false,
+              }} />
+            <Stack.Screen
+                name="Notification"
+                component={Notification}
+                options={({navigation}) => ({
+                  headerTitle: () => {
+                    return (
+                        <Text
+                          style={styles.titleStyle} >الاشعارات</Text>
+                    );
+                },
+                  headerLeft: () => {
+                    return (
+                      <TouchableOpacity
+                        onPress={() => navigation.goBack()} >
+                         <MaterialIcons name="arrow-forward" size={25} color={'#AFAFAF'} style={{}} />
+                      </TouchableOpacity>
+                    );
+                },
+                headerTransparent: true,
+                headerLeftContainerStyle:{
+                  paddingLeft: 15,
+                },
+                headerStyle: {
+                  backgroundColor: Colors.fernGreen,
+                  height: height / (Platform.OS === 'ios' ?  9 : 12),
+                },
+                headerRightContainerStyle:
+                {
+                  marginRight: 24,
+                },
+                headerTitleAlign: 'center',
+                headerTitleStyle:
+                {
+                  color: Colors.white,
+                  fontFamily: Fonts.Cairo_Bold,
+                  fontSize: 18,
+                  lineHeight: 30,
+                },
+              })} />
+      </Stack.Navigator>
+    );
+};
 
 const OrderScreen = () =>
 {
@@ -56,46 +161,6 @@ const OrderScreen = () =>
   );
 };
 
-const ProfileScreen = () =>
-{
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Profile"
-        component={Profile}
-        options={({navigation}) =>({
-          headerTitle: 'الملف الشخصي',
-          headerLeft: () => {
-              return (
-                <TouchableOpacity
-                  onPress={() => navigation.goBack()} >
-                    <MaterialIcons
-                      name="arrow-forward"
-                      size={25}
-                      color={'#FFFF'}
-                      style={{}} />
-                </TouchableOpacity>
-              );
-          },
-          headerStyle: {
-            backgroundColor: Colors.fernGreen,
-            height: 90,
-          },
-          headerTransparent: true,
-          headerLeftContainerStyle: {
-              marginLeft: 22,
-          },
-          headerTitleAlign: 'center',
-          headerTitleStyle:
-          {
-            color: Colors.white,
-            fontFamily: Fonts.Cairo_Bold,
-            fontSize: 18,
-          },
-          })} />
-    </Stack.Navigator>
-  );
-};
 const SellerScreen = () =>
 {
   const CustomHome = (props) =>

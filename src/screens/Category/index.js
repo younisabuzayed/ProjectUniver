@@ -3,7 +3,6 @@
 import React from 'react';
 import { View, Text, Animated, TouchableOpacity, Image, FlatList, ActivityIndicator, ScrollView, ImageBackground, PixelRatio } from 'react-native';
 import { connect } from 'react-redux';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { useNavigation, useRoute } from '@react-navigation/native';
 //State Management
 import CategoriesAction from '../../redux/actions/CategoriesAction';
@@ -15,6 +14,7 @@ import Colors from '../../../assets/colors';
 import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { SliderContainer } from '../../components';
 const categoriesType = [
   {
     id: '1',
@@ -31,12 +31,10 @@ const categoriesType = [
   {
     id: '4',
     name:'مشروبات',
-  },]
+  }];
 const Category = ({categories,categoriesAction}) => {
-    const sliderRef = React.useRef();
-    const navigation = useNavigation()
+    const navigation = useNavigation();
     const route = useRoute();
-    const [activeDot, setActiveDot] = React.useState(0);
     React.useEffect(() => {
         categoriesAction();
         navigation.setOptions({headerTitle: route.params.name});
@@ -60,7 +58,7 @@ const Category = ({categories,categoriesAction}) => {
     };
     const RenderItemProducts = ({item}) =>
     {
-    const [favorite, setFavorite] = React.useState(false)
+    const [favorite, setFavorite] = React.useState(false);
         return (
             <TouchableOpacity
               style={styles.productsInnerContainer}
@@ -145,47 +143,7 @@ const Category = ({categories,categoriesAction}) => {
         );
     };
     //Slider for Ads
-   /* const SliderContainer = () =>
-    {
-        return (
-         <>
-            <View
-              style={styles.slider} >
-             <Carousel
-               ref={sliderRef}
-               data={ENTRIES1}
-               itemWidth={width - 30}
-               sliderWidth={width - 30}
-               firstItem={activeDot}
-               loop={true}
-               autoplay={true}
-               renderItem={({item}) =>
-               {
-                  return (
-                      <View>
-                        <Image
-                          source={{uri: item.illustration}}
-                          style={styles.imageCarousel} />
-                      </View>
-                  );
-               }}
-               onSnapToItem={(index) => setActiveDot(index)} />
-            </View>
-            <Pagination
-               dotsLength={ENTRIES1.length}
-               activeDotIndex={activeDot}
-               inactiveDotStyle={{width: 7}}
-               dotColor={Colors.texasRose}
-               dotStyle={{height: 7, width: 25}}
-               inactiveDotColor={Colors.gray}
-               inactiveDotOpacity={0.4}
-               inactiveDotScale={0.6}
-               carouselRef={sliderRef}
-               tappableDots={!!sliderRef}
-               containerStyle={styles.PaginationContainer} />
-         </>
-        );
-    };*/
+
     if (categories !== null)
     {
     return (
@@ -193,7 +151,7 @@ const Category = ({categories,categoriesAction}) => {
           style={styles.CategoryContainer} >
         <ScrollView>
          {/*Slider */}
-         {/* <SliderContainer /> */}
+         <SliderContainer />
          {/* FlatList Catgories */}
          <View
            style={styles.flatListCatgoriesContainer} >

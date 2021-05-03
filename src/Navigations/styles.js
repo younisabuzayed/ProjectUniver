@@ -43,6 +43,12 @@ buttonAddProductsView:
     shadowRadius: 1.41,
     elevation: 2,
 },
+sellerSearchNoti:
+{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: 80,
+},
 /* TabNavigation */
 mainButton:
 {

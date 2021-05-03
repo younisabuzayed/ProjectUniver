@@ -35,6 +35,37 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
     },
+    inputArea:
+    {
+        height: 140,
+        width: width - 25,
+        alignSelf: 'center',
+        borderWidth: 0.5,
+        borderColor: Colors.textAreaSilver,
+        borderRadius: 8,
+        marginTop: 40,
+    },
+    buttonContainer:
+    {
+        width:'100%',
+        paddingBottom:10,
+        paddingTop: 30,
+    },
+    titleButton:
+    {
+        fontSize: 14,
+        lineHeight: 24,
+        fontFamily: Fonts.Cairo_Bold,
+        color: Colors.white,
+    },
+    connectText:
+    {
+        fontSize: 12,
+        fontFamily: Fonts.Cairo_Regular,
+        width: 130,
+        textAlign: 'center',
+        alignSelf: 'center',
+    },
 });
 
 export default styles;

@@ -29,6 +29,7 @@ const Colors = {
     circle: '#E6E6E6',
     itemNameStore:'#AFAFAF',
     alertBackground: '#EFEFEF',
+    textAreaSilver: '#C8C8C8',
 };
 
 export default Colors;

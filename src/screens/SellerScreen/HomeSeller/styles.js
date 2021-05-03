@@ -1,10 +1,10 @@
-import {Dimensions, PixelRatio, StyleSheet} from 'react-native';
-import Colors from '../../../assets/colors';
-import Fonts from '../../../assets/fonts';
-import { hp, wp } from '../../../assets/size';
+import {Dimensions, StyleSheet} from 'react-native';
+import Colors from '../../../../assets/colors';
+import Fonts from '../../../../assets/fonts';
+import { hp, wp } from '../../../../assets/size';
 export const {width, height} = Dimensions.get('window');
 const styles = StyleSheet.create({
-    CategoryContainer:
+    homeContainer:
     {
         flex: 1,
         backgroundColor: Colors.seashellSolid,
@@ -15,44 +15,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    flatListCatgoriesContainer:
-    {
-        marginLeft: 5,
-        marginRight: 5,
-    },
-    flatListCatgories:
-    {
-        justifyContent: 'space-between',
-        width: width * 1.0005,
-    },
-    categoriesContainer:
-    {
-        width : 76,
-        height: 40,
-        backgroundColor: Colors.fernGreen,
-        borderRadius: 8,
-        justifyContent: 'center',
-        alignItems:'center',
-    },
-    categoriesTitle:
-    {
-        fontSize:  12,
-        fontFamily: Fonts.Cairo_Regular,
-        color: Colors.white,
-        textAlign: 'center',
-    },
     productsContainer:
     {
-        marginTop: 30,
-        marginBottom: 20,
-    },
-    title:
-    {
-        fontSize: 14,
-        fontFamily: Fonts.Cairo_Bold,
+        // flexWrap: 'wrap',
+        // flexDirection: 'row',
+        // justifyContent:'space-around',
         marginLeft: 15,
         marginRight: 15,
-        writingDirection: 'rtl',
+        marginTop: 30,
     },
     itemProductsContainer:
     {
@@ -62,9 +32,8 @@ const styles = StyleSheet.create({
     productsInnerContainer:
     {
         width: wp(45),
-        height: PixelRatio.get() === 2 ? hp('32%') : PixelRatio.get() === 3 ? hp('25%') : hp('30%'),
+        height: hp('30%'),
         alignItems:'flex-start',
-        justifyContent:'space-between',
         backgroundColor: Colors.white,
         borderRadius: 8,
         marginTop: 25,
