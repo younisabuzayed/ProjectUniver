@@ -175,7 +175,7 @@ const rootNavigation = () =>
              <Stack.Screen
               name="EditProfile"
               component={EditProfile}
-              options={{
+              options={({navigation}) =>({
                 headerTitle: () => {
                     return (
                         <Text
@@ -184,7 +184,10 @@ const rootNavigation = () =>
                 },
                 headerLeft: () => {
                     return (
-                      <MaterialIcons name="arrow-forward" size={25} color={'#AFAFAF'} style={{}} />
+                      <TouchableOpacity
+                        onPress={() => navigation.goBack()} >
+                         <MaterialIcons name="arrow-forward" size={25} color={'#AFAFAF'} />
+                      </TouchableOpacity>
                     );
                 },
                 headerTransparent: true,
@@ -192,7 +195,7 @@ const rootNavigation = () =>
                   paddingLeft: 15,
                 },
                 headerTitleAlign:'center',
-              }} />
+              })} />
              <Stack.Screen
                 name="AboutUs"
                 component={AboutUs}

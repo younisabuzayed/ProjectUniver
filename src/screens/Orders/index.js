@@ -25,11 +25,11 @@ const Orders = () => {
       return (
         <View>
           <CartItem
-            textState="قيد الوصول"
+            textState="قيد تنفيد"
             cancel
             width={100} />
           <CartItem
-            textState="قيد الوصول"
+            textState="قيد تنفيد"
             cancel
             width={100} />
         </View>

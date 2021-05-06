@@ -1,20 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { View, Text, Animated, TouchableOpacity, Image, FlatList, ActivityIndicator, ScrollView, ImageBackground, PixelRatio } from 'react-native';
+import { View, Text, TouchableOpacity, Image, FlatList, ActivityIndicator, ScrollView, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { useNavigation, useRoute } from '@react-navigation/native';
 //State Management
 import CategoriesAction from '../../redux/actions/CategoriesAction';
 import ProductsAction from '../../redux/actions/ProductsAction';
 
 // Styles and Icon
-import styles, { width } from './styles';
+import styles from './styles';
 import Colors from '../../../assets/colors';
 import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import SliderContainer from '../../components/SliderContainer';
 
 const AllProducts = ({categories,categoriesAction, products, productsAction}) => {
     const navigation = useNavigation();
@@ -25,19 +25,9 @@ const AllProducts = ({categories,categoriesAction, products, productsAction}) =>
         navigation.setOptions({headerTitle: route.params.nameTab});
     }, []);
 
-    const renderItemCategories = ({item}) =>
-    {
-        return (
-            <TouchableOpacity
-              style={styles.categoriesContainer} >
-             <Text
-               style={styles.categoriesTitle} >{item.name}</Text>
-            </TouchableOpacity>
-        );
-    };
     const RenderItemProducts = ({item}) =>
     {
-    const [favorite, setFavorite] = React.useState(false)
+    const [favorite, setFavorite] = React.useState(false);
         return (
             <TouchableOpacity
               style={styles.productsInnerContainer}
@@ -131,7 +121,8 @@ const AllProducts = ({categories,categoriesAction, products, productsAction}) =>
            style={styles.productsContainer} >
             <Text
               style={styles.title}>{route.params.name}</Text>
-           <FlatList
+            <SliderContainer />
+            <FlatList
               data={products}
               keyExtractor={(item) => item.id}
               contentContainerStyle={styles.itemProductsContainer}

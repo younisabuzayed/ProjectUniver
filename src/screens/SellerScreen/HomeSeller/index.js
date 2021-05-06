@@ -33,29 +33,11 @@ const ENTRIES1 = [
         illustration: 'https://i.imgur.com/MABUbpDl.jpg',
     },
 ];
-const HomeSeller = ({categories,categoriesAction,
-               products, productsAction}) => {
-    const sliderRef = React.useRef();
-    const [activeDot, setActiveDot] = React.useState(0);
+const HomeSeller = ({products, productsAction}) => {
     React.useEffect(() => {
-        categoriesAction();
         productsAction();
     }, []);
     const navigation = useNavigation();
-    const renderItemCategories = ({item}) =>
-    {
-        return (
-            <TouchableOpacity
-              style={styles.categoriesContainer}
-              onPress={() => navigation.navigate('Category',{
-                idItems: item.category_id,
-                name: item.name,
-              })} >
-             <Text
-               style={styles.categoriesTitle} >{item.name}</Text>
-            </TouchableOpacity>
-        );
-    };
 
     if (products !== null)
     {
@@ -74,7 +56,7 @@ const HomeSeller = ({categories,categoriesAction,
                       maxToRenderPerBatch={5}
                       disableVirtualization={true}
                       showsHorizontalScrollIndicator={false}
-                      renderItem={({item}) =><ItemProduct item={item} navigation={navigation} />} />
+                      renderItem={({item}) =><ItemProduct favorites={true} item={item} navigation={navigation} />} />
               </View>
             </ScrollView>
         </View>

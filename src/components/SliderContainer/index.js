@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, Image, Text, View} from 'react-native';
+import { Dimensions, Image, View} from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 
 import styles from './styles';

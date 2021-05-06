@@ -9,7 +9,7 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const priceDiscount = 10;
-const ItemProduct = ({item, navigation, onChange}) =>
+const ItemProduct = ({item, navigation, onChange,favorites}) =>
     {
         const [favorite, setFavorite] = React.useState(false);
         const onPressFavorite = () =>{
@@ -40,7 +40,7 @@ const ItemProduct = ({item, navigation, onChange}) =>
                        style={styles.discountText} >{`%${Math.round((priceDiscount / item.price) * 100)}`}</Text>
                    </ImageBackground>
               </View>
-              <TouchableOpacity
+              {!favorites && <TouchableOpacity
                 style={styles.iconFavorite}
                 onPress={onPressFavorite} >
                   <Fontisto
@@ -52,7 +52,7 @@ const ItemProduct = ({item, navigation, onChange}) =>
                           ? Colors.carnation
                           : Colors.balck}
                     style={styles.icon} />
-              </TouchableOpacity>
+              </TouchableOpacity>}
               <View
                 style={styles.ContentProductsContainer} >
                   <View

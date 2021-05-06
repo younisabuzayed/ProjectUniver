@@ -33,6 +33,7 @@
     "react-native-modal": "^11.7.0",
     "react-native-pager-view": "^5.1.0",
     "react-native-paper": "^4.7.2",
+    "react-native-ratings": "^8.0.4",
     "react-native-reanimated": "^1.13.2",
     "react-native-responsive-screen": "^1.4.2",
     "react-native-safe-area-context": "^3.1.9",
@@ -40,12 +41,14 @@
     "react-native-sectioned-multi-select": "^0.8.1",
     "react-native-share": "^6.0.1",
     "react-native-snap-carousel": "^3.9.1",
+    "react-native-svg": "^12.1.1",
     "react-native-tab-view": "^3.0.0",
     "react-native-vector-icons": "^8.0.0",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "tinycolor2": "^1.4.2"
+    "tinycolor2": "^1.4.2",
+    "victory-native": "^35.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",

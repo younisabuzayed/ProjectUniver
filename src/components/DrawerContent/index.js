@@ -42,6 +42,16 @@ function DrawerContent({ profileAction, profile, error},props) {
         await AsyncStorage.clear();
         navigation.navigate('Access');
     };
+    const onPressNavigations = (navigates) =>
+    {
+      if (profile === null)
+      {
+        navigation.navigate('Access');
+      } else
+      {
+        navigation.navigate(navigates);
+      }
+    }
     console.log(error);
     return (
         <SafeAreaView
@@ -75,7 +85,7 @@ function DrawerContent({ profileAction, profile, error},props) {
                                   size={size} />
                             )}
                             label="المعلومات الشخصية"
-                            onPress={() => {navigation.navigate('EditProfile');}}
+                            onPress={() => onPressNavigations('EditProfile')}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (
@@ -85,7 +95,7 @@ function DrawerContent({ profileAction, profile, error},props) {
                                   size={size} />
                             )}
                             label="المفضلة"
-                            onPress={() => {navigation.navigate('FavoriteScreen');}}
+                            onPress={() => onPressNavigations('FavoriteScreen')}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (
@@ -95,7 +105,7 @@ function DrawerContent({ profileAction, profile, error},props) {
                                   size={size} />
                             )}
                             label="الطلبات"
-                            onPress={() => {navigation.navigate('OrderScreen');}}
+                            onPress={() => onPressNavigations('OrderScreen')}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (
@@ -105,7 +115,7 @@ function DrawerContent({ profileAction, profile, error},props) {
                                   size={size} />
                             )}
                             label="السلة"
-                            onPress={() => {navigation.navigate('CartScreen');}}
+                            onPress={() => onPressNavigations('CartScreen')}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (

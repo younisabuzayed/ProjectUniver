@@ -21,12 +21,12 @@ const styles = StyleSheet.create({
     buttonBack:
     {
         marginLeft: 20,
-        marginRight: 20,
+        marginRight: 15,
     },
     searchbarAndVioceContainer:
     {
         flexDirection: 'row',
-        width: width - 100,
+        width: width - 120,
         height: 40,
         justifyContent:'center',
         alignItems:'center',
@@ -55,6 +55,50 @@ const styles = StyleSheet.create({
         backgroundColor: '#DFDFDF',
         borderTopRightRadius: 8,
         borderBottomRightRadius: 8,
+    },
+    buttonMenu:
+    {
+        marginLeft: 15,
+        marginRight: 0,
+    },
+    choosesContainer:
+    {
+        marginTop: 20,
+        backgroundColor: Colors.white,
+        height: 500,
+        borderRadius: 8,
+        alignItems: 'center',
+    },
+    selectionMenuButton:
+    {
+        width: 120,
+        marginBottom: 10,
+    },
+    selectionMenu:
+    {
+        flexWrap: 'wrap',
+    },
+    foodSizeContainer:
+    {
+        marginLeft: 50,
+    },
+    titleFilters:
+    {
+        fontSize: 12,
+        fontFamily: Fonts.Cairo_Regular,
+        marginLeft: 10,
+        marginTop: 15,
+        writingDirection: 'rtl',
+    },
+    selectionsStyle:
+    {
+        justifyContent:'flex-start',
+        marginLeft: 10,
+    },
+    selectionButton:
+    {
+        width: 64,
+        height: 30,
     },
     historyByResearchContainer:
     {

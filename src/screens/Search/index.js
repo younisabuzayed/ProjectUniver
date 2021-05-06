@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-alert */
 import React from 'react';
 import { View, Text, TouchableOpacity, SafeAreaView, TouchableWithoutFeedback, FlatList } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 //Components
-import { Button, ItemProduct } from '../../components';
+import { Button, Choose, ItemProduct, Selection } from '../../components';
 //Styles and Icons
 import styles, { height } from './styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -14,17 +15,50 @@ import Colors from '../../../assets/colors';
 import { connect } from 'react-redux';
 import CategoriesAction from '../../redux/actions/CategoriesAction';
 import ProductsAction from '../../redux/actions/ProductsAction';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { AirbnbRating } from 'react-native-ratings';
 
-const Search = ({products, productsAction}) => {
+const Search = ({products, productsAction, categories, categoriesAction}) => {
+    const [dataSearch, setDataSearch] = React.useState(null);
+    const [isVisible, setIsVisible] = React.useState(false);
+    const [searchQuery, setSearchQuery] = React.useState('');
+    const [categortyData, setCategortyData] = React.useState(null);
+    const [foodSize, setFoodSize] = React.useState(null);
+    const [clothSize, setClothSize] = React.useState(null);
+    const [grnder, setGrnder] = React.useState(null);
+    const [season, setSeason] = React.useState(null);
+
+
     React.useEffect(() =>
     {
       productsAction();
+      categoriesAction();
     },[]);
-    const [searchQuery, setSearchQuery] = React.useState('');
-    const [productSearch, setProductSearch] = React.useState([]);
+    React.useEffect(() =>
+    {
+       filters();
+    },[searchQuery]);
     const onChangeSearch = query => setSearchQuery(query);
-    const filterProducts = products.filter(i => i.title.includes(searchQuery));
-    console.log(products.categories);
+    const getCategories = () =>
+    {
+      return categories.map((i) => i.name);
+    };
+    const filters = () =>
+    {
+      let filterProducts;
+      if (products)
+      {
+        filterProducts = products.filter(i => i.title.includes(searchQuery));
+      }
+      if (categortyData !== null){filterProducts = filterProducts.filter((i) => i.categories[0].name === categortyData );}
+      setDataSearch(filterProducts);
+    };
+    const onChangeMenu = (num) => {
+      setCategortyData(num);
+    };
+    const onChangeFilter = (index, state) => {
+      state(index);
+    };
     const [more, setMore] = React.useState(true);
     const navigation = useNavigation();
     return (
@@ -60,6 +94,71 @@ const Search = ({products, productsAction}) => {
                         </TouchableWithoutFeedback>
                     </View>
                 </View>
+                <Button
+                  onPress={() => setIsVisible(!isVisible)}
+                  styleButton={styles.buttonMenu}
+                  children={<MaterialIcons
+                              name="tune"
+                              size={25}
+                              color={Colors.iconTune} />} />
+                <Choose
+                  isVisible={isVisible}
+                  onBackdropPress={() => setIsVisible(!isVisible)}
+                  timeOut={500} >
+                    <View
+                      style={styles.choosesContainer}>
+                        <Selection
+                          items= {getCategories()}
+                          onChange={onChangeMenu}
+                          styleButton={styles.selectionMenuButton}
+                          style={styles.selectionMenu} />
+                        {categortyData === 'وجبات سريعة'
+                          && <View
+                               style={styles.foodSizeContainer}>
+                                 <Text
+                                   style={styles.titleFilters}>الحجم</Text>
+                                     <Selection
+                                       items={['L', 'M', 'S']}
+                                       style={styles.selectionsStyle}
+                                       onChange={(size) => onChangeFilter(size, setFoodSize)} />
+                             </View>}
+                        {categortyData === 'الملابس'
+                          && <View
+                               style={styles.foodSizeContainer}>
+                                 <Text
+                                   style={styles.titleFilters}>المقاسات</Text>
+                                 <Selection
+                                   items={['XL', 'L', 'M', 'S', 'XS']}
+                                   style={styles.selectionsStyle}
+                                   onChange={(size) => onChangeFilter(size, setClothSize)} />
+                                 <Text
+                                  style={styles.titleFilters}>الجنس</Text>
+                                 <Selection
+                                   items={['رجالي','حريمي']}
+                                   style={styles.selectionsStyle}
+                                   styleButton={styles.selectionButton}
+                                   onChange={(select) => onChangeFilter(select, setGrnder)} />
+                                 <Text
+                                  style={styles.titleFilters}>الموسم</Text>
+                                 <Selection
+                                   items={['صيفي','شتوي']}
+                                   style={styles.selectionsStyle}
+                                   styleButton={styles.selectionButton}
+                                   onChange={(seasons => onChangeFilter(seasons, setSeason))} />
+                             </View>}
+                             <View
+                               style={{alignSelf: 'flex-start', marginTop: 5,}}>
+                                  <Text
+                                    style={styles.titleFilters}>التقيم</Text>
+                                  <AirbnbRating
+                                      count={5}
+                                      defaultRating={5}
+                                      size={20}
+                                      showRating={false}
+                                      onFinishRating={(s) => console.log(s)} />
+                              </View>
+                    </View>
+                </Choose>
             </View>
             {searchQuery === '' && <View
               style={[styles.historyByResearchContainer,more && {height: height / 4}]} >
@@ -86,7 +185,7 @@ const Search = ({products, productsAction}) => {
             </View>}
             {searchQuery !== '' &&
             <FlatList
-              data={filterProducts}
+              data={dataSearch}
               keyExtractor={(item) => item.id}
               contentContainerStyle={styles.itemProductsContainer}
               columnWrapperStyle={{marginRight: 6, marginLeft: 6}}
