@@ -32,6 +32,15 @@ const styles = StyleSheet.create({
         alignItems:'flex-start',
         paddingLeft: 15,
         paddingTop: 15,
+        shadowColor: Colors.balck,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
     },
     bodyContainer:
     {
@@ -167,8 +176,8 @@ const styles = StyleSheet.create({
         height: 40,
         borderRadius: 8,
         marginLeft: 0,
-        marginRight: 18,
-        shadowColor: '#000',
+        marginRight: 0,
+        shadowColor: Colors.balck,
         shadowOffset: {
             width: 0,
             height: 2,
@@ -176,6 +185,12 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.20,
         shadowRadius: 2.84,
 
+    },
+    badge:
+    {
+        backgroundColor: Colors.carnation,
+        color: Colors.white,
+        fontSize: 12,
     },
     chooseImage:
     {
@@ -251,10 +266,23 @@ const styles = StyleSheet.create({
         marginLeft: 30,
         marginRight: 30,
     },
+    buttonsContainer:
+    {
+        width: 50,
+        alignItems:'center',
+        marginRight: 18,
+    },
+    titleButtons:
+    {
+        fontSize: 9,
+        fontFamily: Fonts.Cairo_Regular,
+        textAlign: 'center',
+        marginTop: 5,
+        color: Colors.nameShop,
+    },
     buttonAndCounterPriceContainer:
     {
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
         marginTop: 50,
     },
@@ -263,7 +291,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row-reverse',
         width:228,
         marginRight: 0,
-        marginLeft: 0,
+        marginLeft: 18,
     },
     buttonAddCardText:
     {
@@ -291,6 +319,16 @@ const styles = StyleSheet.create({
     {
         flex: 1,
         backgroundColor: 'black',
+    },
+    toastContainer:
+    {
+        backgroundColor: Colors.concrete,
+    },
+    toastText:
+    {
+        fontSize: 12,
+        fontFamily: Fonts.Cairo_Regular,
+        color: Colors.contentText,
     },
 });
 

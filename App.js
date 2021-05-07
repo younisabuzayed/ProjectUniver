@@ -15,6 +15,7 @@
  import RootNavigation, { NoneTokenNavigation } from './src/Navigations';
  import store from './src/redux/store';
  import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ToastProvider } from 'react-native-fast-toast';
  console.disableYellowBox = true;
 
  const App = () => {
@@ -42,9 +43,11 @@
    return (
      <Provider
        store={store} >
-       <PaperProvider>
-       {token ? (<RootNavigation />) : (<NoneTokenNavigation />)}
-       </PaperProvider>
+       <ToastProvider>
+         <PaperProvider>
+           {token ? (<RootNavigation />) : (<NoneTokenNavigation />)}
+         </PaperProvider>
+       </ToastProvider>
      </Provider>
    );
  };

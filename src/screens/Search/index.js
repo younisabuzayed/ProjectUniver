@@ -43,6 +43,7 @@ const Search = ({products, productsAction, categories, categoriesAction}) => {
     {
       return categories.map((i) => i.name);
     };
+    console.log(categortyData);
     const filters = () =>
     {
       let filterProducts;
@@ -50,7 +51,10 @@ const Search = ({products, productsAction, categories, categoriesAction}) => {
       {
         filterProducts = products.filter(i => i.title.includes(searchQuery));
       }
-      if (categortyData !== null){filterProducts = filterProducts.filter((i) => i.categories[0].name === categortyData );}
+      if (categortyData !== null)
+      {
+        filterProducts = filterProducts.filter((i) => i.categories[0].name === categortyData );
+      }
       setDataSearch(filterProducts);
     };
     const onChangeMenu = (num) => {
@@ -58,6 +62,11 @@ const Search = ({products, productsAction, categories, categoriesAction}) => {
     };
     const onChangeFilter = (index, state) => {
       state(index);
+    };
+    const onPressButtonSearch = () =>
+    {
+      filters();
+      setIsVisible(!isVisible);
     };
     const [more, setMore] = React.useState(true);
     const navigation = useNavigation();
@@ -147,16 +156,26 @@ const Search = ({products, productsAction, categories, categoriesAction}) => {
                                    onChange={(seasons => onChangeFilter(seasons, setSeason))} />
                              </View>}
                              <View
-                               style={{alignSelf: 'flex-start', marginTop: 5,}}>
+                               style={styles.ratingContainer}>
                                   <Text
                                     style={styles.titleFilters}>التقيم</Text>
                                   <AirbnbRating
+                                      starContainerStyle={styles.starContainerStyle}
                                       count={5}
                                       defaultRating={5}
-                                      size={20}
+                                      size={25}
                                       showRating={false}
                                       onFinishRating={(s) => console.log(s)} />
                               </View>
+                    </View>
+                    <View
+                      style={styles.buttonSearchContainer}>
+                        <Button
+                          active
+                          backgroundColor={Colors.buttonSearch}
+                          styleButton={styles.buttonSearch}
+                          title="ابحث"
+                          onPress={onPressButtonSearch} />
                     </View>
                 </Choose>
             </View>

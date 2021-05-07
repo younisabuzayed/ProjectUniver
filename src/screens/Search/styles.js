@@ -66,7 +66,8 @@ const styles = StyleSheet.create({
         marginTop: 20,
         backgroundColor: Colors.white,
         height: 500,
-        borderRadius: 8,
+        borderTopRightRadius: 8,
+        borderTopLeftRadius: 8,
         alignItems: 'center',
     },
     selectionMenuButton:
@@ -99,6 +100,47 @@ const styles = StyleSheet.create({
     {
         width: 64,
         height: 30,
+    },
+    ratingContainer:
+    {
+        alignSelf: 'flex-start',
+        marginTop: 5,
+    },
+    starContainerStyle:
+    {
+        marginLeft: 15,
+        shadowColor: Colors.balck,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
+        marginTop: 10,
+    },
+    buttonSearchContainer:
+    {
+        backgroundColor: Colors.white,
+        borderBottomRightRadius: 8,
+        borderBottomLeftRadius: 8,
+        alignItems: 'center',
+    },
+    buttonSearch:
+    {
+        width: 170,
+        height: 32,
+        shadowColor: Colors.balck,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
+        marginBottom: 30,
     },
     historyByResearchContainer:
     {

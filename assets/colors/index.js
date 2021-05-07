@@ -30,6 +30,7 @@ const Colors = {
     itemNameStore:'#AFAFAF',
     alertBackground: '#EFEFEF',
     textAreaSilver: '#C8C8C8',
+    buttonSearch: '#ECECEC',
 };
 
 export default Colors;

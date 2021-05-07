@@ -22,6 +22,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Entypo from 'react-native-vector-icons/Entypo';
+import { useToast } from 'react-native-fast-toast';
 
 //choose Container
 const timeOut = 500;
@@ -79,19 +80,29 @@ const Product = ({productsAction, products}) => {
   const [measurements, setMeasurements] = React.useState(null);
   const [counter, setCounter] = React.useState(1);
   const [price, setPrice] = React.useState(selectedProduct.price);
-
+  const toast = useToast();
   const increase = () =>
   {
     setCounter(counter + 1);
-  }
+  };
   const discrease = () =>
   {
     if (counter === 0) {return;}
     setCounter(counter - 1);
   };
-  console.log(measurements);
+  const onPressAddToCart = () =>
+  {
+    toast.show(
+      'تم اضافة المنتج الي السلة بنجاح',
+      {
+        icon: <MaterialIcons
+                name="verified-user"
+                size={24}
+                color={Colors.fernGreen} />,
+        style: styles.toastContainer,
+        textStyle: styles.toastText});
+  };
   //  const suggestProduct = products.filter((_, i) => _.categories[0].name === nameCategory[0].name);
-
     return (
         <SafeAreaView
           style={styles.productContainer} >
@@ -108,7 +119,7 @@ const Product = ({productsAction, products}) => {
                 <Button
                   onPress={() => navigation.goBack()}
                   styleButton={styles.goBackIcon}
-                  children={<MaterialIcons name="arrow-forward" size={25} color={Colors.white} />} />
+                  children={<MaterialIcons name="arrow-forward" size={25} color={Colors.gray} />} />
               </View>
               <View
                 style={styles.bodyContainer} >
@@ -171,89 +182,105 @@ const Product = ({productsAction, products}) => {
                         style={styles.chooseTitle}>اختر مواصفات منتجك </Text>
                       <View
                         style={styles.chooseButtons}>
-                        <Button
-                          styleButton={styles.buttonChoose}
-                          onPress={() => setIsVisible(!isVisible)}>
-                          <MaterialIcons
-                            name={'color-lens'}
-                            size={35}
-                            color={Colors.fernGreen} />
-                            <Choose
-                              isVisible={isVisible}
-                              timeOut={timeOut}
-                              onBackdropPress={() => setIsVisible(!isVisible)}>
-                              <View
-                                style={{height: 200, backgroundColor:'white'}}>
-                                <View
-                                  style={styles.choosesContainer} >
-                                    <View style={styles.strock} />
-                                    <Text
-                                      style={styles.title} >الالوان</Text>
+                        <View
+                          style={styles.buttonsContainer}>
+                            <Button
+                              styleButton={styles.buttonChoose}
+                              onPress={() => setIsVisible(!isVisible)}>
+                                <MaterialIcons
+                                  name={'color-lens'}
+                                  size={35}
+                                  color={Colors.fernGreen} />
+                                <Choose
+                                  isVisible={isVisible}
+                                  timeOut={timeOut}
+                                  onBackdropPress={() => setIsVisible(!isVisible)}>
+                                  <View
+                                    style={{height: 200, backgroundColor:'white'}}>
                                     <View
-                                      style={styles.circleContainer} >
-                                      <ColorSelction
-                                        colors={['white','#B2B2B2', '#FF5050', '#000639', '#A3ACFE', 'red', 'yellow', 'blue', 'green', 'black']}
-                                        onChange={(color) => {
-                                          setColor(color);
-                                          setTimeout(() =>setIsVisible(!isVisible), timeOut);
-                                          }}
-                                         />
+                                      style={styles.choosesContainer} >
+                                        <View style={styles.strock} />
+                                        <Text
+                                          style={styles.title} >الالوان</Text>
+                                        <View
+                                          style={styles.circleContainer} >
+                                          <ColorSelction
+                                            colors={['white','#B2B2B2', '#FF5050', '#000639', '#A3ACFE', 'red', 'yellow', 'blue', 'green', 'black']}
+                                            onChange={(color) => {
+                                              setColor(color);
+                                              setTimeout(() =>setIsVisible(!isVisible), timeOut);
+                                              }}
+                                            />
+                                        </View>
                                     </View>
-                                    {/* <View
-                                      style={styles.circle} /> */}
+                                  </View>
+                                </Choose>
+                            </Button>
+                            <Text
+                              style={styles.titleButtons}>الالوان</Text>
+                        </View>
+                        {nameCategory[0].name === 'الملابس'
+                        && <View
+                          style={styles.buttonsContainer}>
+                            <Button
+                              styleButton={styles.buttonChoose}
+                              onPress={() => setIsVisibleMeasurements(!isVisibleMeasurements)}>
+                              <Image
+                                source={require('../../../assets/images/iconMeasure.png')}
+                                style={styles.chooseImage}
+                                resizeMode="contain" />
+                              <Choose
+                                isVisible={isVisibleMeasurements}
+                                timeOut={timeOut}
+                                onBackdropPress={() => setIsVisibleMeasurements(!isVisibleMeasurements)}>
+                                  <View style={styles.choosesContainer}>
+                                    <View style={styles.strock} />
+                                  <Text
+                                    style={styles.title}>المقاسات</Text>
+                                  <Selection
+                                    items={['50', '60', '80', '100', '150']}
+                                    onChange={(num) => {
+                                      setMeasurements(num);
+                                      setTimeout(() =>setIsVisibleMeasurements(!isVisibleMeasurements), timeOut);
+                                    }} />
+                                  </View>
+                                </Choose>
+                            </Button>
+                            <Text
+                              style={styles.titleButtons}>المقاس</Text>
+                        </View>}
+                        <View
+                          style={styles.buttonsContainer}>
+                            <Button
+                              styleButton={[styles.buttonChoose]}
+                              onPress={() => setIsVisibleNumberItem(!isVisibleNumberItem)}>
+                                <View
+                                  style={{position: 'absolute', top: -10, left: 0}}>
+                                <Badge
+                                  style={styles.badge}
+                                  theme={{fonts: {medium:{fontWeight:'bold'}}}}>{counter}</Badge>
                                 </View>
-                              </View>
-                            </Choose>
-                        </Button>
-                        <Button
-                          styleButton={styles.buttonChoose}
-                          onPress={() => setIsVisibleMeasurements(!isVisibleMeasurements)}>
-                          <Image
-                            source={require('../../../assets/images/scissors.png')}
-                            style={styles.chooseImage}
-                            resizeMode="contain" />
-                          <Choose
-                            isVisible={isVisibleMeasurements}
-                            timeOut={timeOut}
-                            onBackdropPress={() => setIsVisibleMeasurements(!isVisibleMeasurements)}>
-                              <View style={styles.choosesContainer}>
-                                <View style={styles.strock} />
-                              <Text
-                                style={styles.title}>المقاسات</Text>
-                              <Selection
-                                items={['50', '60', '80', '100', '150']}
-                                onChange={(num) => {
-                                  setMeasurements(num);
-                                  setTimeout(() =>setIsVisibleMeasurements(!isVisibleMeasurements), timeOut);
-                                }} />
-                              </View>
-                            </Choose>
-                        </Button>
-                        <Button
-                          styleButton={[styles.buttonChoose]}
-                          onPress={() => setIsVisibleNumberItem(!isVisibleNumberItem)}>
-                          <View
-                            style={{position: 'absolute', top: -10, left: 0}}>
-                          <Badge style={{backgroundColor: Colors.carnation}}>{counter}</Badge>
-                          </View>
-                          <Image
-                            source={require('../../../assets/images/num.png')}
-                            style={styles.chooseImage} />
-                          <Choose
-                            isVisible={isVisibleNumberItem}
-                            timeOut={timeOut}
-                            onBackdropPress={() => setIsVisibleNumberItem(!isVisibleNumberItem)}>
-                             <View style={styles.choosesContainer}>
-                                <View style={styles.strock} />
-                              <Text
-                                style={styles.title}>عدد المنتج</Text>
-                              <Counter
-                                counter={counter}
-                                onPressPlus={increase}
-                                onPressMinus={discrease} />
-                              </View>
-                          </Choose>
-                        </Button>
+                                <Image
+                                  source={require('../../../assets/images/num.png')}
+                                  style={styles.chooseImage} />
+                                <Choose
+                                  isVisible={isVisibleNumberItem}
+                                  timeOut={timeOut}
+                                  onBackdropPress={() => setIsVisibleNumberItem(!isVisibleNumberItem)}>
+                                    <View style={styles.choosesContainer}>
+                                        <View style={styles.strock} />
+                                      <Text
+                                        style={styles.title}>عدد المنتج</Text>
+                                      <Counter
+                                        counter={counter}
+                                        onPressPlus={increase}
+                                        onPressMinus={discrease} />
+                                    </View>
+                              </Choose>
+                            </Button>
+                            <Text
+                              style={styles.titleButtons}>عدد المنتجات</Text>
+                        </View>
                       </View>
                   </View>
                   <View
@@ -269,7 +296,8 @@ const Product = ({productsAction, products}) => {
                           color={Colors.white}
                           style={{}} />
                           }
-                       titleStyle={styles.buttonAddCardText} />
+                       titleStyle={styles.buttonAddCardText}
+                       onPress={onPressAddToCart} />
                       <View
                       style={styles.priceView}>
                         <Text
@@ -278,7 +306,7 @@ const Product = ({productsAction, products}) => {
                   </View>
               </View>
               <View
-                style={styles.bottomContainer}  />
+                style={styles.bottomContainer} />
             </ScrollView>
         </SafeAreaView>
     );
