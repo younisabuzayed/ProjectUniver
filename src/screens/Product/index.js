@@ -3,9 +3,10 @@
 import React from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Avatar, Badge, List } from 'react-native-paper';
+import { Avatar, Badge } from 'react-native-paper';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
+import Share from 'react-native-share';
 
 // Custom Component
 import { Button, ColorSelction } from '../../components';
@@ -81,6 +82,20 @@ const Product = ({productsAction, products}) => {
   const [counter, setCounter] = React.useState(1);
   const [price, setPrice] = React.useState(selectedProduct.price);
   const toast = useToast();
+    //Button Share but now is not useful
+  const onPressShare = async () => {
+    const shareOptions = {
+      message: `${selectedProduct.title} ${selectedProduct.price} شيكل`,
+      title: `${selectedProduct.title} ${selectedProduct.price} شيكل`,
+      url: selectedProduct.image[0].url,
+
+    };
+    try {
+      const shareResponse = await Share.open(shareOptions);
+    } catch (error) {
+      console.log('share', error);
+    }
+  };
   const increase = () =>
   {
     setCounter(counter + 1);
@@ -167,7 +182,7 @@ const Product = ({productsAction, products}) => {
                           </View>
                       </View>
                     <TouchableOpacity
-                      onPress={() => navigation.navigate('Search')}>
+                      onPress={onPressShare}>
                         <Ionicons name="share-social" size={30} color={'#BFBFBF'} />
                     </TouchableOpacity>
                   </View>

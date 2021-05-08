@@ -17,9 +17,6 @@ const styles = StyleSheet.create({
     },
     productsContainer:
     {
-        // flexWrap: 'wrap',
-        // flexDirection: 'row',
-        // justifyContent:'space-around',
         marginLeft: 15,
         marginRight: 15,
         marginTop: 30,

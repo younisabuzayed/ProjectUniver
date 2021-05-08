@@ -56,7 +56,12 @@ const HomeSeller = ({products, productsAction}) => {
                       maxToRenderPerBatch={5}
                       disableVirtualization={true}
                       showsHorizontalScrollIndicator={false}
-                      renderItem={({item}) =><ItemProduct favorites={true} item={item} navigation={navigation} />} />
+                      renderItem={({item}) =><ItemProduct
+                                               favorites={true}
+                                               item={item}
+                                               navigation={navigation}
+                                               switchButton={true}
+                                               onChangeSwitch={(s) => console.log(s)} />} />
               </View>
             </ScrollView>
         </View>

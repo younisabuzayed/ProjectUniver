@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, Platform, StyleSheet} from 'react-native';
 import Colors from '../../../assets/colors';
 import Fonts from '../../../assets/fonts';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
     {
         flexDirection:'row',
         justifyContent: 'space-between',
+        alignItems:'flex-start',
         marginTop: 8,
     },
     price:
@@ -188,6 +189,14 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.20,
         shadowRadius: 1.41,
         elevation: 2,
+    },
+    switchBitton:
+    {
+        transform: [
+            { scaleX: Platform.OS === 'ios' ? 0.5 : 0.8},
+            { scaleY: Platform.OS === 'ios' ? 0.5 : 0.8 },
+            {rotate: Platform.OS === 'ios' ? '180deg' : '0deg'}],
+        marginRight: -10,
     },
 });
 

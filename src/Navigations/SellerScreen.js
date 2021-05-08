@@ -218,7 +218,6 @@ const SellerScreen = () =>
   const barStyle =
   {
     backgroundColor: Colors.white,
-    height: (PixelRatio.get() === 3 ? 70 : 55),
   };
   const styleIcon =
   {

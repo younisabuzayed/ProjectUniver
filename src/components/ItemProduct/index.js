@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, ImageBackground, PixelRatio } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ImageBackground, Switch, Platform } from 'react-native';
 
 //Styles and Icons
 import Colors from '../../../assets/colors';
@@ -9,9 +9,17 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const priceDiscount = 10;
-const ItemProduct = ({item, navigation, onChange,favorites}) =>
+const ItemProduct = ({item, navigation, onChange,
+                      favorites, switchButton, onChangeSwitch}) =>
     {
         const [favorite, setFavorite] = React.useState(false);
+        const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+
+        const onToggleSwitch = () =>
+        {
+          setIsSwitchOn(!isSwitchOn);
+          onChangeSwitch(isSwitchOn);
+        };
         const onPressFavorite = () =>{
           setFavorite(!favorite);
           onChange(!favorite);
@@ -91,10 +99,19 @@ const ItemProduct = ({item, navigation, onChange,favorites}) =>
                                 style={styles.prevPrice} />
                           </View>
                       </View>
-                      <View
-                        style={styles.iconPlus} >
-                          <Octicons name="plus" size={20} color={Colors.white} />
-                      </View>
+                      {!switchButton
+                        ? <TouchableOpacity
+                            style={styles.iconPlus}
+                            onPress={() =>{}} >
+                              <Octicons name="plus" size={20} color={Colors.white} />
+                          </TouchableOpacity>
+                        : <Switch
+                            value={isSwitchOn}
+                            onValueChange={onToggleSwitch}
+                            trackColor={{ false: '#DEDEDE', true: '#DEDEDE'}}
+                            thumbColor={isSwitchOn ? Colors.fernGreen : Colors.carnation}
+                            ios_backgroundColor="#DEDEDE"
+                            style={styles.switchBitton} />}
                   </View>
               </View>
             </TouchableOpacity>
