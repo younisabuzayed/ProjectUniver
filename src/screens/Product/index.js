@@ -7,6 +7,7 @@ import { Avatar, Badge } from 'react-native-paper';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 import Share from 'react-native-share';
+import { useToast } from 'react-native-fast-toast';
 
 // Custom Component
 import { Button, ColorSelction } from '../../components';
@@ -23,7 +24,6 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Entypo from 'react-native-vector-icons/Entypo';
-import { useToast } from 'react-native-fast-toast';
 
 //choose Container
 const timeOut = 500;
@@ -96,6 +96,7 @@ const Product = ({productsAction, products}) => {
       console.log('share', error);
     }
   };
+  console.log(selectedProduct);
   const increase = () =>
   {
     setCounter(counter + 1);
@@ -188,13 +189,19 @@ const Product = ({productsAction, products}) => {
                   </View>
                   <View
                     style={styles.decriptiopnContainer} >
+                      {selectedProduct.gender
+                       && <Text
+                            style={styles.decriptiopnContent}>{selectedProduct.gender}</Text>}
+                      {selectedProduct.season
+                       && <Text
+                            style={styles.decriptiopnContent}>{selectedProduct.season}</Text>}
                       <Text
                         style={styles.decriptiopnContent}>{selectedProduct.description}</Text>
                   </View>
                   <View
                     style={styles.chooseContainer} >
                       <Text
-                        style={styles.chooseTitle}>اختر مواصفات منتجك </Text>
+                        style={styles.chooseTitle}>اختر مواصفات منتجك</Text>
                       <View
                         style={styles.chooseButtons}>
                         <View
@@ -220,7 +227,7 @@ const Product = ({productsAction, products}) => {
                                         <View
                                           style={styles.circleContainer} >
                                           <ColorSelction
-                                            colors={['white','#B2B2B2', '#FF5050', '#000639', '#A3ACFE', 'red', 'yellow', 'blue', 'green', 'black']}
+                                            colors={selectedProduct.colors}
                                             onChange={(color) => {
                                               setColor(color);
                                               setTimeout(() =>setIsVisible(!isVisible), timeOut);
@@ -253,7 +260,7 @@ const Product = ({productsAction, products}) => {
                                   <Text
                                     style={styles.title}>المقاسات</Text>
                                   <Selection
-                                    items={['50', '60', '80', '100', '150']}
+                                    items={selectedProduct.size}
                                     onChange={(num) => {
                                       setMeasurements(num);
                                       setTimeout(() =>setIsVisibleMeasurements(!isVisibleMeasurements), timeOut);

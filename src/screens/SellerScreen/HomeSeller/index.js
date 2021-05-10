@@ -5,6 +5,7 @@ import { View, Text, TouchableOpacity, Image, FlatList, ActivityIndicator, Scrol
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { useNavigation } from '@react-navigation/native';
 import { connect } from 'react-redux';
+import { useToast } from 'react-native-fast-toast';
 
 //Compoent
 import ItemProduct from '../../../components/ItemProduct';
@@ -14,6 +15,7 @@ import ProductsAction from '../../../redux/actions/ProductsAction';
 //Styles and Icons
 import styles, { width } from './styles';
 import Colors from '../../../../assets/colors';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 
 const ENTRIES1 = [
@@ -37,8 +39,31 @@ const HomeSeller = ({products, productsAction}) => {
     React.useEffect(() => {
         productsAction();
     }, []);
+    const toast = useToast();
     const navigation = useNavigation();
-
+    const onPressColseAndOpen = (switchBool) =>
+  {
+   switchBool
+    ? toast.show(
+      'تم  فك اغلاق اطلاق المنتج',
+      {
+        icon: <FontAwesome
+                name="unlock"
+                size={24}
+                color={Colors.fernGreen} />,
+        style: styles.toastContainer,
+        textStyle: styles.toastText})
+    : toast.show(
+        'تم اغلاق اطلاق المنتج',
+        {
+          icon: <FontAwesome
+                  name="lock"
+                  size={24}
+                  color={Colors.fernGreen} />,
+          style: styles.toastContainer,
+          textStyle: styles.toastText});
+          console.log(switchBool)
+  };
     if (products !== null)
     {
     return (
@@ -61,7 +86,7 @@ const HomeSeller = ({products, productsAction}) => {
                                                item={item}
                                                navigation={navigation}
                                                switchButton={true}
-                                               onChangeSwitch={(s) => console.log(s)} />} />
+                                               onChangeSwitch={onPressColseAndOpen} />} />
               </View>
             </ScrollView>
         </View>

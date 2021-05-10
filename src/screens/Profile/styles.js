@@ -1,5 +1,6 @@
 import {Dimensions, StyleSheet} from 'react-native';
 import Colors from '../../../assets/colors';
+import Fonts from '../../../assets/fonts';
 export const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -11,18 +12,21 @@ const styles = StyleSheet.create({
     headerContainer:
     {
         width,
-        paddingLeft: 15,
-        paddingRight: 15,
     },
     headerTitleAndButtonContainer:
     {
         backgroundColor: Colors.fernGreen,
         height: 170,
         width: '100%',
-        borderBottomLeftRadius: 8,
-        borderBottomRightRadius: 8,
+        // borderBottomLeftRadius: 8,
+        // borderBottomRightRadius: 8,
         flexDirection: 'row',
         paddingTop: 20,
+    },
+    fillColor:
+    {
+        ...StyleSheet.absoluteFill,
+        backgroundColor: Colors.fernGreen,
     },
     goBackIconContainer:
     {
@@ -63,26 +67,53 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         position: 'absolute',
-        bottom: -30,
+        top: -35,
+        zIndex: 10,
+    },
+    addPhotoContainer:
+    {
+        backgroundColor: Colors.white,
+        height: 30,
+        width: 30,
+        position: 'absolute',
+        bottom: -5,
+        borderRadius: 15,
+        justifyContent: 'center',
+        alignItems:'center',
+        shadowColor: Colors.balck,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
     },
     contentContainer:
     {
         flexDirection: 'row',
-        height: 100,
+        backgroundColor:Colors.white,
         justifyContent:'space-between',
         alignItems: 'center',
-        paddingTop: 52,
-        width:'100%',
+        borderTopLeftRadius: 18,
+        borderTopRightRadius: 18,
+        marginTop: 10,
+        paddingTop: 70,
+
     },
     NameContainer:
     {
         justifyContent: 'center',
         alignItems: 'center',
+        marginLeft: 30,
     },
     NameText:
     {
-        fontSize: 12,
+        fontSize: 10,
         marginTop: 9,
+        fontFamily: Fonts.Cairo_Regular,
+        color: Colors.titleProduct,
     },
     phoneNumberContainer:
     {
@@ -91,22 +122,27 @@ const styles = StyleSheet.create({
     },
     phoneNumberText:
     {
-        fontSize: 12,
+        fontSize: 10,
         marginTop: 9,
+        fontFamily: Fonts.Cairo_Regular,
+        color: Colors.titleProduct,
     },
     addressContainer:
     {
         justifyContent: 'center',
         alignItems: 'center',
+        marginRight: 30,
     },
     addressText:
     {
-        fontSize: 12,
+        fontSize: 10,
         marginTop: 9,
+        fontFamily: Fonts.Cairo_Regular,
+        color: Colors.titleProduct,
     },
     bodyContainer:
     {
-        paddingTop: 29,
+        paddingTop: 50,
     },
     //Content Box
     contentBoxContainer:

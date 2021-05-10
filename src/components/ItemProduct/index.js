@@ -18,7 +18,7 @@ const ItemProduct = ({item, navigation, onChange,
         const onToggleSwitch = () =>
         {
           setIsSwitchOn(!isSwitchOn);
-          onChangeSwitch(isSwitchOn);
+          onChangeSwitch(!isSwitchOn);
         };
         const onPressFavorite = () =>{
           setFavorite(!favorite);

@@ -27,10 +27,12 @@ const Colors = {
     iconTune: '#C4C4C4',
     more:'#656565',
     circle: '#E6E6E6',
+    whi: '#E9E9E9',
     itemNameStore:'#AFAFAF',
     alertBackground: '#EFEFEF',
     textAreaSilver: '#C8C8C8',
     buttonSearch: '#ECECEC',
+    doveGraya: '#6D6D6D',
 };
 
 export default Colors;

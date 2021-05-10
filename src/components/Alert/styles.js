@@ -6,9 +6,9 @@ import Fonts from '../../../assets/fonts';
 const styles = StyleSheet.create({
    alertView:
    {
-       flex: 1,
        justifyContent:'center',
        alignItems:'center',
+
    },
    alertViewInner:
    {
@@ -81,6 +81,30 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         position: 'absolute',
         top: 0,
+    },
+    messageTitleContainer:
+    {
+        width: '100%',
+        backgroundColor: Colors.whi,
+        justifyContent:'center',
+        alignItems: 'center',
+        height: 42,
+        borderRadius: 8,
+        shadowColor: Colors.balck,
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.30,
+        shadowRadius: 4.65,
+
+        elevation: 8,
+    },
+    messageTitle:
+    {
+        fontSize: 14,
+        fontFamily: Fonts.Cairo_Bold,
+        color: Colors.doveGraya,
     },
 
 });

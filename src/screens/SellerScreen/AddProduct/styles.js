@@ -156,6 +156,32 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 21,
     },
+    inputRow:
+    {
+        flexDirection: 'row',
+        backgroundColor: Colors.circle,
+        alignItems:'center',
+        justifyContent:'space-between',
+        borderRadius: 8,
+        paddingLeft: 8,
+        paddingRight: 8,
+    },
+    input:
+    {
+        width: 250,
+        fontFamily: Fonts.Cairo_Bold,
+        fontSize: 18,
+        marginBottom: 0,
+    },
+    iconCounter:
+    {
+        height: 24,
+        width: 24,
+        backgroundColor: Colors.silver,
+        borderRadius: 8,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     noteText:
     {
         fontSize: 9,
@@ -163,7 +189,7 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         writingDirection: 'rtl',
         marginTop: -8,
-        marginBottom: 18,
+        marginBottom: 10,
     },
 /* Step 3 */
     step3Container:
@@ -179,9 +205,9 @@ const styles = StyleSheet.create({
     },
     ColorModal:
     {
-        height: height - 80,
         backgroundColor: Colors.white,
         borderRadius: 8,
+        padding: 10,
     },
     titleColor:
     {
@@ -222,6 +248,8 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         alignSelf:'center',
         marginTop: 5,
+        borderWidth: 1,
+        borderColor: Colors.white,
     },
     genderContainer:
     {

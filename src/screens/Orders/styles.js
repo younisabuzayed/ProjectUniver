@@ -37,6 +37,15 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 24,
     },
+    titleStyle:
+    {
+        color: Colors.carnation,
+    },
+    descriptionStyle:
+    {
+        width: 238,
+        textAlign: 'center',
+    },
 });
 
 export default styles;

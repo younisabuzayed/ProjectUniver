@@ -2,7 +2,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { View, SafeAreaView } from 'react-native';
+import { View, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Avatar, Title, Drawer } from 'react-native-paper';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { connect } from 'react-redux';
@@ -136,8 +136,9 @@ function DrawerContentSeller({ profileAction, profile, error},props) {
                               onPress={logout}
                               labelStyle={styles.lableMargin} />}
                         {profile !== null
-                         && <View
-                              style={styles.mainProfile}>
+                         && <TouchableOpacity
+                              style={styles.mainProfile}
+                              onPress={() =>navigation.navigate('Main')} >
                                 <Avatar.Image
                                   source={{uri: logo}}
                                   size={24}
@@ -151,7 +152,7 @@ function DrawerContentSeller({ profileAction, profile, error},props) {
                                       : 'username'}
                                 </Title>
                             </View>
-                            </View>}
+                            </TouchableOpacity>}
                     </Drawer.Section>
                 </View>
             </DrawerContentScrollView>

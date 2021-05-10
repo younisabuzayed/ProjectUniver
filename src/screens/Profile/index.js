@@ -79,43 +79,29 @@ const Profile = ({profileAction, profile, editProfile, editProfileAction}) => {
           style={styles.profileContainer}>
             <View
               style={styles.headerContainer} >
+                <View style={styles.fillColor} />
                 <View
-                  style={styles.headerTitleAndButtonContainer} >
-                    {/* <View
-                      style={styles.goBackIconContainer} >
-                        <Button
-                          onPress={() => navigation.goBack()}
-                          styleButton={styles.goBackIcon}
-                          children={<MaterialIcons
-                                      name="arrow-forward"
-                                      size={25}
-                                      color={'#FFFFFF'}/>} />
-                    </View>
-                    <View
-                      style={styles.nameScreenContainer}>
-                        <Text
-                          style={styles.nameScreenText}>الملف الشخصي</Text>
-                    </View> */}
-                    {/* <View
-                      style={styles.deleteAccountContainer} >
-                         <Button
-                           title={'ألغاء الحساب'}
-                           onPress={() => navigation.goBack()}
-                           titleStyle={styles.deleteAccountTitle}
-                           styleButton={styles.deleteAccountButton} />
-                    </View> */}
-                    <TouchableOpacity
-                      style={styles.profileImageContainer}
-                      onPress={pickImage} >
-                        <Avatar.Image
-                          source={{
-                            uri: images !== null ? images : 'https://image.flaticon.com/icons/png/512/147/147144.png',
-                          }}
-                          size={70} />
-                    </TouchableOpacity>
-                </View>
+                  style={styles.headerTitleAndButtonContainer}  />
                 <View
                   style={styles.contentContainer} >
+                    <View
+                      style={styles.profileImageContainer} >
+                        <TouchableOpacity
+                          onPress={pickImage} >
+                            <Avatar.Image
+                              source={{
+                                uri: images !== null ? images : 'https://image.flaticon.com/icons/png/512/147/147144.png',
+                              }}
+                              size={80} />
+                            <View
+                              style={styles.addPhotoContainer} >
+                                <MaterialIcons
+                                  name="add-to-photos"
+                                  size={17}
+                                  color={Colors.titleProduct} />
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                     <View
                       style={styles.NameContainer} >
                         <Ionicons
@@ -192,3 +178,26 @@ const mapDispatchToProps = (dispatch) =>
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+ {/* <View
+  style={styles.goBackIconContainer} >
+    <Button
+      onPress={() => navigation.goBack()}
+      styleButton={styles.goBackIcon}
+      children={<MaterialIcons
+                  name="arrow-forward"
+                  size={25}
+                  color={'#FFFFFF'}/>} />
+</View>
+<View
+  style={styles.nameScreenContainer}>
+    <Text
+      style={styles.nameScreenText}>الملف الشخصي</Text>
+</View> */}
+{/* <View
+  style={styles.deleteAccountContainer} >
+      <Button
+        title={'ألغاء الحساب'}
+        onPress={() => navigation.goBack()}
+        titleStyle={styles.deleteAccountTitle}
+        styleButton={styles.deleteAccountButton} />
+</View> */}

@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { Checkbox, RadioButton } from 'react-native-paper';
@@ -37,7 +38,7 @@ const DataScreen = {
       name: 'الاحذية',
       checked: false,
     },
-  ]
+  ],
 };
 const Step1 = () => {
     const [value, setValue] = React.useState('first');
@@ -95,6 +96,7 @@ const Step1 = () => {
                     <RadioButton.Item
                       label="الأجهزة الكهربائية"
                       value="first"
+                      mode="android"
                       color={Colors.fernGreen}
                       uncheckedColor={Colors.iconTune}
                       style={styles.radioButton}
@@ -111,6 +113,8 @@ const Step1 = () => {
                                 return (
                                   <Checkbox.Item
                                     status={item.checked ? 'checked' : 'unchecked'}
+                                    mode={'android'}
+                                    uncheckedColor={Colors.iconTune}
                                     color={Colors.fernGreen}
                                     label={item.name}
                                     labelStyle={styles.labelRadio}
@@ -118,12 +122,13 @@ const Step1 = () => {
                                     onPress={() => handleChange(dataElect,setDataElect,item.id)}
                                     theme={{
                                         colors:{text:Colors.iconTune, disabled: styles.iconTune}}} />
-                                      )
+                                      );
                                     }} />
                         </View>
                       <RadioButton.Item
                       label="الملابس والاحذية"
                       value="second"
+                      mode="android"
                       color={Colors.fernGreen}
                       style={styles.radioButton}
                       uncheckedColor={Colors.iconTune}
@@ -140,6 +145,7 @@ const Step1 = () => {
                                 return (
                                   <Checkbox.Item
                                     status={item.checked ? 'checked' : 'unchecked'}
+                                    mode="android"
                                     color={Colors.fernGreen}
                                     label={item.name}
                                     labelStyle={styles.labelRadio}

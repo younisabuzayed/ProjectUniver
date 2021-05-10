@@ -3,13 +3,16 @@
 import React from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
 import Colors from '../../../assets/colors';
-import { Button, SwipeButton } from '../../components';
+import { Button, Choose, SwipeButton } from '../../components';
+import AlertMessage from '../../components/Alert/AlertMessage';
 import CartItem, { CartItemSwipe } from '../../components/CartItem';
 import styles from './styles';
 
 const Orders = () => {
     const [one, setOne] = React.useState(true);
     const [two, setTwo] = React.useState(false);
+    const [isVisible, setIsVisible] = React.useState(false);
+
     const oneFunction = () =>
     {
       setOne(true);
@@ -27,6 +30,7 @@ const Orders = () => {
           <CartItem
             textState="قيد تنفيد"
             cancel
+            onPress={() =>{setIsVisible(!isVisible)}}
             width={100} />
           <CartItem
             textState="قيد تنفيد"
@@ -46,6 +50,9 @@ const Orders = () => {
         </View>
       );
     };
+    React.useEffect(() => {
+      isVisible === true && setTimeout(() =>setIsVisible(!isVisible) , 2500);
+    }, [isVisible]);
     return (
         <SafeAreaView
           style={styles.ordersContainer}>
@@ -88,6 +95,18 @@ const Orders = () => {
               style={styles.cartItemsContainer}>
               <OldOrders />
             </View>}
+            <Choose
+              isVisible={isVisible}
+              onBackdropPress={() => setIsVisible(!isVisible)}>
+                <AlertMessage
+                  icon="sentiment-very-dissatisfied"
+                  colorIcon={Colors.carnation}
+                  title="نعتذر منك"
+                  description="لا تستطيع الغاء الطلبة لانها تجاوزت الوقت المتفق وهو دقيقة"
+                  messageTitle="شكراً لكم"
+                  titleStyle={styles.titleStyle}
+                  descriptionStyle={styles.descriptionStyle} />
+            </Choose>
         </SafeAreaView>
     );
 };

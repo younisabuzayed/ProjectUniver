@@ -181,6 +181,16 @@ const styles = StyleSheet.create({
         alignItems:'center',
         borderRadius: 8,
     },
+    toastContainer:
+    {
+        backgroundColor: Colors.concrete,
+    },
+    toastText:
+    {
+        fontSize: 12,
+        fontFamily: Fonts.Cairo_Regular,
+        color: Colors.contentText,
+    },
 });
 
 export default styles;

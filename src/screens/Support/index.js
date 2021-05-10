@@ -1,12 +1,22 @@
 import React from 'react';
 import { View, Text, TextInput } from 'react-native';
 import Colors from '../../../assets/colors';
-import { Button, Input, Selection } from '../../components';
+import { Button, Choose, Input, Selection } from '../../components';
+import AlertMessage from '../../components/Alert/AlertMessage';
 import KeyboardAvoiding from '../../components/KeyboardAvoiding';
 import styles from './styles';
 
 const Support = () => {
     const [supportSelection, setSupportSelection] = React.useState('');
+    const [isVisible, setIsVisible] = React.useState(false);
+    React.useEffect(() => {
+      isVisible === true && setTimeout(() =>setIsVisible(!isVisible) , 2500);
+    }, [isVisible]);
+    const onPressSend = () =>
+    {
+      setIsVisible(!isVisible);
+    };
+
     return (
         <View
           style={styles.selectionContainer}>
@@ -32,13 +42,22 @@ const Support = () => {
                 <Button
                   active
                   title={'ارسال'}
-                  onPress={() => {}}
+                  onPress={onPressSend}
                   marginBottom={13}
                   backgroundColor= {Colors.fernGreen}
                   titleStyle={styles.titleButton} />
             </View>
             <Text
               style={styles.connectText}>التواصل على الرقم التالي 0594669124</Text>
+            <Choose
+              isVisible={isVisible}
+              onBackdropPress={() => setIsVisible(!isVisible)}>
+                <AlertMessage
+                  icon="sentiment-very-satisfied"
+                  colorIcon={Colors.fernGreen}
+                  description="انك تريد شراء الطلبية التي اضفتها"
+                  messageTitle="شكراً لكم"/>
+            </Choose>
         </KeyboardAvoiding>
         </View>
     );

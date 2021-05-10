@@ -12,7 +12,7 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const IconAnimated = Animated.createAnimatedComponent(MaterialCommunityIcons);
-const CartItem = ({textState, cancel, add, width}) => {
+const CartItem = ({textState, cancel, add, width, onPress}) => {
     return (
       <View
         style={styles.cartItemContainer} >
@@ -38,11 +38,13 @@ const CartItem = ({textState, cancel, add, width}) => {
             style={[styles.counterButtonAndNumber,{width}]} >
             {cancel && <Button
               title="الغاء الطلبية"
+              onPress={onPress}
               backgroundColor={Colors.carnation}
               styleButton={styles.cancelButton}
               titleStyle={styles.textCancel} />}
             {add && <Button
               backgroundColor={Colors.carnation}
+              onPress={onPress}
               styleButton={styles.iconPlus}
               titleStyle={styles.textCancel}
               children={<Octicons name="plus" size={20} color={Colors.white} />} />}
