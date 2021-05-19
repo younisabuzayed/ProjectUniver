@@ -6,6 +6,8 @@
 import React from 'react';
 import { View, Text, ScrollView, KeyboardAvoidingView, Image, SafeAreaView, Linking, Alert } from 'react-native';
 import { connect } from 'react-redux';
+import { useToast } from 'react-native-fast-toast';
+
 // Component
 import { Button, EyeShow, Input } from '../../../components';
 // State Managment Redux
@@ -19,31 +21,46 @@ const url = 'https://sala-backend.herokuapp.com/connect/facebook/redirect';
 const Login = ({LoginAction, login,error}) => {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const toast = useToast();
     const _handleURL = (event) => {
       console.log(event.url);
       // Bit of a hack to get the token from this URL...
       // implement yours in a safer way
       console.log(event.url.split('#')[1].split('=')[1].split('&')[0]);
     };
-    const _facebookLogin =() => {
+    const _facebookLogin = () => {
       Linking.openURL([
         url,
         '?response_type=token',
-        '&client_id='+'1247676148624015',
+        '&client_id=' + '1247676148624015',
         '&redirect_uri=fb1247676148624015://authorize',
-        '$scope=email' // Specify permissions
+        '$scope=email', // Specify permissions
       ].join(''));
-    }
+    };
     React.useEffect(() => {
       Linking.addEventListener('url', _handleURL);
     }, []);
     React.useEffect(() =>
     {
-      if(login?.jwt)
+      if (login?.jwt)
       {
         navigation.navigate('Main');
       }
-    },[login])
+
+    },[login]);
+    React.useEffect(() =>
+    {
+         if (error.message === 'Request failed with status code 400')
+      {
+    toast.show(
+      'الايميل أو كلمة المرور غير صحيحه',
+      {
+        style: styles.toastContainer,
+        textStyle: styles.toastText});
+      }
+
+    },[error]);
+
     const refSecond = React.useRef();
     //Navigation
     const navigation = useNavigation();
@@ -60,7 +77,6 @@ const Login = ({LoginAction, login,error}) => {
     const onPressLogin = () =>
     {
       LoginAction(email,password);
-
     };
     return (
       <SafeAreaView
@@ -304,7 +320,7 @@ const Login = ({LoginAction, login,error}) => {
                 styleButton={styles.buttonStyle}
                 children={<Image
                   source={require('../../../../assets/images/IconFacebook.png')}
-                  style={styles.iconButton} />} /> 
+                  style={styles.iconButton} />} />
               <LoginButton
                 publishPermissions={['publish_actions']}
                 permissions={['public_profile']}

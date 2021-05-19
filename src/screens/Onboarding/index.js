@@ -14,7 +14,6 @@ import Button from '../../components/Button';
 import styles from './styles';
 import Colors from '../../../assets/colors';
 const {width, height} = Dimensions.get('window');
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const DATA = [
   {
@@ -83,29 +82,34 @@ const Indicator = ({scrollX}) =>
 };
 
 const Onboarding = () => {
-    const [counter, setCounter] = React.useState(Platform.OS === 'ios' ? 2 : 0);
+    const [currentIndex, setCurrentIndex] = React.useState(Platform.OS === 'ios' ? 2 : 0);
+
     const scrollX = React.useRef(new Animated.Value(0)).current;
     const ref = React.useRef();
+    const onViewableItemsChanged = React.useRef(({viewableItems}) =>
+    {
+      setCurrentIndex(viewableItems[0].index);
+    }).current;
     const navigation = useNavigation();
-    const PlatformIosOrAndroid = Platform.OS === 'ios' ? counter >= 1 && counter <= 3 : counter >= 0 && counter <= 1;
+    const PlatformIosOrAndroid = Platform.OS === 'ios' ? currentIndex >= 1 && currentIndex <= 3 : currentIndex >= 0 && currentIndex <= 1;
     const onPressButtonNext = () =>
     {
-        if(Platform.OS === 'ios' )
+        if (Platform.OS === 'ios' )
         {
-          ref.current.scrollToIndex({index: counter - 1, animated: true});
-          setCounter(counter - 1);
+          ref.current.scrollToIndex({index: currentIndex - 1, animated: true});
+          setCurrentIndex(currentIndex - 1);
         }
         if (Platform.OS === 'android' )
-        { 
-          ref.current.scrollToIndex({index: counter + 1, animated: true});
-          setCounter(counter + 1);
+        {
+          ref.current.scrollToIndex({index: currentIndex + 1, animated: true});
+          setCurrentIndex(currentIndex + 1);
         }
     };
-    const onPressButtonPrev = () =>
-    {
-        ref.current?.scrollToIndex({index: counter - 1, animated: true});
-        setCounter(counter - 1);
-    };
+    // const onPressButtonPrev = () =>
+    // {
+    //     ref.current?.scrollToIndex({index: counter - 1, animated: true});
+    //     setCounter(counter - 1);
+    // };
     return (
         <SafeAreaView
           style={styles.container}>
@@ -119,6 +123,7 @@ const Onboarding = () => {
               horizontal
               inverted
               pagingEnabled
+              onViewableItemsChanged={onViewableItemsChanged}
               scrollEventThrottle={32}
               onScroll={Animated.event(
                   [{nativeEvent: {contentOffset: {x: scrollX}}}],

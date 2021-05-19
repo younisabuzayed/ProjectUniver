@@ -80,7 +80,6 @@ tabBarBadge:
     minWidth: 14,
     height: 15,
     borderRadius: 7.5,
-    marginTop: Platform.OS === 'android' ? 10 : 0,
 },
 styleTitle:
 {

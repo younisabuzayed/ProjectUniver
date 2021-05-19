@@ -2,14 +2,16 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { View, Text, ScrollView, KeyboardAvoidingView, Image, SafeAreaView } from 'react-native';
+import SignupActions from '../../../redux/actions/SignupActions';
+import { connect } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
+import { useToast } from 'react-native-fast-toast';
 //Component
 import { Button, EyeShow, Input } from '../../../components';
 //Styles
 import styles from './styles';
 import Colors from '../../../../assets/colors';
-import { connect } from 'react-redux';
-import SignupActions from '../../../redux/actions/SignupActions';
-import { useNavigation } from '@react-navigation/native';
+
 
 const Signup = ({SignupAction, signup}) => {
     const [name, setName] = React.useState('');
@@ -22,12 +24,18 @@ const Signup = ({SignupAction, signup}) => {
     const refThird = React.useRef();
     const refFourth = React.useRef();
     const refFifth = React.useRef();
+    const toast = useToast();
     //Eye Show
     const [passwordbool, setpasswordbool] = React.useState(true);
     const [passwordboolConfirm, setpasswordboolConfirm] = React.useState(true);
     const [iconConfirm, setIconConfirm] = React.useState('show');
     const [icon, setIcon] = React.useState('show');
     console.log('Sign Up', signup);
+    // function for check is empty
+    function isEmpty(str)
+    {
+      return (!str || str.length === 0);
+    }
     const _onChangeIcon = () =>
     {
         setIcon(icon === 'show' ? 'hide' : 'show');
@@ -41,7 +49,21 @@ const Signup = ({SignupAction, signup}) => {
     //Set Data to Api
     const onPressSignup = () =>
     {
+      // const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      // reg.test(email) === false 
+      if ( !isEmpty(name) && !isEmpty(phoneNumber) && !isEmpty(email) && !isEmpty(password) && !isEmpty(passwordConfirm))
+      {
         SignupAction(email, password, phoneNumber);
+      }
+      else
+      {
+        toast.show(
+          'إحدى الخانات فارغة',
+          {
+            style: styles.toastContainer,
+            textStyle: styles.toastText,
+          });
+      }
     };
     return (
         <SafeAreaView
@@ -84,7 +106,7 @@ const Signup = ({SignupAction, signup}) => {
                 returnKeyType="next"
                 onSubmitEditing={() => { refFourth.current.focus(); }}
                 ref={refThird}
-                onChangeText={(name) => setName(name)}
+                onChangeText={(email) => setEmail(email)}
                 autoCapitalize="none"
                 marginTop={15} />
               <Input

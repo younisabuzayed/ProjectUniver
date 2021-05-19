@@ -23,13 +23,13 @@ const onLoginActionsFailed = (error) =>
         error: error,
     };
 };
-const handleResponse = (dispatch, data) => {
-    if (!data.data) {
-      onLoginActionsSuccess(dispatch, data);
-    } else {
-        onLoginActionsFailed(dispatch, data.data);
-    }
-}
+// const handleResponse = (dispatch, data) => {
+//     if (!data.data) {
+//       onLoginActionsSuccess(dispatch, data);
+//     } else {
+//         onLoginActionsFailed(dispatch, data.data);
+//     }
+// }
 const LoginActions = (email, password) =>
 {
     const parms = new FormData();
@@ -46,8 +46,8 @@ const LoginActions = (email, password) =>
         //    handleResponse(dispatch,data)
            dispatch(onLoginActionsSuccess(data));
         } catch (error) {
-            dispatch(onLoginActionsFailed(error))
-            console.log('An error occurred:', error);
+            dispatch(onLoginActionsFailed(error));
+            // console.log('An error occurred:', error);
         }
     }
 };
