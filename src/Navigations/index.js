@@ -28,11 +28,11 @@ const Drawer = createDrawerNavigator();
 
 
 
-const rootDrawer = () =>
+const RootDrawer = ({extraData}) =>
 {
   return (
     <Drawer.Navigator
-      drawerContent={props => <DrawerContent {...props} />}
+      drawerContent={props => <DrawerContent {...props} extraData={extraData} />}
       drawerStyle={{
         backgroundColor:'transparent',
       }} >
@@ -54,7 +54,7 @@ const rootDrawerSeller = () =>
     </Drawer.Navigator>
   );
 };
-const rootNavigation = () =>
+const RootNavigation = ({extraData}) =>
 {
   const titleStyle = {
     fontSize: 18,
@@ -80,17 +80,20 @@ const rootNavigation = () =>
         },
     }),
   };
+
     return (
-        <NavigationContainer >
           <Stack.Navigator
            initialRouteName="Main"
            screenOptions={opacityTransition} >
             <Stack.Screen
               name="Main"
-              component={rootDrawer}
               options={{
                 headerShown: false,
-              }}  />
+              }}>
+              {props => <RootDrawer
+                          {...props}
+                          extraData={{setIsloggedIn: extraData.setIsloggedIn, isLoggedIn: extraData.isLoggedIn}}/>}
+            </Stack.Screen>
             <Stack.Screen
               name="CommercialRegister"
               component={CommercialRegister}
@@ -287,11 +290,10 @@ const rootNavigation = () =>
                 headerShown: false,
               }} />
           </Stack.Navigator>
-        </NavigationContainer>
     );
 };
 
-export const NoneTokenNavigation = () =>
+export const NoneTokenNavigation = ({extraData}) =>
 {
   const opacityTransition =
   {
@@ -314,11 +316,6 @@ export const NoneTokenNavigation = () =>
     }),
   };
     return (
-        <NavigationContainer
-          theme={{
-            ...DefaultTheme,
-            dark: false,
-          }} >
           <Stack.Navigator
            initialRouteName="Onboarding"
            screenOptions={opacityTransition} >
@@ -330,7 +327,6 @@ export const NoneTokenNavigation = () =>
               }} />
             <Stack.Screen
               name="Login"
-              component={Login}
               options={({navigation}) => ({
                 title:'',
                 headerLeft: () => {
@@ -345,10 +341,13 @@ export const NoneTokenNavigation = () =>
               headerLeftContainerStyle:{
                   paddingLeft: 15,
                 },
-              })} />
+              })}>
+               {props => <Login
+                           {...props}
+                           extraData={{setIsloggedIn: extraData.setIsloggedIn, isLoggedIn: extraData.isLoggedIn}} />}
+            </Stack.Screen>
             <Stack.Screen
               name="Signup"
-              component={Signup}
               options={({navigation}) => ({
                 title:'',
                 headerLeft: () => {
@@ -363,7 +362,11 @@ export const NoneTokenNavigation = () =>
               headerLeftContainerStyle:{
                   paddingLeft: 15,
                 },
-              })} />
+              })}>
+                {props => <Signup
+                            {...props}
+                            extraData={{setIsloggedIn: extraData.setIsloggedIn}} />}
+            </Stack.Screen>
             <Stack.Screen
               name="ForgotPasssword"
               component={ForgotPasssword}
@@ -438,10 +441,13 @@ export const NoneTokenNavigation = () =>
               })} />
             <Stack.Screen
               name="Main"
-              component={rootDrawer}
               options={{
                 headerShown: false,
-              }}  />
+              }} >
+               {props => <RootDrawer
+                          {...props}
+                          extraData={{setIsloggedIn: extraData.setIsloggedIn, isLoggedIn: extraData.isLoggedIn}}/>}
+            </Stack.Screen>
             <Stack.Screen
               name="Access"
               component={Access}
@@ -512,8 +518,39 @@ export const NoneTokenNavigation = () =>
                 headerShown: false,
               }} />
           </Stack.Navigator>
-        </NavigationContainer>
     );
 };
+const MainTabNavigator = ({ navigation, setIsloggedIn, isLoggedIn}) => {
+  const navigationRef = React.useRef(null);
 
-export default rootNavigation;
+  return (
+  <NavigationContainer
+    ref={navigationRef}
+    theme={{
+      ...DefaultTheme,
+      dark: false,
+    }} >
+    <Stack.Navigator initialRouteName={isLoggedIn ? 'HomeRoot' : 'AuthRoot'}>
+        { isLoggedIn ? (
+        <Stack.Screen
+            name="HomeRoot"
+            options={({ navigation, route }) => ({
+                headerShown: false,
+            })} >
+            {props => <RootNavigation {...props} extraData={ {setIsloggedIn, isLoggedIn}} />}
+        </Stack.Screen>
+        ) : (
+        <Stack.Screen
+            name="AuthRoot"
+            options={({ navigation, route }) => ({
+              headerShown: false,
+          })} >
+                {props => <NoneTokenNavigation {...props} extraData={ {setIsloggedIn, isLoggedIn}} />}
+            </Stack.Screen>
+            )}
+
+    </Stack.Navigator>
+  </NavigationContainer>
+);
+};
+export default MainTabNavigator;

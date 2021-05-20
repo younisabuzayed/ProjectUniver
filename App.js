@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -8,6 +9,7 @@
 
  import React from 'react';
  import {
+   ActivityIndicator,
    StatusBar,
  } from 'react-native';
  import { Provider } from 'react-redux';
@@ -16,13 +18,22 @@
  import store from './src/redux/store';
  import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ToastProvider } from 'react-native-fast-toast';
+import MainTabNavigator from './src/Navigations';
  console.disableYellowBox = true;
 
  const App = () => {
    const [token, setToken] = React.useState(null);
+   const [isLoggedIn, setIsloggedIn] = React.useState(false);
+
    React.useEffect(() => {
       getToken();
    }, []);
+   React.useEffect(() => {
+    if (token)
+    {
+      setIsloggedIn(!isLoggedIn);
+    }
+ }, [token]);
    const getToken = async() => {
        try {
          const jsonValue = await AsyncStorage.getItem('data_token');
@@ -45,7 +56,9 @@ import { ToastProvider } from 'react-native-fast-toast';
        store={store} >
        <ToastProvider>
          <PaperProvider>
-           {token ? (<RootNavigation />) : (<NoneTokenNavigation />)}
+           <MainTabNavigator
+              isLoggedIn={isLoggedIn}
+              setIsloggedIn={(bool) => setIsloggedIn(bool)} />
          </PaperProvider>
        </ToastProvider>
      </Provider>

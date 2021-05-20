@@ -18,12 +18,13 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const logo = 'https://mostaql.hsoubcdn.com/uploads/539862-dj0ow-1558106924-5cded32cf36b5.jpg';
 
-function DrawerContent({ profileAction, profile, error},props) {
+function DrawerContent({ profileAction, profile, error, extraData},props) {
     const navigation = useNavigation();
     const [token, setToken] = React.useState(null);
    React.useEffect(() => {
       getToken();
    }, []);
+   console.log(extraData);
    const getToken = async() => {
        try {
          const jsonValue = await AsyncStorage.getItem('data_token');
@@ -37,9 +38,10 @@ function DrawerContent({ profileAction, profile, error},props) {
     {
         profileAction();
     },[]);
-    const logout = async () =>
+    const logout = async (extraData, navigation) =>
     {
         await AsyncStorage.clear();
+        extraData.setIsloggedIn(false);
         navigation.navigate('Access');
     };
     const onPressNavigations = (navigates) =>
@@ -51,7 +53,7 @@ function DrawerContent({ profileAction, profile, error},props) {
       {
         navigation.navigate(navigates);
       }
-    }
+    };
     console.log(error);
     return (
         <SafeAreaView
@@ -147,8 +149,7 @@ function DrawerContent({ profileAction, profile, error},props) {
                             label="السياسات والشروط"
                             onPress={() => {navigation.navigate('AboutUs');}}
                             labelStyle={styles.lableMargin} />
-                        {profile !== null
-                           && <DrawerItem
+                        <DrawerItem
                                 icon={({color, size}) => (
                                     <FontAwesome
                                       name="sign-out"
@@ -156,8 +157,8 @@ function DrawerContent({ profileAction, profile, error},props) {
                                       size={size} />
                             )}
                             label="الخروج"
-                            onPress={logout}
-                            labelStyle={styles.lableMargin} />}
+                            onPress={() =>logout(extraData, navigation)}
+                            labelStyle={styles.lableMargin} />
                         {token && <>
                             {profile === null
                               ? <DrawerItem

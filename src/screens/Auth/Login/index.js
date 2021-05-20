@@ -18,10 +18,11 @@ import Colors from '../../../../assets/colors';
 import { useNavigation } from '@react-navigation/native';
 import KeyboardAvoiding from '../../../components/KeyboardAvoiding';
 const url = 'https://sala-backend.herokuapp.com/connect/facebook/redirect';
-const Login = ({LoginAction, login,error}) => {
+const Login = ({LoginAction, login, error, extraData}) => {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const toast = useToast();
+    console.log(extraData)
     const _handleURL = (event) => {
       console.log(event.url);
       // Bit of a hack to get the token from this URL...
@@ -44,7 +45,8 @@ const Login = ({LoginAction, login,error}) => {
     {
       if (login?.jwt)
       {
-        navigation.navigate('Main');
+        extraData.setIsloggedIn(true);
+        // navigation.navigate('Main');
       }
 
     },[login]);
