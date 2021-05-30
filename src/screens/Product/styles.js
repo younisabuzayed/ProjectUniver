@@ -75,14 +75,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '60%',
         marginTop: 10,
+        alignItems:'center',
     },
     avatar:
     {
         marginRight: 8,
     },
-    titleAndNameShop:
+    photoAndNameShop:
     {
         alignItems:'flex-start',
+        flexDirection: 'row',
         marginLeft: 10,
         marginRight: 10,
         width: '60%',
@@ -97,7 +99,7 @@ const styles = StyleSheet.create({
     priceContainer:
     {
         flexDirection: 'row',
-        justifyContent:'center',
+        justifyContent:'flex-start',
         alignItems:'center',
     },
     priceNumber:

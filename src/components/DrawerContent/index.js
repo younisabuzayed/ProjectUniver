@@ -24,7 +24,7 @@ function DrawerContent({ profileAction, profile, error, extraData},props) {
    React.useEffect(() => {
       getToken();
    }, []);
-   console.log(extraData);
+  //  console.log('sdsd',profile.seller);
    const getToken = async() => {
        try {
          const jsonValue = await AsyncStorage.getItem('data_token');
@@ -38,6 +38,7 @@ function DrawerContent({ profileAction, profile, error, extraData},props) {
     {
         profileAction();
     },[]);
+    // console.log('Drawer',profile)
     const logout = async (extraData, navigation) =>
     {
         await AsyncStorage.clear();
@@ -72,7 +73,7 @@ function DrawerContent({ profileAction, profile, error, extraData},props) {
                                 <Title
                                   style={styles.title}>
                                     {profile !== null
-                                      ? profile.username
+                                      ? profile.fullname
                                       : 'username'}
                                 </Title>
                             </View>
@@ -160,14 +161,14 @@ function DrawerContent({ profileAction, profile, error, extraData},props) {
                             onPress={() =>logout(extraData, navigation)}
                             labelStyle={styles.lableMargin} />
                         {token && <>
-                            {profile === null
+                            {profile && profile.seller === null
                               ? <DrawerItem
                                   label="إضافة حساب تاجر"
                                   labelStyle={styles.lableAddTrader }
                                   onPress={() => navigation.navigate('CommercialRegister')} />
                               : <TouchableOpacity
                                   style={styles.mainProfile}
-                                  onPress={() => navigation.navigate('CommercialRegister')} >
+                                  onPress={() => navigation.navigate('SellerScreen')} >
                                     <Avatar.Image
                                       source={{uri: logo}}
                                       size={24}

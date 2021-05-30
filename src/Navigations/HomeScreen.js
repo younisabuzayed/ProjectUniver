@@ -86,7 +86,6 @@ const HomeScreen = () =>
                 },
                 headerStyle: {
                   backgroundColor: Colors.fernGreen,
-                  height: PixelRatio.get() === 3 ? 100 : 70,
                 },
                 headerRightContainerStyle:
                 {
@@ -128,7 +127,6 @@ const HomeScreen = () =>
                 },
                 headerStyle: {
                   backgroundColor: Colors.fernGreen,
-                  height: PixelRatio.get() === 3 ? 100 : 70,
                 },
                 headerRightContainerStyle:
                 {

@@ -112,6 +112,8 @@ const Dashboard = () => {
                               color={Colors.texasRose}
                               style={styles.icon} />} />
                 </ScrollView>
+                <ScrollView
+                  showsVerticalScrollIndicator={false}>
                 <View
                   style={styles.chartContainer}>
                     <Text
@@ -138,6 +140,33 @@ const Dashboard = () => {
                           style={{data:{ fill: 'green'}, parent:{bottom:20}}} />
                     </VictoryChart>
                 </View>
+                <View
+                  style={[styles.chartContainer,{marginBottom: 200}]}>
+                    <Text
+                    style={styles.chartTitle}>زيادة الطلب</Text>
+                    <VictoryChart
+                      containerComponent={
+                        <VictoryZoomContainer
+                          zoomDomain={{x: [0, 15], y: [0, 100]}} />}
+                      width={width}
+                      maxDomain={{x: 12}}
+                      theme={VictoryTheme.material}>
+                        <VictoryBar
+                          data={data}
+                          cornerRadius={{top: 8}}
+                          animate={{
+                            duration: 2000,
+                            onLoad: { duration: 1000 },
+                          }}
+                          alignment="start"
+                          x="day"
+                          y="earnings"
+                          barWidth={15}
+                          width={width}
+                          style={{data:{ fill: 'green'}, parent:{bottom:20}}} />
+                    </VictoryChart>
+                </View>
+              </ScrollView>
             </View>
         </SafeAreaView>
     );

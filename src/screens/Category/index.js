@@ -14,7 +14,7 @@ import Colors from '../../../assets/colors';
 import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { SliderContainer } from '../../components';
+import { ItemProduct, SliderContainer } from '../../components';
 const categoriesType = [
   {
     id: '1',
@@ -176,7 +176,7 @@ const Category = ({categories,categoriesAction}) => {
               maxToRenderPerBatch={5}
               disableVirtualization={true}
               showsHorizontalScrollIndicator={false}
-              renderItem={({item}) =><RenderItemProducts item={item} />} />
+              renderItem={({item}) => <ItemProduct item={item} navigation={navigation} />} />
           {/* {products.slice(0,5).map(renderItemProducts)} */}
          </View>
          <View
@@ -192,7 +192,7 @@ const Category = ({categories,categoriesAction}) => {
               maxToRenderPerBatch={5}
               disableVirtualization={true}
               showsHorizontalScrollIndicator={false}
-              renderItem={({item}) =><RenderItemProducts item={item} />} />
+              renderItem={({item}) =><ItemProduct item={item} navigation={navigation} />} />
           {/* {products.map(renderItemProducts)} */}
          </View>
         </ScrollView>

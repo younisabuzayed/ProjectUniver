@@ -1,7 +1,7 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import Colors from '../../../../assets/colors';
 import Fonts from '../../../../assets/fonts';
-
+const {width} = Dimensions.get('window');
 const styles = StyleSheet.create({
     ordersBuyerContainer:
     {
@@ -14,8 +14,10 @@ const styles = StyleSheet.create({
     {
         flexDirection: 'row',
         justifyContent:'center',
+        alignSelf: 'center',
         backgroundColor: Colors.white,
-        paddingTop: 50,
+        marginTop: 50,
+        width: width - 100,
     },
     button:
     {

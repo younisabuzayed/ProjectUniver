@@ -1,41 +1,40 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import api from '../../Api';
-import { PROFILE_FAILED, PROFILE_STATE, PROFILE_SUCCESS } from './ActionsTypes';
+import { PROFILESHOP_FAILED, PROFILESHOP_STATE, PROFILESHOP_SUCCESS } from './ActionsTypes';
 
 const onProfileActionState = () =>
 {
     return {
-        type: PROFILE_STATE,
+        type: PROFILESHOP_STATE,
     };
 };
 const onProfileActionSuccess = (data) =>
 {
     return {
-        type: PROFILE_SUCCESS,
+        type: PROFILESHOP_SUCCESS,
         payload: data,
     };
 };
 const onProfileActionFailed = (error) =>
 {
     return {
-        type: PROFILE_FAILED,
+        type: PROFILESHOP_FAILED,
         payload: error,
     };
 };
 
-const ProfileAction = () =>
+const ProfileShopAction = () =>
 {
 
     return async (dispatch) =>
    {
        dispatch(onProfileActionState);
        try {
-            const jsonValue = await AsyncStorage.getItem('data_token');
-           const {data} = await axios.get(api + 'users/me',{
-               headers: {
-                Authorization: `Bearer ${jsonValue != null && JSON.parse(jsonValue)}`,
-               },
+           const {data} = await axios.get(api + 'sellers',{
+            headers: {
+                'Accept': 'application/json'
+               }
            });
            dispatch(onProfileActionSuccess(data));
        } catch (error) {
@@ -44,4 +43,4 @@ const ProfileAction = () =>
        }
    };
 };
-export default ProfileAction;
+export default ProfileShopAction;

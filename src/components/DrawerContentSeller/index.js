@@ -16,19 +16,22 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import ProfileShopAction from '../../redux/actions/ProfileShopAction';
 const logo = 'https://mostaql.hsoubcdn.com/uploads/539862-dj0ow-1558106924-5cded32cf36b5.jpg';
-function DrawerContentSeller({ profileAction, profile, error},props) {
+function DrawerContentSeller({ profileAction, profile, profileShopAction, profileShop},props) {
     const navigation = useNavigation();
     React.useEffect(() =>
     {
         profileAction();
+        profileShopAction();
     },[]);
     const logout = async () =>
     {
         await AsyncStorage.clear();
         navigation.navigate('Access');
     };
-    console.log(error);
+    const shop_selected = Object.values(profileShop).filter((_)=> _);
+    const selected = shop_selected.filter((_) => _.id === profile.seller)[0];
     return (
         <SafeAreaView
           style={styles.drawerContentContainer}>
@@ -112,7 +115,7 @@ function DrawerContentSeller({ profileAction, profile, error},props) {
                               size={size} />
                           )}
                           label="الدعم الفني"
-                          onPress={() => {navigation.navigate('BookmarkScreen');}}
+                          onPress={() => {navigation.navigate('Support');}}
                           labelStyle={styles.lableMargin} />
                         <DrawerItem
                           icon={({color, size}) => (
@@ -148,7 +151,7 @@ function DrawerContentSeller({ profileAction, profile, error},props) {
                                 <Title
                                   style={styles.titleProfile}>
                                     {profile !== null
-                                      ? profile.username
+                                      ? profile.fullname
                                       : 'username'}
                                 </Title>
                             </View>
@@ -166,12 +169,16 @@ function DrawerContentSeller({ profileAction, profile, error},props) {
       return {
           profile: state.Profile.profile,
           error: state.Profile.error,
+          profileShop: state.ProfileShop.profileShop,
+
       };
   };
   const mapDispatchToProps = (dispatch) =>
   {
       return {
           profileAction: () => dispatch(ProfileAction()),
+          profileShopAction: () => dispatch(ProfileShopAction()),
+
       };
   };
   export default connect(mapStateToProps, mapDispatchToProps)(DrawerContentSeller);

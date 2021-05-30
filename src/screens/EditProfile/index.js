@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState} from 'react';
 import { View, ScrollView, SafeAreaView, Platform, Text } from 'react-native';
 import DatePicker from 'react-native-date-picker';
@@ -11,18 +12,25 @@ import Button from '../../components/Button';
 import styles from './styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
+import ProfileAction from '../../redux/actions/ProfileAction';
+import { connect } from 'react-redux';
 
 
 
-const EditProfile = () => {
+const EditProfile = ({profile, profileAction}) => {
     const [fullName, setFullName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [email, setEmail] = React.useState(profile.email);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [date, setDate] = React.useState( new Date());
     const [isVisible, setIsVisible] = React.useState(false);
     const navigation = useNavigation();
-
+    console.log(profile)
+    React.useEffect(() =>
+    {
+      profileAction();
+    },[])
     return (
         <SafeAreaView style={styles.editProfileContainer}>
         <ScrollView
@@ -39,8 +47,8 @@ const EditProfile = () => {
                 <Input
                     placeholder="الايمال"
                     title="الايمال"
-                    onChangeText={(text) => setPhoneNumber(text)}
-                    value={phoneNumber}
+                    onChangeText={(text) => setEmail(text)}
+                    value={email}
                     styleContainer={styles.inputContainer}
                     inputStyle={styles.input}
                     styleTitle={styles.titleStyle}
@@ -121,14 +129,20 @@ const EditProfile = () => {
         </SafeAreaView>
     );
 };
-const mapStateToProps = state => {
-    return {
-        error: state.profile.error,
-        loading: state.profile.loading,
-        data: state.profile.data,
-    };
+const mapStateToProps = (state) =>
+{
+  return {
+    profile: state.Profile.profile,
+  };
 };
-export default EditProfile;
+
+const mapDispatchToProps = (dispatch) =>
+{
+  return {
+    profileAction: () => dispatch(ProfileAction()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
 
 
 /*

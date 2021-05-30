@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     {
         justifyContent: 'space-between',
         marginTop: 15,
+        height:120,
     },
     containerForTotals:
     {

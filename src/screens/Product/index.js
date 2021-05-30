@@ -145,23 +145,18 @@ const Product = ({productsAction, products}) => {
                     style={styles.nameShopAndPriceProduct} >
                       <View
                         style={styles.nameAndImageShopContainer} >
-                          <Avatar.Image
-                            size={30}
-                            source={{uri: 'https://banner2.cleanpng.com/20180612/ih/kisspng-computer-icons-avatar-user-profile-clip-art-5b1f69f0e68650.4078880515287853929442.jpg'}}
-                            style={styles.avatar} />
-                          <View
-                            style={styles.titleAndNameShop}>
-                            <Text
-                              style={styles.nameShop} >ريتال شوب</Text>
-                            <View style={styles.priceContainer} >
+                          <TouchableOpacity
+                            style={styles.photoAndNameShop}
+                            onPress={() => navigation.navigate('ProfileShop',{
+                              id_shop: selectedProduct.seller.id,
+                              name_shop: selectedProduct.seller.shop_name})}>
+                              <Avatar.Image
+                                size={30}
+                                source={{uri: 'https://banner2.cleanpng.com/20180612/ih/kisspng-computer-icons-avatar-user-profile-clip-art-5b1f69f0e68650.4078880515287853929442.jpg'}}
+                                style={styles.avatar} />
                               <Text
-                                style={styles.priceNumber} >
-                                {` ${selectedProduct.price}`}
-                                </Text>
-                                <Text
-                                  style={styles.priceTitle} >شيكل</Text>
-                            </View>
-                          </View>
+                                style={styles.nameShop} >{selectedProduct.seller.shop_name}</Text>
+                          </TouchableOpacity>
                           {/*Icon */}
                           <View
                             style={styles.ratingContainer} >
@@ -186,6 +181,15 @@ const Product = ({productsAction, products}) => {
                       onPress={onPressShare}>
                         <Ionicons name="share-social" size={30} color={'#BFBFBF'} />
                     </TouchableOpacity>
+                  </View>
+                  <View
+                    style={styles.priceContainer} >
+                      <Text
+                        style={styles.priceNumber} >
+                        {` ${selectedProduct.price}`}
+                        </Text>
+                        <Text
+                          style={styles.priceTitle} >شيكل</Text>
                   </View>
                   <View
                     style={styles.decriptiopnContainer} >
@@ -227,7 +231,7 @@ const Product = ({productsAction, products}) => {
                                         <View
                                           style={styles.circleContainer} >
                                           <ColorSelction
-                                            colors={selectedProduct.colors}
+                                            colors={['red','#dfdf','#12Df']}
                                             onChange={(color) => {
                                               setColor(color);
                                               setTimeout(() =>setIsVisible(!isVisible), timeOut);

@@ -14,7 +14,6 @@
  } from 'react-native';
  import { Provider } from 'react-redux';
  import { Provider as PaperProvider } from 'react-native-paper';
- import RootNavigation, { NoneTokenNavigation } from './src/Navigations';
  import store from './src/redux/store';
  import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ToastProvider } from 'react-native-fast-toast';

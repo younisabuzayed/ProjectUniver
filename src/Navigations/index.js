@@ -15,7 +15,7 @@ import Fonts from '../../assets/fonts';
 
 //Screens
 import { Access, Login, Onboarding,
-         Signup, ForgotPasssword, VerifyMobile, CommercialRegister, AddProduct, Address, AboutUs, EditProfile, Search, Support} from '../screens';
+         Signup, ForgotPasssword, VerifyMobile, CommercialRegister, AddProduct, Address, AboutUs, EditProfile, Search, Support, ProfileShop} from '../screens';
 //Custom Component
 import { DrawerContent, DrawerContentSeller} from '../components';
 import MainTabBottom from './TabNavigation';
@@ -199,6 +199,45 @@ const RootNavigation = ({extraData}) =>
                 },
                 headerTitleAlign:'center',
               })} />
+              <Stack.Screen
+              name="ProfileShop"
+              component={ProfileShop}
+              options={({navigation}) => ({
+                headerTitle: () => {
+                    return (
+                        <Text
+                          style={styles.titleStyle} >إضافة منتنج</Text>
+                    );
+                },
+                headerLeft: () => {
+                    return (
+                      <TouchableOpacity
+                        onPress={() => navigation.goBack()} >
+                         <MaterialIcons name="arrow-forward" size={25} color={'#AFAFAF'} style={{}} />
+                      </TouchableOpacity>
+                    );
+                },
+                headerTransparent: true,
+                headerLeftContainerStyle:{
+                    paddingLeft: 15,
+                  },
+                headerStyle: {
+                    backgroundColor: Colors.fernGreen,
+                    height: height / (Platform.OS === 'ios' ?  9 : 12),
+                  },
+                headerRightContainerStyle:
+                {
+                    marginRight: 24,
+                },
+                headerTitleAlign: 'center',
+                headerTitleStyle:
+                {
+                    color: Colors.white,
+                    fontFamily: Fonts.Cairo_Bold,
+                    fontSize: 18,
+                    lineHeight: 30,
+                },
+              })} />
              <Stack.Screen
                 name="AboutUs"
                 component={AboutUs}
@@ -206,7 +245,7 @@ const RootNavigation = ({extraData}) =>
                   headerTitle: () => {
                     return (
                         <Text
-                          style={titleStyle} >من نحن</Text>
+                          style={titleStyle} >السياسات والشروط</Text>
                     );
                 },
                   headerLeft: () => {
@@ -448,6 +487,45 @@ export const NoneTokenNavigation = ({extraData}) =>
                           {...props}
                           extraData={{setIsloggedIn: extraData.setIsloggedIn, isLoggedIn: extraData.isLoggedIn}}/>}
             </Stack.Screen>
+            <Stack.Screen
+              name="ProfileShop"
+              component={ProfileShop}
+              options={({navigation}) => ({
+                headerTitle: () => {
+                    return (
+                        <Text
+                          style={styles.titleStyle} >إضافة منتنج</Text>
+                    );
+                },
+                headerLeft: () => {
+                    return (
+                      <TouchableOpacity
+                        onPress={() => navigation.goBack()} >
+                         <MaterialIcons name="arrow-forward" size={25} color={'#AFAFAF'} style={{}} />
+                      </TouchableOpacity>
+                    );
+                },
+                headerTransparent: true,
+                headerLeftContainerStyle:{
+                    paddingLeft: 15,
+                  },
+                headerStyle: {
+                    backgroundColor: Colors.fernGreen,
+                    height: height / (Platform.OS === 'ios' ?  9 : 12),
+                  },
+                headerRightContainerStyle:
+                {
+                    marginRight: 24,
+                },
+                headerTitleAlign: 'center',
+                headerTitleStyle:
+                {
+                    color: Colors.white,
+                    fontFamily: Fonts.Cairo_Bold,
+                    fontSize: 18,
+                    lineHeight: 30,
+                },
+              })} />
             <Stack.Screen
               name="Access"
               component={Access}

@@ -6,6 +6,7 @@ import ProductsReducer from '../reducers/ProductsReducer';
 import SignupReducer from '../reducers/SignupReducer';
 import ProfileReducer from '../reducers/ProfileReducer';
 import EditProfileReducer from '../reducers/EditProfileReducer';
+import ProfileShopReducer from '../reducers/ProfileShopReducer';
 
 
 const rootReducers = combineReducers({
@@ -14,6 +15,7 @@ const rootReducers = combineReducers({
     Categories: CategoriesReducer,
     Products: ProductsReducer,
     Profile: ProfileReducer,
+    ProfileShop: ProfileShopReducer,
     EditProfile: EditProfileReducer,
 });
 

@@ -78,7 +78,7 @@ const CommercialRegister = () => {
         ? <MaterialIcons
             name="add-a-photo"
             size={25}
-            color={'#656565'} />
+            color={'#AAAAAA'} />
         : <Image
             source={{uri: data.uri}}
             resizeMode="contain"

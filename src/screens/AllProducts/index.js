@@ -15,6 +15,7 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import SliderContainer from '../../components/SliderContainer';
+import { ItemProduct } from '../../components';
 
 const AllProducts = ({categories,categoriesAction, products, productsAction}) => {
     const navigation = useNavigation();
@@ -131,7 +132,7 @@ const AllProducts = ({categories,categoriesAction, products, productsAction}) =>
               maxToRenderPerBatch={5}
               disableVirtualization={true}
               showsHorizontalScrollIndicator={false}
-              renderItem={({item}) =><RenderItemProducts item={item} />} />
+              renderItem={({item}) =><ItemProduct item={item} navigation={navigation} />} />
           {/* {products.slice(0,5).map(renderItemProducts)} */}
          </View>
         </ScrollView>

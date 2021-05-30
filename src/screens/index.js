@@ -15,6 +15,8 @@ export {default as Onboarding } from './Onboarding';
 export {default as Orders } from './Orders';
 export {default as Product } from './Product';
 export {default as Profile } from './Profile';
+export {default as ProfileShop } from './ProfileShop';
+
 export {default as Search } from './Search';
 export {default as AboutUs } from './AboutUs';
 export {default as Support} from './Support';
@@ -25,6 +27,7 @@ export {default as Dashboard } from './SellerScreen/Dashboard';
 export {default as OrdersSeller } from './SellerScreen/OrdersSeller';
 export {default as AddProduct } from './SellerScreen/AddProduct';
 export {default as AboutUsSeller } from './SellerScreen/AboutUsSeller';
+export {default as SearchSeller } from './SellerScreen/SearchSeller';
 
 
 

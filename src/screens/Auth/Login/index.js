@@ -4,7 +4,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { View, Text, ScrollView, KeyboardAvoidingView, Image, SafeAreaView, Linking, Alert } from 'react-native';
+import { View, Text, Image, SafeAreaView } from 'react-native';
 import { connect } from 'react-redux';
 import { useToast } from 'react-native-fast-toast';
 
@@ -17,30 +17,10 @@ import styles from './styles';
 import Colors from '../../../../assets/colors';
 import { useNavigation } from '@react-navigation/native';
 import KeyboardAvoiding from '../../../components/KeyboardAvoiding';
-const url = 'https://sala-backend.herokuapp.com/connect/facebook/redirect';
 const Login = ({LoginAction, login, error, extraData}) => {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const toast = useToast();
-    console.log(extraData)
-    const _handleURL = (event) => {
-      console.log(event.url);
-      // Bit of a hack to get the token from this URL...
-      // implement yours in a safer way
-      console.log(event.url.split('#')[1].split('=')[1].split('&')[0]);
-    };
-    const _facebookLogin = () => {
-      Linking.openURL([
-        url,
-        '?response_type=token',
-        '&client_id=' + '1247676148624015',
-        '&redirect_uri=fb1247676148624015://authorize',
-        '$scope=email', // Specify permissions
-      ].join(''));
-    };
-    React.useEffect(() => {
-      Linking.addEventListener('url', _handleURL);
-    }, []);
     React.useEffect(() =>
     {
       if (login?.jwt)
@@ -162,7 +142,7 @@ const Login = ({LoginAction, login, error, extraData}) => {
                 backgroundColor= {Colors.blueRibbon}
                 titleStyle={styles.titleButtonSocail}
                 styleButton={styles.buttonStyle}
-                onPress={_facebookLogin} />
+                onPress={() =>{}} />
             </View>
             <Button
               title="انشاء حساب جديد"

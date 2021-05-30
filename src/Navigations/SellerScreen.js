@@ -11,7 +11,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 //Screens
-import { Dashboard, Home, OrdersSeller, Product, Profile } from '../screens';
+import { Dashboard, Home, OrdersSeller, Product, Profile, SearchSeller } from '../screens';
 import Fonts from '../../assets/fonts';
 import { createStackNavigator } from '@react-navigation/stack';
 import styles from './styles';
@@ -42,7 +42,7 @@ const HomeScreen = () =>
                             <Ionicons name="notifications" size={30} color={Colors.white} />
                         </TouchableOpacity>
                         <TouchableOpacity
-                          onPress={() => navigation.navigate('Search')}>
+                          onPress={() => navigation.navigate('SearchSeller')}>
                             <MaterialIcons name="search" size={30} color={Colors.white} />
                         </TouchableOpacity>
                     </View>
@@ -74,6 +74,12 @@ const HomeScreen = () =>
                   lineHeight: 30,
                 },
             })} />
+            <Stack.Screen
+              name="SearchSeller"
+              component={SearchSeller}
+              options={{
+                headerShown: false,
+              }} />
             <Stack.Screen
               name="Product"
               component={Product}
