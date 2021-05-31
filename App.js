@@ -10,6 +10,7 @@
  import React from 'react';
  import {
    ActivityIndicator,
+   I18nManager,
    StatusBar,
  } from 'react-native';
  import { Provider } from 'react-redux';
@@ -19,12 +20,17 @@
 import { ToastProvider } from 'react-native-fast-toast';
 import MainTabNavigator from './src/Navigations';
  console.disableYellowBox = true;
+ import RNRestart from 'react-native-restart';
 
  const App = () => {
    const [token, setToken] = React.useState(null);
    const [isLoggedIn, setIsloggedIn] = React.useState(false);
 
    React.useEffect(() => {
+      if (!I18nManager.isRTL){
+          I18nManager.forceRTL(true);
+          RNRestart.Restart();
+      }
       getToken();
    }, []);
    React.useEffect(() => {

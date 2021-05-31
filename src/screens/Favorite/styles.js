@@ -16,6 +16,12 @@ const styles = StyleSheet.create({
         marginRight: 6,
         marginLeft: 6,
     },
+    activityIndicator:
+    {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });
 
 export default styles;

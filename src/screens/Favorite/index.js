@@ -1,18 +1,23 @@
 import React from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import ItemProduct from '../../components/ItemProduct';
 import ProductsAction from '../../redux/actions/ProductsAction';
 import styles from './styles';
+import Colors from '../../../assets/colors';
 
 const Favorite = ({products}) => {
     const navigation = useNavigation();
-    return (
+    if (products !== null)
+    {
+        const select_products = products.filter((_) => _.favorite === true);
+        console.log(select_products);
+        return (
         <View
           style={styles.favoriteContainer} >
             <FlatList
-              data={products}
+              data={select_products}
               keyExtractor={(item) => item.id}
               contentContainerStyle={styles.itemProductsContainer}
               columnWrapperStyle={styles.columnWrapperStyle}
@@ -26,6 +31,17 @@ const Favorite = ({products}) => {
                                        onChange={(bool) => console.log(bool) } />} />
         </View>
     );
+    } else
+    {
+        return (
+            <View
+                style={styles.activityIndicator}>
+                <ActivityIndicator
+                    size="small"
+                    color={Colors.fernGreen}/>
+            </View>
+        )
+    }
 };
 
 const mapStateToProps = (state) =>

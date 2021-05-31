@@ -28,9 +28,6 @@ const ProfileShop = ({profileShopAction, profileShop}) => {
     const navigation = useNavigation();
     const {id_shop, name_shop} = route.params;
 
-    const shop_selected = Object.values(profileShop).filter((_)=> _);
-    const selected = shop_selected.filter((_) => _.id === id_shop)[0];
-    console.log(selected);
     React.useEffect(() => {
       if (profileShop !== null) {
         navigation.setOptions({
@@ -39,7 +36,10 @@ const ProfileShop = ({profileShopAction, profileShop}) => {
         });
       }
     }, []);
-    if (selected !== undefined){
+    if (profileShop !== null){
+      const shop_selected = profileShop.filter((_)=> _);
+      const selected = shop_selected.filter((_) => _.id === id_shop)[0];
+      console.log(selected);
     return (
         <SafeAreaView
           style={styles.profileContainer}>

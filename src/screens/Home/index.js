@@ -131,7 +131,7 @@ const Home = ({categories,categoriesAction,
               maxToRenderPerBatch={5}
               disableVirtualization={true}
               showsHorizontalScrollIndicator={false}
-              renderItem={({item}) =><ItemProduct item={item} navigation={navigation} />} />
+              renderItem={({item}) =><ItemProduct item={item} navigation={navigation} onChange={(bool) => console.log(bool)} />} />
           {/* {products.slice(0,5).map(renderItemProducts)} */}
          </View>
          <View
@@ -147,7 +147,7 @@ const Home = ({categories,categoriesAction,
               maxToRenderPerBatch={5}
               disableVirtualization={true}
               showsHorizontalScrollIndicator={false}
-              renderItem={({item}) =><ItemProduct item={item} navigation={navigation} />} />
+              renderItem={({item}) =><ItemProduct item={item} navigation={navigation} onChange={(bool) => console.log(bool)} />} />
           {/* {products.map(renderItemProducts)} */}
          </View>
         </ScrollView>

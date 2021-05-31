@@ -25,13 +25,12 @@ function DrawerContentSeller({ profileAction, profile, profileShopAction, profil
         profileAction();
         profileShopAction();
     },[]);
-    const logout = async () =>
-    {
-        await AsyncStorage.clear();
-        navigation.navigate('Access');
-    };
+
+    if (profile !== null && profileShop !== null)
+   {
     const shop_selected = Object.values(profileShop).filter((_)=> _);
     const selected = shop_selected.filter((_) => _.id === profile.seller)[0];
+    console.log(selected)
     return (
         <SafeAreaView
           style={styles.drawerContentContainer}>
@@ -42,14 +41,14 @@ function DrawerContentSeller({ profileAction, profile, profileShopAction, profil
                     <View
                       style={styles.userInfoSection}>
                             <Avatar.Image
-                                source={{uri: logo}}
+                                source={selected.logo.length !== 0 ? {uri: selected.logo.url} :  require('../../../assets/images/restaurant.png')}
                                 size={80} />
                             <View
                               style={styles.name}>
                                 <Title
                                   style={styles.title}>
                                     {profile !== null
-                                      ? profile.username
+                                      ? selected.shop_name
                                       : 'username'}
                                 </Title>
                             </View>
@@ -128,22 +127,11 @@ function DrawerContentSeller({ profileAction, profile, profileShopAction, profil
                           onPress={() => {navigation.navigate('AboutUs');}}
                           labelStyle={styles.lableMargin} />
                         {profile !== null
-                         && <DrawerItem
-                              icon={({color, size}) => (
-                                <FontAwesome
-                                  name="sign-out"
-                                  color={color}
-                                  size={size} />
-                              )}
-                              label="الخروج"
-                              onPress={logout}
-                              labelStyle={styles.lableMargin} />}
-                        {profile !== null
                          && <TouchableOpacity
                               style={styles.mainProfile}
                               onPress={() =>navigation.navigate('Main')} >
                                 <Avatar.Image
-                                  source={{uri: logo}}
+                                  source={profile.profile_image.length !== 0  ? {uri: profile.profile_image.url} : require('../../../assets/images/person.png')}
                                   size={24}
                                   style={styles.avatar} />
                             <View
@@ -161,6 +149,7 @@ function DrawerContentSeller({ profileAction, profile, profileShopAction, profil
             </DrawerContentScrollView>
         </SafeAreaView>
     );
+  }
 }
 
 

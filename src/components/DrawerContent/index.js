@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import ProfileAction from '../../redux/actions/ProfileAction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import RNRestart from 'react-native-restart';
 
 //Styles and Icons
 import styles from './styles';
@@ -16,9 +17,10 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import ProfileShopAction from '../../redux/actions/ProfileShopAction';
 const logo = 'https://mostaql.hsoubcdn.com/uploads/539862-dj0ow-1558106924-5cded32cf36b5.jpg';
 
-function DrawerContent({ profileAction, profile, error, extraData},props) {
+function DrawerContent({  profileAction, profile, profileShopAction, profileShop, error, extraData},props) {
     const navigation = useNavigation();
     const [token, setToken] = React.useState(null);
    React.useEffect(() => {
@@ -37,13 +39,15 @@ function DrawerContent({ profileAction, profile, error, extraData},props) {
     React.useEffect(() =>
     {
         profileAction();
+        profileShopAction();
     },[]);
     // console.log('Drawer',profile)
     const logout = async (extraData, navigation) =>
     {
         await AsyncStorage.clear();
         extraData.setIsloggedIn(false);
-        navigation.navigate('Access');
+        RNRestart.Restart();
+        // navigation.navigate('Access');
     };
     const onPressNavigations = (navigates) =>
     {
@@ -55,7 +59,36 @@ function DrawerContent({ profileAction, profile, error, extraData},props) {
         navigation.navigate(navigates);
       }
     };
-    console.log(error);
+    console.log(profile);
+    const ShopContainer = () =>
+    {
+      if (profile !== null && profileShop !== null)
+      {
+        const shop_selected = Object.values(profileShop).filter((_)=> _);
+        const selected = shop_selected.filter((_) => _.id === profile.seller)[0];
+        return (
+          <TouchableOpacity
+            style={styles.mainProfile}
+            onPress={() => navigation.navigate('SellerScreen')} >
+              <Avatar.Image
+                source={selected.logo.length !== 0 ? {uri: selected.logo.url} :  require('../../../assets/images/restaurant.png')}
+                size={24}
+                style={styles.avatar} />
+              <View
+                style={styles.name}>
+                  <Title
+                    style={styles.titleProfile}>
+                      {profile !== null
+                        ? selected.shop_name
+                        : 'username'}
+                  </Title>
+              </View>
+          </TouchableOpacity>
+        )
+      } else {
+        return null
+      }
+    }
     return (
         <SafeAreaView
           style={styles.drawerContentContainer}>
@@ -66,7 +99,7 @@ function DrawerContent({ profileAction, profile, error, extraData},props) {
                     <View
                       style={styles.userInfoSection}>
                             <Avatar.Image
-                                source={{uri: 'https://api.adorable.io/avatars/50/abott@adorable.png'}}
+                                source={profile !== null ? {uri: profile.profile_image.url} : require('../../../assets/images/person.png')}
                                 size={80} />
                             <View
                               style={styles.name}>
@@ -150,7 +183,7 @@ function DrawerContent({ profileAction, profile, error, extraData},props) {
                             label="السياسات والشروط"
                             onPress={() => {navigation.navigate('AboutUs');}}
                             labelStyle={styles.lableMargin} />
-                        <DrawerItem
+                        {profile !== null && <DrawerItem
                                 icon={({color, size}) => (
                                     <FontAwesome
                                       name="sign-out"
@@ -159,30 +192,14 @@ function DrawerContent({ profileAction, profile, error, extraData},props) {
                             )}
                             label="الخروج"
                             onPress={() =>logout(extraData, navigation)}
-                            labelStyle={styles.lableMargin} />
+                            labelStyle={styles.lableMargin} />}
                         {token && <>
                             {profile && profile.seller === null
                               ? <DrawerItem
                                   label="إضافة حساب تاجر"
                                   labelStyle={styles.lableAddTrader }
                                   onPress={() => navigation.navigate('CommercialRegister')} />
-                              : <TouchableOpacity
-                                  style={styles.mainProfile}
-                                  onPress={() => navigation.navigate('SellerScreen')} >
-                                    <Avatar.Image
-                                      source={{uri: logo}}
-                                      size={24}
-                                      style={styles.avatar} />
-                                    <View
-                                      style={styles.name}>
-                                        <Title
-                                          style={styles.titleProfile}>
-                                            {profile !== null
-                                              ? profile.username
-                                              : 'username'}
-                                        </Title>
-                                    </View>
-                                </TouchableOpacity>
+                              : <ShopContainer />
                             }
                         </>}
                     </Drawer.Section>
@@ -193,17 +210,20 @@ function DrawerContent({ profileAction, profile, error, extraData},props) {
 }
 
 
-  const mapStateToProps = (state) =>
-  {
-      return {
-          profile: state.Profile.profile,
-          error: state.Profile.error,
-      };
-  };
-  const mapDispatchToProps = (dispatch) =>
-  {
-      return {
-          profileAction: () => dispatch(ProfileAction()),
-      };
-  };
+const mapStateToProps = (state) =>
+{
+    return {
+        profile: state.Profile.profile,
+        error: state.Profile.error,
+        profileShop: state.ProfileShop.profileShop,
+
+    };
+};
+const mapDispatchToProps = (dispatch) =>
+{
+    return {
+        profileAction: () => dispatch(ProfileAction()),
+        profileShopAction: () => dispatch(ProfileShopAction()),
+    };
+};
   export default connect(mapStateToProps, mapDispatchToProps)(DrawerContent);

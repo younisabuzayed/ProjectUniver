@@ -12,7 +12,7 @@ const priceDiscount = 10;
 const ItemProduct = ({item, navigation, onChange,
                       favorites, switchButton, onChangeSwitch}) =>
     {
-        const [favorite, setFavorite] = React.useState(false);
+        const [favorite, setFavorite] = React.useState(item.favorite);
         const [isSwitchOn, setIsSwitchOn] = React.useState(false);
 
         const onToggleSwitch = () =>

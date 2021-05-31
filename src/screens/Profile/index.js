@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Avatar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -19,7 +19,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import EditProfileAction from '../../redux/actions/EditProfileAction';
 
 const Profile = ({profileAction, profile, editProfile, editProfileAction}) => {
-    const [images, setImage] = React.useState(null);
+    const [images, setImage] = React.useState(profile && profile.profile_image.length !== 0  ? profile.profile_image.url : null);
 
     React.useEffect(()=> {
       profileAction();
@@ -74,7 +74,8 @@ const Profile = ({profileAction, profile, editProfile, editProfileAction}) => {
         </View>
       );
     };
-    return (
+    if (profile !== null)
+    {return (
         <SafeAreaView
           style={styles.profileContainer}>
             <View
@@ -109,7 +110,7 @@ const Profile = ({profileAction, profile, editProfile, editProfileAction}) => {
                           size={25}
                           color={Colors.fernGreen} />
                         <Text
-                          style={styles.NameText}>يونس حسام أبو زايد</Text>
+                          style={styles.NameText}>{profile.fullname}</Text>
                     </View>
                     <View
                       style={styles.phoneNumberContainer} >
@@ -162,6 +163,17 @@ const Profile = ({profileAction, profile, editProfile, editProfileAction}) => {
             </View>
         </SafeAreaView>
     );
+  } else
+  {
+    return (
+      <View
+        style={styles.activityIndicator}>
+          <ActivityIndicator
+            size="small"
+            color={Colors.fernGreen}/>
+      </View>
+    )
+  }
 };
 const mapStateToProps = (state) =>
 {

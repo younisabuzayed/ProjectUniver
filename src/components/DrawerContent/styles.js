@@ -25,9 +25,10 @@ const styles = StyleSheet.create({
       marginBottom: 10,
     },
     title: {
-      fontSize: 16,
+      fontSize: 12,
       marginTop: 3,
-      fontWeight: 'bold',
+      fontFamily: Fonts.Cairo_Bold,
+      color: Colors.balck,
     },
     caption: {
       fontSize: 14,
@@ -79,6 +80,7 @@ const styles = StyleSheet.create({
     {
       fontSize: 12,
       fontFamily: Fonts.Cairo_Regular,
+      color: Colors.balck,
     },
     preference: {
       flexDirection: 'row',

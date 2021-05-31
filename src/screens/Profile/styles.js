@@ -16,11 +16,8 @@ const styles = StyleSheet.create({
     headerTitleAndButtonContainer:
     {
         backgroundColor: Colors.fernGreen,
-        height: 170,
+        height: 150,
         width: '100%',
-        // borderBottomLeftRadius: 8,
-        // borderBottomRightRadius: 8,
-        flexDirection: 'row',
         paddingTop: 20,
     },
     fillColor:
@@ -46,15 +43,6 @@ const styles = StyleSheet.create({
         color: Colors.white,
         textAlign: 'center',
     },
-    deleteAccountContainer:
-    {
-        alignItems: 'flex-end',
-    },
-    deleteAccountTitle:
-    {
-        fontSize: 15,
-        color: Colors.white,
-    },
     deleteAccountButton:
     {
         marginLeft: 0,
@@ -67,14 +55,14 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         position: 'absolute',
-        top: -35,
+        top: -40,
         zIndex: 10,
     },
     addPhotoContainer:
     {
         backgroundColor: Colors.white,
         height: 30,
-        width: 30,
+        flex:1,
         position: 'absolute',
         bottom: -5,
         borderRadius: 15,
@@ -106,7 +94,7 @@ const styles = StyleSheet.create({
     {
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: 30,
+        flex:1,
     },
     NameText:
     {
@@ -119,6 +107,7 @@ const styles = StyleSheet.create({
     {
         justifyContent: 'center',
         alignItems: 'center',
+        flex:1,
     },
     phoneNumberText:
     {
@@ -131,7 +120,8 @@ const styles = StyleSheet.create({
     {
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 30,
+        marginRight: 20,
+        flex: 1,
     },
     addressText:
     {
@@ -183,6 +173,12 @@ const styles = StyleSheet.create({
     {
         fontSize: 12,
         color: Colors.fernGreen,
+    },
+    activityIndicator:
+    {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
 
