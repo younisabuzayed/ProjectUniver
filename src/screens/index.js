@@ -1,3 +1,4 @@
+
 export {default as Access } from './Access';
 export {default as Login } from './Auth/Login';
 export {default as Signup } from './Auth/Signup';
@@ -20,6 +21,8 @@ export {default as ProfileShop } from './ProfileShop';
 export {default as Search } from './Search';
 export {default as AboutUs } from './AboutUs';
 export {default as Support} from './Support';
+export {default as Allshops}  from './Allshops';
+export {default as SearchShops}  from './SearchShops';
 
 //Seller Screens
 export {default as CommercialRegister } from './SellerScreen/CommercialRegister';

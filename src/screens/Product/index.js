@@ -8,7 +8,8 @@ import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 import Share from 'react-native-share';
 import { useToast } from 'react-native-fast-toast';
-
+import moment from 'moment';
+import 'moment/locale/ar';
 // Custom Component
 import { Button, ColorSelction } from '../../components';
 import CategoriesAction from '../../redux/actions/CategoriesAction';
@@ -149,10 +150,11 @@ const Product = ({productsAction, products}) => {
                             style={styles.photoAndNameShop}
                             onPress={() => navigation.navigate('ProfileShop',{
                               id_shop: selectedProduct.seller.id,
-                              name_shop: selectedProduct.seller.shop_name})}>
+                              name_shop: selectedProduct.seller.shop_name,
+                              logo: selectedProduct.seller.logo.length !== 0 ? {uri: selectedProduct.seller.logo[0].url} :  require('../../../assets/images/restaurant.png')})}>
                               <Avatar.Image
                                 size={30}
-                                source={{uri: 'https://banner2.cleanpng.com/20180612/ih/kisspng-computer-icons-avatar-user-profile-clip-art-5b1f69f0e68650.4078880515287853929442.jpg'}}
+                                source={selectedProduct.seller.logo.length !== 0 ? {uri: selectedProduct.seller.logo[0].url} :  require('../../../assets/images/restaurant.png')}
                                 style={styles.avatar} />
                               <Text
                                 style={styles.nameShop} >{selectedProduct.seller.shop_name}</Text>
@@ -174,11 +176,12 @@ const Product = ({productsAction, products}) => {
                                 color={Colors.gray}
                                 size={12} />
                               <Text
-                                style={styles.texttime}>20د</Text>
+                                style={styles.texttime}>{moment(selectedProduct.published_at).startOf('day').fromNow()}</Text>
                           </View>
                       </View>
                     <TouchableOpacity
-                      onPress={onPressShare}>
+                      onPress={onPressShare}
+                      style={{alignSelf:'center'}}>
                         <Ionicons name="share-social" size={30} color={'#BFBFBF'} />
                     </TouchableOpacity>
                   </View>

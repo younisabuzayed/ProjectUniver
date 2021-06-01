@@ -19,7 +19,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import EditProfileAction from '../../redux/actions/EditProfileAction';
 
 const Profile = ({profileAction, profile, editProfile, editProfileAction}) => {
-    const [images, setImage] = React.useState(profile && profile.profile_image.length !== 0  ? profile.profile_image.url : null);
+    const [images, setImage] = React.useState(profile && profile.profile_image !== undefined  ? profile.profile_image.url : null);
 
     React.useEffect(()=> {
       profileAction();

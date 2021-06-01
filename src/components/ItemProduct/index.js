@@ -10,7 +10,8 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const priceDiscount = 10;
 const ItemProduct = ({item, navigation, onChange,
-                      favorites, switchButton, onChangeSwitch}) =>
+                      favorites, switchButton, onChangeSwitch,
+                      navigate_name}) =>
     {
         const [favorite, setFavorite] = React.useState(item.favorite);
         const [isSwitchOn, setIsSwitchOn] = React.useState(false);
@@ -27,7 +28,7 @@ const ItemProduct = ({item, navigation, onChange,
         return (
             <TouchableOpacity
               style={styles.productsInnerContainer}
-              onPress={() => navigation.navigate('Product',{
+              onPress={() => navigation.navigate(navigate_name ? navigate_name : 'Product',{
                 idItem: item.id,
                 nameCategory: item.categories,
               })} >

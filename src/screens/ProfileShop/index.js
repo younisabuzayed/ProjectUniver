@@ -26,7 +26,7 @@ const ProfileShop = ({profileShopAction, profileShop}) => {
     },[]);
     const route = useRoute();
     const navigation = useNavigation();
-    const {id_shop, name_shop} = route.params;
+    const {id_shop, name_shop, logo} = route.params;
 
     React.useEffect(() => {
       if (profileShop !== null) {
@@ -48,10 +48,9 @@ const ProfileShop = ({profileShopAction, profileShop}) => {
                 <View
                   style={styles.profileImageContainer} >
                     <Avatar.Image
-                      source={{
-                        uri: images !== null ? images : 'https://image.flaticon.com/icons/png/512/147/147144.png',
-                      }}
-                      size={80} />
+                      source={logo}
+                      size={80}
+                      style={styles.avatar} />
                 </View>
                 <View
                   style={styles.contentContainer} >

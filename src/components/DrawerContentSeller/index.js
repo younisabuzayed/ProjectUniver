@@ -131,7 +131,7 @@ function DrawerContentSeller({ profileAction, profile, profileShopAction, profil
                               style={styles.mainProfile}
                               onPress={() =>navigation.navigate('Main')} >
                                 <Avatar.Image
-                                  source={profile.profile_image.length !== 0  ? {uri: profile.profile_image.url} : require('../../../assets/images/person.png')}
+                                  source={profile && profile.profile_image !== undefined ? {uri: profile.profile_image.url} : require('../../../assets/images/person.png')}
                                   size={24}
                                   style={styles.avatar} />
                             <View

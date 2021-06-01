@@ -15,7 +15,7 @@ import Fonts from '../../assets/fonts';
 
 //Screens
 import { Access, Login, Onboarding,
-         Signup, ForgotPasssword, VerifyMobile, CommercialRegister, AddProduct, Address, AboutUs, EditProfile, Search, Support, ProfileShop} from '../screens';
+         Signup, ForgotPasssword, VerifyMobile, CommercialRegister, AddProduct, Address, AboutUs, EditProfile, Search, Support, ProfileShop, SearchShops, Allshops} from '../screens';
 //Custom Component
 import { DrawerContent, DrawerContentSeller} from '../components';
 import MainTabBottom from './TabNavigation';
@@ -277,6 +277,52 @@ const RootNavigation = ({extraData}) =>
                   lineHeight: 30,
                 },
               })} />
+            <Stack.Screen
+              name="Allshops"
+              component={Allshops}
+              options={({navigation}) => ({
+                headerTitle: () => {
+                      return (
+                          <Text
+                            style={[styles.titleStyle,{color: Colors.white}]} >المحلات التجارية</Text>
+                      );
+                },
+                headerRight: () =>
+                {
+                  return (
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('SearchShop')}>
+                        <MaterialIcons name="search" size={30} color={Colors.white} />
+                    </TouchableOpacity>
+                  );
+                },
+                headerLeft: () => {
+                    return (
+                      <TouchableOpacity
+                        onPress={() => navigation.goBack()} >
+                          <MaterialIcons name="arrow-forward" size={25} color={Colors.white} style={{}} />
+                      </TouchableOpacity>
+                    );
+                },
+                headerLeftContainerStyle:{
+                    paddingLeft: 15,
+                  },
+                  headerStyle: {
+                    backgroundColor: Colors.fernGreen,
+                  },
+                  headerRightContainerStyle:
+                  {
+                    marginRight: 24,
+                  },
+                  headerTitleAlign: 'center',
+                  headerTitleStyle:
+                  {
+                    color: Colors.white,
+                    fontFamily: Fonts.Cairo_Bold,
+                    fontSize: 18,
+                    lineHeight: 30,
+                  },
+              })} />
              <Stack.Screen
                 name="Support"
                 component={Support}
@@ -319,6 +365,12 @@ const RootNavigation = ({extraData}) =>
              <Stack.Screen
               name="Search"
               component={Search}
+              options={{
+                headerShown: false,
+              }} />
+            <Stack.Screen
+              name="SearchShop"
+              component={SearchShops}
               options={{
                 headerShown: false,
               }} />
@@ -549,6 +601,52 @@ export const NoneTokenNavigation = ({extraData}) =>
               headerLeftContainerStyle:{
                   paddingLeft: 15,
                 },
+              })} />
+          <Stack.Screen
+            name="Allshops"
+            component={Allshops}
+            options={({navigation}) => ({
+                headerTitle: () => {
+                      return (
+                          <Text
+                            style={[styles.titleStyle,{color: Colors.white}]} >المحلات التجارية</Text>
+                      );
+                },
+                headerRight: () =>
+                {
+                  return (
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('SearchShop')}>
+                        <MaterialIcons name="search" size={30} color={Colors.white} />
+                    </TouchableOpacity>
+                  );
+                },
+                headerLeft: () => {
+                    return (
+                      <TouchableOpacity
+                        onPress={() => navigation.goBack()} >
+                          <MaterialIcons name="arrow-forward" size={25} color={Colors.white} style={{}} />
+                      </TouchableOpacity>
+                    );
+                },
+                headerLeftContainerStyle:{
+                    paddingLeft: 15,
+                  },
+                  headerStyle: {
+                    backgroundColor: Colors.fernGreen,
+                  },
+                  headerRightContainerStyle:
+                  {
+                    marginRight: 24,
+                  },
+                  headerTitleAlign: 'center',
+                  headerTitleStyle:
+                  {
+                    color: Colors.white,
+                    fontFamily: Fonts.Cairo_Bold,
+                    fontSize: 18,
+                    lineHeight: 30,
+                  },
               })} />
               <Stack.Screen
                 name="AddProduct"

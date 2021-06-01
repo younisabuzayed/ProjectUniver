@@ -16,29 +16,18 @@ import ProductsAction from '../../../redux/actions/ProductsAction';
 import styles, { width } from './styles';
 import Colors from '../../../../assets/colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import ProfileShopAction from '../../../redux/actions/ProfileShopAction';
+import ProfileAction from '../../../redux/actions/ProfileAction';
 
 
-const ENTRIES1 = [
-    {
-        title: 'Beautiful and dramatic Antelope Canyon',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-        illustration: 'https://i.imgur.com/UYiroysl.jpg',
-    },
-    {
-        title: 'Earlier this morning, NYC',
-        subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/UPrs1EWl.jpg',
-    },
-    {
-        title: 'White Pocket Sunset',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
-        illustration: 'https://i.imgur.com/MABUbpDl.jpg',
-    },
-];
-const HomeSeller = ({products, productsAction}) => {
+
+const HomeSeller = ({products, productsAction, profileShop, profileShopAction, profile, profileAction}) => {
     React.useEffect(() => {
         productsAction();
+        profileShopAction();
+        profileAction();
     }, []);
+
     const toast = useToast();
     const navigation = useNavigation();
     const onPressColseAndOpen = (switchBool) =>
@@ -64,8 +53,9 @@ const HomeSeller = ({products, productsAction}) => {
           textStyle: styles.toastText});
           console.log(switchBool)
   };
-    if (products !== null)
+    if (products !== null && profileShop !== null && profile !== null)
     {
+        const selected = profileShop.filter((_) => _.id === profile.seller)[0];
     return (
         <View
           style={styles.homeContainer} >
@@ -73,7 +63,7 @@ const HomeSeller = ({products, productsAction}) => {
               <View
                 style={styles.productsContainer} >
                   <FlatList
-                      data={products}
+                      data={selected.products}
                       keyExtractor={(item) => item.id}
                       contentContainerStyle={styles.itemProductsContainer}
                       columnWrapperStyle={{marginRight: 6, marginLeft: 6}}
@@ -85,6 +75,7 @@ const HomeSeller = ({products, productsAction}) => {
                                                favorites={true}
                                                item={item}
                                                navigation={navigation}
+                                               navigate_name="AddPrdouct"
                                                switchButton={true}
                                                onChangeSwitch={onPressColseAndOpen} />} />
               </View>
@@ -108,6 +99,9 @@ const mapStateToProps = (state) =>
     return {
         categories: state.Categories.categories,
         products: state.Products.products,
+        profileShop: state.ProfileShop.profileShop,
+        profile: state.Profile.profile,
+
     };
 };
 const mapDispatchToProps = (dispatch) =>
@@ -115,6 +109,8 @@ const mapDispatchToProps = (dispatch) =>
     return {
         categoriesAction: () => dispatch(CategoriesAction()),
         productsAction: () => dispatch(ProductsAction()),
+        profileShopAction: () => dispatch(ProfileShopAction()),
+        profileAction: () => dispatch(ProfileAction()),
     };
 };
 export default connect(mapStateToProps,mapDispatchToProps)(HomeSeller);

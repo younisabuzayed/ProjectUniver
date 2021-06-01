@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent:'flex-start',
         alignItems:'center',
+        marginLeft: 20,
     },
     priceNumber:
     {

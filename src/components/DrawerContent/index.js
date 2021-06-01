@@ -10,6 +10,7 @@ import ProfileAction from '../../redux/actions/ProfileAction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import RNRestart from 'react-native-restart';
+import ProfileShopAction from '../../redux/actions/ProfileShopAction';
 
 //Styles and Icons
 import styles from './styles';
@@ -17,7 +18,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import ProfileShopAction from '../../redux/actions/ProfileShopAction';
+import Entypo from 'react-native-vector-icons/Entypo';
+
 const logo = 'https://mostaql.hsoubcdn.com/uploads/539862-dj0ow-1558106924-5cded32cf36b5.jpg';
 
 function DrawerContent({  profileAction, profile, profileShopAction, profileShop, error, extraData},props) {
@@ -99,7 +101,7 @@ function DrawerContent({  profileAction, profile, profileShopAction, profileShop
                     <View
                       style={styles.userInfoSection}>
                             <Avatar.Image
-                                source={profile !== null ? {uri: profile.profile_image.url} : require('../../../assets/images/person.png')}
+                                source={profile && profile.profile_image !== undefined ? {uri: profile.profile_image.url} : require('../../../assets/images/person.png')}
                                 size={80} />
                             <View
                               style={styles.name}>
@@ -152,6 +154,16 @@ function DrawerContent({  profileAction, profile, profileShopAction, profileShop
                             )}
                             label="السلة"
                             onPress={() => onPressNavigations('CartScreen')}
+                            labelStyle={styles.lableMargin} />
+                        <DrawerItem
+                            icon={({color, size}) => (
+                                <Entypo
+                                  name="shop"
+                                  color={color}
+                                  size={size} />
+                            )}
+                            label="المحلات التجارية"
+                            onPress={() => onPressNavigations('Allshops')}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (

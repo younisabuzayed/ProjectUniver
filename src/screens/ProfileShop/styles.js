@@ -54,6 +54,19 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
     },
+    avatar:
+    {
+        backgroundColor: Colors.white,
+        shadowColor: Colors.balck,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
+    },
     addPhotoContainer:
     {
         backgroundColor: Colors.white,
@@ -128,12 +141,13 @@ const styles = StyleSheet.create({
     },
     bodyContainer:
     {
-        paddingTop: 50,
+        paddingTop: 40,
     },
     itemProductsContainer:
     {
         justifyContent:'center',
         alignItems: 'center',
+        paddingBottom: 20,
     },
     headerNavigation:
     {
