@@ -1,7 +1,7 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import Colors from '../../../../assets/colors';
 import Fonts from '../../../../assets/fonts';
-import { hp, wp } from '../../../../assets/size';
+import { hp } from '../../../../assets/size';
 const styles = StyleSheet.create({
     signupContainer:
     {
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     iconImage:
     {
         height: hp(15),
-        width: wp(10),
+        width: '100%',
     },
     bodyContianer:
     {

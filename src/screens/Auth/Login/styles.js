@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     {
         height: height - 5 ,
         justifyContent: 'flex-end',
+        marginTop: 10,
     },
     imageContainer:
     {
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     iconImage:
     {
         height: hp(17),
-        width: wp(12),
+        width: '100%',
     },
     titleHeaderContainer:
     {

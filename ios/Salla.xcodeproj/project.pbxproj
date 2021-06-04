@@ -555,6 +555,7 @@
 				DEVELOPMENT_TEAM = P9RLAZM5UB;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Salla/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -583,6 +584,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P9RLAZM5UB;
 				INFOPLIST_FILE = Salla/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

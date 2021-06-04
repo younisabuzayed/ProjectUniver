@@ -21,11 +21,15 @@ import { ToastProvider } from 'react-native-fast-toast';
 import MainTabNavigator from './src/Navigations';
  console.disableYellowBox = true;
  import RNRestart from 'react-native-restart';
+ import SplashScreen from  'react-native-splash-screen';
 
  const App = () => {
    const [token, setToken] = React.useState(null);
    const [isLoggedIn, setIsloggedIn] = React.useState(false);
-
+  //Hide Splash screen on app load.
+    React.useEffect(() => {
+      SplashScreen.hide();
+    });
    React.useEffect(() => {
       if (!I18nManager.isRTL){
           I18nManager.forceRTL(true);
@@ -47,12 +51,6 @@ import MainTabNavigator from './src/Navigations';
          // error reading value
          console.log('Get toke App Token Error', e);
          }
-
-         // if (value !== null){
-         //   const blocksArray = JSON.parse(value);
-         //   setToken(blocksArray);
-         //   console.log(blocksArray)
-         // }
        };
        console.log(token);
 
