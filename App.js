@@ -8,18 +8,13 @@
  */
 
  import React from 'react';
- import {
-   ActivityIndicator,
-   I18nManager,
-   StatusBar,
- } from 'react-native';
+ import { I18nManager } from 'react-native';
  import { Provider } from 'react-redux';
  import { Provider as PaperProvider } from 'react-native-paper';
  import store from './src/redux/store';
  import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ToastProvider } from 'react-native-fast-toast';
-import MainTabNavigator from './src/Navigations';
- console.disableYellowBox = true;
+ import { ToastProvider } from 'react-native-fast-toast';
+ import MainTabNavigator from './src/Navigations';
  import RNRestart from 'react-native-restart';
  import SplashScreen from  'react-native-splash-screen';
 
@@ -67,6 +62,5 @@ import MainTabNavigator from './src/Navigations';
      </Provider>
    );
  };
-
 
  export default App;

@@ -17,13 +17,14 @@ const styles = StyleSheet.create({
     },
     flatListCatgoriesContainer:
     {
-        marginLeft: 5,
-        marginRight: 5,
+
+
     },
     flatListCatgories:
     {
-        justifyContent: 'space-between',
+        justifyContent:'center',
         width: width * 1.0005,
+        alignItems:'center',
     },
     categoriesContainer:
     {
@@ -33,6 +34,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         justifyContent: 'center',
         alignItems:'center',
+        marginLeft: 10,
     },
     categoriesTitle:
     {

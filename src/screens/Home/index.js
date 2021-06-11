@@ -104,7 +104,8 @@ const Home = ({categories,categoriesAction,
     return (
         <View
           style={styles.homeContainer} >
-        <ScrollView>
+        <ScrollView
+          nestedScrollEnabled={true} >
          {/*Slider */}
          <SliderContainer />
          {/* FlatList Catgories */}
@@ -132,7 +133,6 @@ const Home = ({categories,categoriesAction,
               disableVirtualization={true}
               showsHorizontalScrollIndicator={false}
               renderItem={({item}) =><ItemProduct item={item} navigation={navigation} onChange={(bool) => console.log(bool)} />} />
-          {/* {products.slice(0,5).map(renderItemProducts)} */}
          </View>
          <View
            style={styles.productsContainer} >

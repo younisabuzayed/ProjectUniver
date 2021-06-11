@@ -1,5 +1,6 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react-native/no-inline-styles */
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, ScrollView, KeyboardAvoidingView, Image } from 'react-native';
 import Colors from '../../../../assets/colors';
@@ -11,6 +12,7 @@ const ChangePassword = () => {
     const [password, setPassword] = React.useState('');
     const refThird = React.useRef();
     const refFourth = React.useRef();
+    const navigation = useNavigation();
     //Eye Show
     const [passwordbool, setpasswordbool] = React.useState(true);
     const [passwordboolConfirm, setpasswordboolConfirm] = React.useState(true);
@@ -26,9 +28,9 @@ const ChangePassword = () => {
         setIconConfirm(iconConfirm === 'show' ? 'hide' : 'show');
         setpasswordboolConfirm(!passwordboolConfirm);
     };
-    const onPressLogin = () =>
+    const onPressChangePassword = () =>
     {
-        console.log(email, password);
+        navigation.navigate('Access');
     }
     return (
         <ScrollView
@@ -84,7 +86,7 @@ const ChangePassword = () => {
             <Button
               active
               title={'حفظ'}
-              onPress={onPressLogin}
+              onPress={onPressChangePassword}
               marginBottom={13}
               backgroundColor= {Colors.fernGreen}
               titleStyle={styles.titleButton} />

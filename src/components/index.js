@@ -17,6 +17,7 @@ export {default as ItemShop} from './ItemShop';
 
 export { default as MenuButton} from './MenuButton';
 export { default as SwipeButton, SwipeButtonBuyer} from './SwipeButton';
+export { default as  KeyboardAvoiding } from './KeyboardAvoiding';
 
 //Alert
 export {default as Alert} from './Alert';

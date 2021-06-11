@@ -10,10 +10,6 @@ import ProductsAction from '../../redux/actions/ProductsAction';
 
 // Styles and Icon
 import styles, { width } from './styles';
-import Colors from '../../../assets/colors';
-import Octicons from 'react-native-vector-icons/Octicons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { ItemProduct, SliderContainer } from '../../components';
 const categoriesType = [
   {
@@ -32,6 +28,66 @@ const categoriesType = [
     id: '4',
     name:'مشروبات',
   }];
+  const categoriesClothesType = [
+    {
+      id: '1',
+      name:'نساء',
+    },
+    {
+      id: '2',
+      name:'رجال',
+    },
+    {
+      id: '3',
+      name:'اطفال',
+    }];
+    const categoriesElectType = [
+      {
+        id: '1',
+        name:'غسالات',
+      },
+      {
+        id: '2',
+        name:'ثلاجات',
+      },
+      {
+        id: '3',
+        name:'أدوات تنظيف',
+      }];
+    const categoriesElectronType = [
+        {
+          id: '1',
+          name:'لابتوبات',
+        },
+        {
+          id: '2',
+          name:'هواتف',
+        },
+        {
+          id: '3',
+          name:'تلفيزيونات',
+        },
+        {
+          id: '4',
+          name:'أدوات الكمبيونر',
+        }];
+        const categoriesCareType = [
+          {
+            id: '1',
+            name:'المكياج',
+          },
+          {
+            id: '2',
+            name:'ماكينات حلاقة كهربائية',
+          },
+          {
+            id: '3',
+            name:'العناية بالشعر',
+          },
+          {
+            id: '4',
+            name:'العناية بالشعر',
+          }];
 const Category = ({categories,categoriesAction}) => {
     const navigation = useNavigation();
     const route = useRoute();
@@ -41,7 +97,18 @@ const Category = ({categories,categoriesAction}) => {
     }, []);
     const Categories = categories.filter((_, i) => _.category_id === route.params.idItems)[0];
     const productsSelected = Categories.products;
-
+    console.log(Categories);
+    const chooseInnterCategories = Categories.name === 'وجبات سريعة'
+                                    ? categoriesType
+                                    : Categories.name === 'الملابس'
+                                    ? categoriesClothesType
+                                    : Categories.name === 'الاجهزة الكهربائية'
+                                    ? categoriesElectType
+                                    : Categories.name === 'الاجهزة الالكترونية'
+                                    ? categoriesElectronType
+                                    : Categories.name === "مستحضرات التجميل"
+                                    ? categoriesCareType
+                                    : null;
     const renderItemCategories = ({item}) =>
     {
         return (
@@ -53,92 +120,6 @@ const Category = ({categories,categoriesAction}) => {
               })} >
              <Text
                style={styles.categoriesTitle} >{item.name}</Text>
-            </TouchableOpacity>
-        );
-    };
-    const RenderItemProducts = ({item}) =>
-    {
-    const [favorite, setFavorite] = React.useState(false);
-        return (
-            <TouchableOpacity
-              style={styles.productsInnerContainer}
-              onPress={() => navigation.navigate('Product',{
-                idItem: item.id,
-                nameCategory: item.categories,
-              })} >
-              <View
-                style={styles.imageProductsContaier} >
-                 <Image
-                   style={styles.imageProducts}
-                   source={{uri: item.image[0].url}}
-                   resizeMode="stretch" />
-              </View>
-              <View
-                style={styles.iconDiscount} >
-                 <ImageBackground
-                   style={styles.imageIconDiscount}
-                   source={require('../../../assets/images/iconDiscounts.png')}
-                   resizeMode="stretch" >
-                     <Text
-                       style={styles.discountText} >{`%${50}`}</Text>
-                   </ImageBackground>
-              </View>
-              <TouchableOpacity
-                style={styles.iconFavorite}
-                onPress={() => setFavorite(!favorite)} >
-                  <MaterialIcons
-                    name={favorite === true
-                          ? 'favorite'
-                          : 'favorite-outline'}
-                    size={20}
-                    color={favorite === true
-                          ? Colors.carnation
-                          : Colors.balck} />
-              </TouchableOpacity>
-              <View
-                style={styles.ContentProductsContainer} >
-                  <View
-                    style={styles.ratingandtitleContainer} >
-                    <Text
-                      numberOfLines={1}
-                      style={styles.titleProducts}
-                      ellipsizeMode="tail" >{item.title}</Text>
-                    <View
-                      style={styles.ratingContainer} >
-                      <Text
-                        style={styles.ratingTitle} >4.9</Text>
-                      <FontAwesome
-                        name="star"
-                        color="#FFB850" />
-                    </View>
-                  </View>
-                  <Text
-                    numberOfLines={1}
-                    style={styles.titleProductsStore}>{'محلات القدوة'}</Text>
-                  <View
-                    style={styles.iconAndPriceRow} >
-                      <View
-                        style={styles.price}>
-                          <Text
-                            style={styles.priceProducts}>
-                              {`${item.price}`}
-                              <Text
-                                style={styles.typeMoney} >ش</Text>
-                            </Text>
-                          <View>
-                          <Text
-                            style={styles.orginalPrice}>
-                              {`بدل ${200}`}</Text>
-                              <View
-                                style={styles.prevPrice} />
-                          </View>
-                      </View>
-                      <View
-                        style={styles.iconPlus} >
-                          <Octicons name="plus" size={20} color={Colors.white} />
-                      </View>
-                  </View>
-              </View>
             </TouchableOpacity>
         );
     };
@@ -156,8 +137,14 @@ const Category = ({categories,categoriesAction}) => {
          <View
            style={styles.flatListCatgoriesContainer} >
             <FlatList
-              data={categoriesType}
+              data={chooseInnterCategories}
               keyExtractor={(item) => item.id}
+              windowSize={5}
+              maxToRenderPerBatch={5}
+              updateCellsBatchingPeriod={30}
+              removeClippedSubviews={false}
+              initialNumToRender={7}
+              onEndReachedThreshold={0.1}
               horizontal
               contentContainerStyle={styles.flatListCatgories}
               showsHorizontalScrollIndicator={false}
@@ -170,10 +157,15 @@ const Category = ({categories,categoriesAction}) => {
            <FlatList
               data={productsSelected.slice(0,4)}
               keyExtractor={(item) => item.id}
+              windowSize={5}
+              maxToRenderPerBatch={5}
+              updateCellsBatchingPeriod={30}
+              removeClippedSubviews={false}
+              initialNumToRender={7}
+              onEndReachedThreshold={0.1}
               contentContainerStyle={styles.itemProductsContainer}
               columnWrapperStyle={{marginRight: 6, marginLeft: 6}}
               numColumns={2}
-              maxToRenderPerBatch={5}
               disableVirtualization={true}
               showsHorizontalScrollIndicator={false}
               renderItem={({item}) => <ItemProduct item={item} navigation={navigation} />} />
@@ -189,11 +181,15 @@ const Category = ({categories,categoriesAction}) => {
               contentContainerStyle={styles.itemProductsContainer}
               columnWrapperStyle={{marginRight: 6, marginLeft: 6}}
               numColumns={2}
+              windowSize={5}
               maxToRenderPerBatch={5}
+              updateCellsBatchingPeriod={30}
+              removeClippedSubviews={false}
+              initialNumToRender={7}
+              onEndReachedThreshold={0.1}
               disableVirtualization={true}
               showsHorizontalScrollIndicator={false}
               renderItem={({item}) =><ItemProduct item={item} navigation={navigation} />} />
-          {/* {products.map(renderItemProducts)} */}
          </View>
         </ScrollView>
         </View>

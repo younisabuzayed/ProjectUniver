@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet, PixelRatio, Platform} from 'react-native';
+import {Dimensions, StyleSheet, PixelRatio} from 'react-native';
 import Colors from '../../../../assets/colors';
 import Fonts from '../../../../assets/fonts';
 const {height, width} = Dimensions.get('window');
