@@ -27,14 +27,13 @@ const CONTENT = [
       },
       {
         id: '3',
-        rule: 'تختار من الأصناف المنتج الذي تريده او ممكن من البحث او الصفحة الرئيسية',
-        icon: null,
+        rule: 'من القائمة المنسدلة تنشأ حساب تاجر جديد',
+        icon: 'menu',
       },
       {
         id: '4',
-        rule: 'ممكن اختيار الأصناف المفضلة لديك من خلال',
-        icon: 'favorite',
-        iconName: 'المفضلة',
+        rule: 'تقوم بإدخال بيانات المطلوبة لقبول حساب متجرك',
+        icon: null,
       },
       {
         id: '5',
@@ -44,28 +43,22 @@ const CONTENT = [
       },
       {
         id: '6',
-        rule: 'ممكن اختيار السلة التي قمت بإضافة المنتجات',
-        icon: 'shopping-cart',
-        iconName: 'السلة',
-      },
-      {
-        id: '7',
-        rule: 'ممكن اختيار الملف الشخصي من خلال',
+        rule: 'ممكن اختار الملف الشخصي لبيانات متجرك',
         icon: 'person',
         iconName: 'صفحتي',
       },
       {
-        id: '8',
+        id: '7',
         rule: 'ممكن تغير لغة التطبيق من خلال',
         icon: 'language',
       },
       {
-        id: '9',
+        id: '8',
         rule: 'ممكن التواصل مع الدعم الفني من خلال',
         icon: 'send',
       },
       {
-        id: '10',
+        id: '9',
         rule: 'ممكن الخروج من التطبيق من خلال',
         icon: 'sign-out-alt',
       },
@@ -76,7 +69,7 @@ const CONTENT = [
     content: [
       {
         id: '1',
-        rule: 'الرجاء عدم التخفي باسمك الشخصي لان ذلك يضر بعدم وصول المنتج لك',
+        rule: 'الرجاء عدم التخفي باسمك الشخصي واسم شركتك لانه سوف لا يتم قبول الحساب ',
         icon: null,
       },
       {
@@ -86,7 +79,7 @@ const CONTENT = [
       },
       {
         id: '3',
-        rule: 'الرجاء الانتباه لتحديد  موقعك بعناية لكي يصل لك طلبك بشكل صحيح',
+        rule: 'الرجاء الانتباه لتحديد  موقعك بعناية لكي  يستطيع الزبون التعرف عليك ',
         icon: null,
       },
       {
@@ -96,7 +89,7 @@ const CONTENT = [
       },
       {
         id: '5',
-        rule: 'الرجاء الانتباه عند اختيارك المنتجات لكل ما تريده من مميزات لكي لا يعود علي بخسارة مال لترجيع المنتج',
+        rule: 'الرجاء وضع الأسعار المنافسة لما في السوق لي يستمر نشر العرض ولكي لا تعرض للمسألة',
         icon: null,
       },
     ],
@@ -106,17 +99,17 @@ const CONTENT = [
     content: [
       {
         id: '1',
-        rule: 'عند ترجيع او استبدال المنتج تدفع تكلفة الديلفري على حسب المشاوير',
+        rule: 'اذا لم تضع السعر المناسب والمنافس حسب الشروط سوف يتم الغاء المنتج من النشر ',
         icon: null,
       },
       {
         id: '2',
-        rule: 'عند التسجيل باسم مستعار نخلي مسؤليتنا عند عدم وصول الطلب بشكل الصحيح',
+        rule: 'عند التسجيل باسم مستعار سوف لم يتم قبول حسابك ',
         icon: null,
       },
       {
         id: '3',
-        rule: 'عند طلب الطلبية وتأكيدها تصبح ملزم بدفع الطلبية',
+        rule: 'اذا تم عرض منتجات مضروبة سوف يتم ملاحقتك قانونيا',
         icon: null,
       },
     ],
@@ -124,7 +117,7 @@ const CONTENT = [
 ];
 
 const description = 'تطبيق  لبيع المنتجات التي عليها عروض وخصومات وهو مشروع تخرج شباب جامعي قاموا بتكوين فريق لانجاز المشروع تم انشاءه في سنة 2021';
-const AboutUs = () => {
+const AboutUsSeller = () => {
   const [activeSections, setActiveSections] = React.useState([]);
   const setSections = sections => {
     setActiveSections(sections);
@@ -193,6 +186,11 @@ const AboutUs = () => {
                                     name="sign-out-alt"
                                     size={iconSize}
                                     color={Colors.fernGreen}  />}
+                            {item.icon === 'menu'
+                              && <MaterialIcons
+                                    name="menu"
+                                    size={iconSize}
+                                    color={Colors.fernGreen}  />}
                             {item.iconName
                               && <Text
                                   style={styles.iconNameText}>
@@ -230,4 +228,4 @@ const AboutUs = () => {
     );
 };
 
-export default AboutUs;
+export default AboutUsSeller;

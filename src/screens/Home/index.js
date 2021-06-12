@@ -135,7 +135,7 @@ const Home = ({categories,categoriesAction,
               renderItem={({item}) =><ItemProduct item={item} navigation={navigation} onChange={(bool) => console.log(bool)} />} />
          </View>
          <View
-           style={styles.productsContainer} >
+           style={[styles.productsContainer, {marginBottom: 25}]} >
             <Text
               style={styles.title} >أعلى طلبا</Text>
             <FlatList
@@ -148,7 +148,6 @@ const Home = ({categories,categoriesAction,
               disableVirtualization={true}
               showsHorizontalScrollIndicator={false}
               renderItem={({item}) =><ItemProduct item={item} navigation={navigation} onChange={(bool) => console.log(bool)} />} />
-          {/* {products.map(renderItemProducts)} */}
          </View>
         </ScrollView>
         </View>

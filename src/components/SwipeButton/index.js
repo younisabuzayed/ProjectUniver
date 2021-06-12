@@ -4,6 +4,8 @@ import React from 'react';
 import { View, Text, Image, Animated } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { RectButton } from 'react-native-gesture-handler';
+
 import Octicons from 'react-native-vector-icons/Octicons';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -15,7 +17,8 @@ import styles from './styles';
 
 const SwipeButton = ({renderLeftActions,renderRightActions, title,
                       onSwipeableLeftOpen, price, counter,
-                      onChange, onPressSwipe, image},ref) => {
+                      onChange, onPressSwipe, image,
+                      onPress},ref) => {
 
 
   const [counterProducts, setCounterProducts] = React.useState(counter);
@@ -51,6 +54,8 @@ const SwipeButton = ({renderLeftActions,renderRightActions, title,
       setCounterProducts(counterProducts - 1);
     };
     return (
+        <RectButton
+         onPress={onPress} >
         <Swipeable
           renderLeftActions={LeftAction}
           ref={ref}
@@ -92,6 +97,7 @@ const SwipeButton = ({renderLeftActions,renderRightActions, title,
                 </View>
             </View>
         </Swipeable>
+        </RectButton>
     );
 };
 export const SwipeButtonBuyer = ({renderLeftActions,renderRightActions, onPressMain, title,onSwipeableLeftOpen, delivered}) => {
@@ -117,6 +123,7 @@ export const SwipeButtonBuyer = ({renderLeftActions,renderRightActions, onPressM
         );
     };
     return (
+      <TouchableOpacity onPress={() => alert('ss')}>
         <Swipeable
           renderLeftActions={LeftAction}
           renderRightActions={renderRightActions}
@@ -158,6 +165,7 @@ export const SwipeButtonBuyer = ({renderLeftActions,renderRightActions, onPressM
                 </View>
             </View>
         </Swipeable>
+        </TouchableOpacity>
     );
 };
 

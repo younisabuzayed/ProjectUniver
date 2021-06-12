@@ -181,6 +181,15 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.concrete,
         flex: 1,
     },
+    toastContainer:
+    {
+        backgroundColor: Colors.fernGreen,
+    },
+    toastText:
+    {
+        color: Colors.white,
+        fontFamily: Fonts.Cairo_Regular,
+    },
 });
 
 export default styles;

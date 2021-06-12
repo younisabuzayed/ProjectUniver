@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
     },
     bodyContainer:
     {
-        flex: 2,
-        marginTop: PixelRatio.get() === 3 ? hp(5) : hp(6),
+        marginTop: hp(3),
+        flex: 1,
     },
     strok:
     {
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     buttomContainer:
     {
         paddingTop: 5,
-        paddingBottom: 21
+        paddingBottom: 25,
     },
     rowProductsCounter:
     {

@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import ProfileAction from '../../redux/actions/ProfileAction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import { useToast } from 'react-native-fast-toast';
 
 //Styles and Icons
 import styles from './styles';
@@ -17,20 +18,30 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ProfileShopAction from '../../redux/actions/ProfileShopAction';
-const logo = 'https://mostaql.hsoubcdn.com/uploads/539862-dj0ow-1558106924-5cded32cf36b5.jpg';
 function DrawerContentSeller({ profileAction, profile, profileShopAction, profileShop},props) {
     const navigation = useNavigation();
+    const toast = useToast();
+
     React.useEffect(() =>
     {
         profileAction();
         profileShopAction();
     },[]);
-
+    const onPressAlertCart = () =>
+    {
+      toast.show(
+        'سيتوفر قريبا',
+        {
+          style: styles.toastContainer,
+          textStyle: styles.toastText});
+    };
     if (profile !== null && profileShop !== null)
    {
     const shop_selected = Object.values(profileShop).filter((_)=> _);
-    const selected = shop_selected.filter((_) => _.id === profile.seller)[0];
-    console.log(selected)
+    const defaultSeller = profile.seller !== null ?  profile.seller : '60c34cdcafb82e001533c0d8';
+
+    const selected = shop_selected.filter((_) => _.id === defaultSeller)[0];
+    // console.log(selected)
     return (
         <SafeAreaView
           style={styles.drawerContentContainer}>
@@ -104,7 +115,7 @@ function DrawerContentSeller({ profileAction, profile, profileShopAction, profil
                               size={size} />
                           )}
                           label="اللغة"
-                          onPress={() => {alert('ستتوفر قريبا');}}
+                          onPress={onPressAlertCart}
                           labelStyle={styles.lableMargin} />
                         <DrawerItem
                           icon={({color, size}) => (
@@ -124,7 +135,7 @@ function DrawerContentSeller({ profileAction, profile, profileShopAction, profil
                               size={size} />
                           )}
                           label="السياسات والشروط"
-                          onPress={() => {navigation.navigate('AboutUs');}}
+                          onPress={() => {navigation.navigate('AboutUsSeller');}}
                           labelStyle={styles.lableMargin} />
                         {profile !== null
                          && <TouchableOpacity

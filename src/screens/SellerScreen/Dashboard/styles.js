@@ -1,16 +1,18 @@
 import {Dimensions, StyleSheet} from 'react-native';
 import Colors from '../../../../assets/colors';
 import Fonts from '../../../../assets/fonts';
-const {width} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
     dashboardContainer:
     {
         flex: 1,
         backgroundColor: Colors.white,
+        paddingTop: 50,
+        height,
     },
     innerDashboardContainer:
     {
-        marginTop: 50,
+        marginTop: 25,
         marginLeft: 15,
         marginRight: 15,
     },
@@ -33,6 +35,7 @@ const styles = StyleSheet.create({
     totalsContainer:
     {
         justifyContent: 'space-between',
+        alignItems: 'center',
         marginTop: 15,
         height:120,
     },
@@ -103,7 +106,6 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontFamily: Fonts.Cairo_Bold,
         writingDirection: 'rtl',
-        lineHeight: 18,
     },
 });
 

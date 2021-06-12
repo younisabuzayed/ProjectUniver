@@ -4,6 +4,8 @@ import React from 'react';
 import { View, Text, TouchableOpacity, SafeAreaView, TouchableWithoutFeedback, FlatList } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import { useToast } from 'react-native-fast-toast';
+
 //Components
 import { Button, ItemProduct, ItemShop } from '../../components';
 //Styles and Icons
@@ -23,7 +25,7 @@ const SearchShops = ({profileShop, profileShopAction}) => {
     const [isVisible, setIsVisible] = React.useState(false);
     const [searchQuery, setSearchQuery] = React.useState('');
     const [categortyData, setCategortyData] = React.useState(null);
-
+    const toast = useToast();
 
     React.useEffect(() =>
     {
@@ -46,6 +48,14 @@ const SearchShops = ({profileShop, profileShopAction}) => {
     };
     const [more, setMore] = React.useState(true);
     const navigation = useNavigation();
+    const onPressAlertCart = () =>
+    {
+      toast.show(
+        'سيتوفر قريبا',
+        {
+          style: styles.toastContainer,
+          textStyle: styles.toastText});
+    };
     return (
         <SafeAreaView
           style={styles.searchContainer}>
@@ -67,11 +77,12 @@ const SearchShops = ({profileShop, profileShopAction}) => {
                       value={searchQuery}
                       style={styles.searchbar}
                       inputStyle={styles.textInput}
-                      clearIcon={<Ionicons name="search" size={10}  style={{transform: [{rotateY: '180deg'}]}}/>} />
+                      selectionColor={Colors.balck}
+                      clearIcon={<Ionicons name="search" size={10} color={'#8E8E93'} style={{transform: [{rotateY: '180deg'}]}}/>} />
                     <View
                       style={styles.iconVoiceContainer} >
                         <TouchableWithoutFeedback
-                          onPress={() => alert('Not Avalibale')} >
+                          onPress={onPressAlertCart} >
                             <FontAwesome
                               name="microphone"
                               color="#8E8E93"

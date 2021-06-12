@@ -8,7 +8,6 @@ import styles, {width} from './styles';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-const priceDiscount = 10;
 const ItemProduct = ({item, navigation, onChange,
                       favorites, switchButton, onChangeSwitch,
                       navigate_name}) =>
@@ -46,7 +45,7 @@ const ItemProduct = ({item, navigation, onChange,
                    source={require('../../../assets/images/iconDiscounts.png')}
                    resizeMode="stretch" >
                      <Text
-                       style={styles.discountText} >{`%${Math.round((priceDiscount / item.price) * 100)}`}</Text>
+                       style={styles.discountText} >{`%${100 - Math.round((item.price_discount / item.price) * 100) }`}</Text>
                    </ImageBackground>
               </View>
               {!favorites && <TouchableOpacity
@@ -88,14 +87,14 @@ const ItemProduct = ({item, navigation, onChange,
                         style={styles.price}>
                           <Text
                             style={styles.priceProducts}>
-                              {`${item.price} `}
+                              {`${item.price_discount} `}
                               <Text
                                 style={styles.typeMoney} >ش</Text>
                             </Text>
                           <View>
                           <Text
                             style={styles.orginalPrice}>
-                              {`بدل ${priceDiscount}`}</Text>
+                              {`بدل ${item.price}`}</Text>
                               <View
                                 style={styles.prevPrice} />
                           </View>

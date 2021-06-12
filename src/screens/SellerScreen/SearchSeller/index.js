@@ -19,6 +19,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { AirbnbRating } from 'react-native-ratings';
 import ProfileShopAction from '../../../redux/actions/ProfileShopAction';
 import ProfileAction from '../../../redux/actions/ProfileAction';
+import { useToast } from 'react-native-fast-toast';
 
 const SearchSeller = ({ profileShop, profileShopAction, profile, profileAction}) => {
     const [dataSearch, setDataSearch] = React.useState(null);
@@ -44,7 +45,16 @@ const SearchSeller = ({ profileShop, profileShopAction, profile, profileAction})
     console.log(categortyData);
     const [more, setMore] = React.useState(true);
     const navigation = useNavigation();
-    
+    const toast = useToast();
+
+    const onPressAlertCart = () =>
+    {
+      toast.show(
+        'سيتوفر قريبا',
+        {
+          style: styles.toastContainer,
+          textStyle: styles.toastText});
+    };
     const selected = profileShop.filter((_) => _.id === profile.seller)[0];
     const filters = () =>
     {
@@ -80,7 +90,7 @@ const SearchSeller = ({ profileShop, profileShopAction, profile, profileAction})
                     <View
                       style={styles.iconVoiceContainer} >
                         <TouchableWithoutFeedback
-                          onPress={() => alert('Not Avalibale')} >
+                          onPress={onPressAlertCart} >
                             <FontAwesome
                               name="microphone"
                               color="#8E8E93"

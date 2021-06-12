@@ -55,7 +55,8 @@ const HomeSeller = ({products, productsAction, profileShop, profileShopAction, p
   };
     if (products !== null && profileShop !== null && profile !== null)
     {
-        const selected = profileShop.filter((_) => _.id === profile.seller)[0];
+      const defaultSeller = profile.seller !== null ?  profile.seller : '60c34cdcafb82e001533c0d8';
+      const selected = profileShop.filter((_) => _.id === defaultSeller)[0];
     return (
         <View
           style={styles.homeContainer} >

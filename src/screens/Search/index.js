@@ -17,6 +17,7 @@ import CategoriesAction from '../../redux/actions/CategoriesAction';
 import ProductsAction from '../../redux/actions/ProductsAction';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { AirbnbRating } from 'react-native-ratings';
+import { useToast } from 'react-native-fast-toast';
 
 const Search = ({products, productsAction, categories, categoriesAction}) => {
     const [dataSearch, setDataSearch] = React.useState(null);
@@ -27,6 +28,7 @@ const Search = ({products, productsAction, categories, categoriesAction}) => {
     const [clothSize, setClothSize] = React.useState(null);
     const [grnder, setGrnder] = React.useState(null);
     const [season, setSeason] = React.useState(null);
+    const toast = useToast();
 
 
     React.useEffect(() =>
@@ -68,6 +70,14 @@ const Search = ({products, productsAction, categories, categoriesAction}) => {
       filters();
       setIsVisible(!isVisible);
     };
+    const onPressAlertCart = () =>
+    {
+      toast.show(
+        'سيتوفر قريبا',
+        {
+          style: styles.toastContainer,
+          textStyle: styles.toastText});
+    };
     const [more, setMore] = React.useState(true);
     const navigation = useNavigation();
     return (
@@ -87,15 +97,20 @@ const Search = ({products, productsAction, categories, categoriesAction}) => {
                   style={styles.searchbarAndVioceContainer}>
                     <Searchbar
                       placeholder="ابحث عن المنتج الذي تريده"
+                      placeholderTextColor="#6D6D6D"
                       onChangeText={onChangeSearch}
                       value={searchQuery}
                       style={styles.searchbar}
                       inputStyle={styles.textInput}
-                      clearIcon={<Ionicons name="search" size={10}  style={{transform: [{rotateY: '180deg'}]}}/>} />
+                      selectionColor={Colors.balck}
+                      clearIcon={<Ionicons
+                                   name="search" size={10}
+                                   color="#8E8E93"
+                                   style={{transform: [{rotateY: '180deg'}]}}/>} />
                     <View
                       style={styles.iconVoiceContainer} >
                         <TouchableWithoutFeedback
-                          onPress={() => alert('Not Avalibale')} >
+                          onPress={onPressAlertCart} >
                             <FontAwesome
                               name="microphone"
                               color="#8E8E93"

@@ -153,6 +153,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontFamily: Fonts.Cairo_Regular,
         writingDirection: 'rtl',
+        textAlign: 'left',
     },
     chooseContainer:
     {

@@ -97,7 +97,9 @@ const Product = ({productsAction, products}) => {
       console.log('share', error);
     }
   };
-  console.log(selectedProduct);
+  // console.log(selectedProduct);
+  console.log(selectedProduct.colors);
+
   const increase = () =>
   {
     setCounter(counter + 1);
@@ -211,7 +213,8 @@ const Product = ({productsAction, products}) => {
                         style={styles.chooseTitle}>اختر مواصفات منتجك</Text>
                       <View
                         style={styles.chooseButtons}>
-                        <View
+                        {selectedProduct.colors && selectedProduct.colors.length !== 0
+                        && <View
                           style={styles.buttonsContainer}>
                             <Button
                               styleButton={styles.buttonChoose}
@@ -234,7 +237,7 @@ const Product = ({productsAction, products}) => {
                                         <View
                                           style={styles.circleContainer} >
                                           <ColorSelction
-                                            colors={['red','#dfdf','#12Df']}
+                                            colors={selectedProduct.colors}
                                             onChange={(color) => {
                                               setColor(color);
                                               setTimeout(() =>setIsVisible(!isVisible), timeOut);
@@ -247,7 +250,7 @@ const Product = ({productsAction, products}) => {
                             </Button>
                             <Text
                               style={styles.titleButtons}>الالوان</Text>
-                        </View>
+                        </View>}
                         {nameCategory[0].name === 'الملابس'
                         && <View
                           style={styles.buttonsContainer}>

@@ -9,7 +9,6 @@ import SwipeButton from '../../components/SwipeButton';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
-import Share from 'react-native-share';
 let datas = [
   {
     id: '1',
@@ -27,6 +26,13 @@ let datas = [
   },
   {
     id: '3',
+    name: 'لابتوب ماك',
+    price: 44,
+    counter: 5,
+    image: 'https://www.notebookcheck.net/typo3temp/_processed_/e/0/csm_181004111903200301900006K_95047b6aab.jpg',
+  },
+  {
+    id: '4',
     name: 'لابتوب ماك',
     price: 44,
     counter: 5,
@@ -102,7 +108,7 @@ const Cart = () => {
           style={styles.cartContainer}>
             <FlatList
               data={data}
-              contentContainerStyle={styles.bodyContainer}
+              style={styles.bodyContainer}
               ref={ref}
               keyExtractor ={ (item, index) => index.toString()}
               renderItem={({item, index}) =>
@@ -114,6 +120,10 @@ const Cart = () => {
                       price={item.price}
                       image={{uri: item.image}}
                       counter={item.counter}
+                      onPress={() => navigation.navigate('Product',{
+                        idItem: '602bd4ff35d602001586b0fc',
+                        nameCategory:'الاجهزة الالكترونية',
+                      })}
                       onPressSwipe={() => removeFromCart(item)}
                       onChange={(coun) => updateCounter(index, coun)} />
                   );

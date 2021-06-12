@@ -12,10 +12,11 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const IconAnimated = Animated.createAnimatedComponent(MaterialCommunityIcons);
-const CartItem = ({textState, cancel, add, width, onPress}) => {
+const CartItem = ({textState, cancel, add, width, onPress, onPressNavigate}) => {
     return (
-      <View
-        style={styles.cartItemContainer} >
+      <TouchableOpacity
+        style={styles.cartItemContainer}
+        onPress={onPressNavigate} >
          <View
            style={[styles.imageProducts,{height: '100%', justifyContent:'center',marginLeft: 5}]} >
              <Image
@@ -49,10 +50,10 @@ const CartItem = ({textState, cancel, add, width, onPress}) => {
               titleStyle={styles.textCancel}
               children={<Octicons name="plus" size={20} color={Colors.white} />} />}
           </View>
-      </View>
+      </TouchableOpacity>
     );
 };
-export const CartItemSwipe = ({renderRightActions,onSwipeableLeftOpen, textState, add, width}) => {
+export const CartItemSwipe = ({renderRightActions,onSwipeableLeftOpen, textState, add, width, onPress}) => {
   const LeftAction = (progress, dragX) =>
     {
         const scale = dragX.interpolate({
@@ -83,7 +84,8 @@ export const CartItemSwipe = ({renderRightActions,onSwipeableLeftOpen, textState
             <CartItem
               textState={textState}
               add={add}
-              width={width} />
+              width={width}
+              onPressNavigate={onPress} />
           </Swipeable>
   );
 };

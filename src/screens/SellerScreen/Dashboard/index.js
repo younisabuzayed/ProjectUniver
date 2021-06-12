@@ -60,6 +60,8 @@ const Dashboard = () => {
     return (
         <SafeAreaView
           style={styles.dashboardContainer}>
+          <ScrollView
+             showsVerticalScrollIndicator={false} >
             <View
               style={styles.innerDashboardContainer}>
                 <View
@@ -112,19 +114,18 @@ const Dashboard = () => {
                               color={Colors.texasRose}
                               style={styles.icon} />} />
                 </ScrollView>
-                <ScrollView
-                  showsVerticalScrollIndicator={false}>
                 <View
                   style={styles.chartContainer}>
                     <Text
                     style={styles.chartTitle}>ارتفاع الارباح</Text>
                     <VictoryChart
+                      style={{parent:{alignItems:'center'}}}
                       containerComponent={
                         <VictoryZoomContainer
                           zoomDomain={{x: [0, 15], y: [0, 100]}} />}
-                      width={width}
-                      maxDomain={{x: 12}}
-                      theme={VictoryTheme.material}>
+                          width={width}
+                          maxDomain={{x: 30}}
+                          theme={VictoryTheme.material}>
                         <VictoryBar
                           data={data}
                           cornerRadius={{top: 8}}
@@ -145,11 +146,12 @@ const Dashboard = () => {
                     <Text
                     style={styles.chartTitle}>زيادة الطلب</Text>
                     <VictoryChart
+                      style={{parent:{alignItems:'center'}}}
                       containerComponent={
                         <VictoryZoomContainer
                           zoomDomain={{x: [0, 15], y: [0, 100]}} />}
-                      width={width}
-                      maxDomain={{x: 12}}
+                          width={width}
+                          maxDomain={{x: 30}}
                       theme={VictoryTheme.material}>
                         <VictoryBar
                           data={data}
@@ -166,8 +168,8 @@ const Dashboard = () => {
                           style={{data:{ fill: 'green'}, parent:{bottom:20}}} />
                     </VictoryChart>
                 </View>
-              </ScrollView>
             </View>
+          </ScrollView>
         </SafeAreaView>
     );
 };

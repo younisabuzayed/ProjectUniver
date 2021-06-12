@@ -2,6 +2,7 @@
 /* eslint-disable no-lone-blocks */
 import React from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Colors from '../../../assets/colors';
 import { Button, Choose, SwipeButton } from '../../components';
 import AlertMessage from '../../components/Alert/AlertMessage';
@@ -12,7 +13,7 @@ const Orders = () => {
     const [one, setOne] = React.useState(true);
     const [two, setTwo] = React.useState(false);
     const [isVisible, setIsVisible] = React.useState(false);
-
+    const navigation = useNavigation();
     const oneFunction = () =>
     {
       setOne(true);
@@ -31,11 +32,19 @@ const Orders = () => {
             textState="قيد تنفيد"
             cancel
             onPress={() =>{setIsVisible(!isVisible)}}
-            width={100} />
+            width={100}
+            onPressNavigate={() => navigation.navigate('Product',{
+                        idItem: '602bd4ff35d602001586b0fc',
+                        nameCategory:'الاجهزة الالكترونية',
+                      })} />
           <CartItem
             textState="قيد تنفيد"
             cancel
-            width={100} />
+            width={100}
+            onPressNavigate={() => navigation.navigate('Product',{
+                        idItem: '602bd4ff35d602001586b0fc',
+                        nameCategory:'الاجهزة الالكترونية',
+                      })} />
         </View>
       );
     };
@@ -46,7 +55,11 @@ const Orders = () => {
           <CartItemSwipe
             textState="تم استلام"
             add
-            width={50} />
+            width={50}
+            onPress={() => navigation.navigate('Product',{
+                        idItem: '602bd4ff35d602001586b0fc',
+                        nameCategory:'الاجهزة الالكترونية',
+                      })} />
         </View>
       );
     };

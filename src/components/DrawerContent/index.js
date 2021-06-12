@@ -19,12 +19,21 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
+import { useToast } from 'react-native-fast-toast';
 
-const logo = 'https://mostaql.hsoubcdn.com/uploads/539862-dj0ow-1558106924-5cded32cf36b5.jpg';
 
 function DrawerContent({  profileAction, profile, profileShopAction, profileShop, error, extraData},props) {
     const navigation = useNavigation();
     const [token, setToken] = React.useState(null);
+    const toast = useToast();
+    const onPressAlertCart = () =>
+    {
+      toast.show(
+        'سيتوفر قريبا',
+        {
+          style: styles.toastContainer,
+          textStyle: styles.toastText});
+    };
    React.useEffect(() => {
       getToken();
    }, []);
@@ -173,7 +182,7 @@ function DrawerContent({  profileAction, profile, profileShopAction, profileShop
                                   size={size} />
                             )}
                             label="اللغة"
-                            onPress={() => {alert('ستتوفر قريبا');}}
+                            onPress={onPressAlertCart}
                             labelStyle={styles.lableMargin} />
                         <DrawerItem
                             icon={({color, size}) => (

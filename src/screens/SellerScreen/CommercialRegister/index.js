@@ -221,7 +221,6 @@ const CommercialRegister = () => {
                         onPress={onPressResponseLicence} />
                   </View>
               </View>
-              {/* <Text>Res: {JSON.stringify(responseLogo)}</Text> */}
             <View
               style={styles.buttonContainer} >
             <Button

@@ -88,6 +88,15 @@ const styles = StyleSheet.create({
       paddingVertical: 12,
       paddingHorizontal: 16,
     },
+    toastContainer:
+    {
+        backgroundColor: Colors.fernGreen,
+    },
+    toastText:
+    {
+        color: Colors.white,
+        fontFamily: Fonts.Cairo_Regular,
+    },
   });
 
 export default styles;
