@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     textInput:
     {
         fontSize: 10,
+        fontFamily: Fonts.Cairo_Bold
     },
     iconVoiceContainer:
     {

@@ -39,12 +39,49 @@ const DataScreen = {
       checked: false,
     },
   ],
+  datasm: [
+    {
+      id: 1,
+      name: 'الشاشات',
+      checked: false,
+    },
+    {
+      id: 2,
+      name: 'ادوات',
+      checked: false,
+    },
+    {
+      id: 3,
+      name: 'الاضواء',
+      checked: false,
+    },
+  ],
+  dataFood: [
+    {
+      id: 1,
+      name: 'وجبات سريعة',
+      checked: false,
+    },
+    {
+      id: 2,
+      name: 'وجبات عائلية',
+      checked: false,
+    },
+    {
+      id: 3,
+      name: 'مشروبات',
+      checked: false,
+    },
+  ],
 };
 const Step1 = () => {
     const [value, setValue] = React.useState('first');
     // const [dataScreen, setDataScreen] = React.useState(DataScreen);
     const [dataElect, setDataElect] = React.useState(DataScreen.dataElect);
     const [dataCloth, setDataCloth] = React.useState(DataScreen.dataCloth);
+    const [dataSm, setDataSm] = React.useState(DataScreen.datasm);
+    const [dataFood, setDataFood] = React.useState(DataScreen.dataFood);
+
 
     const [isVisible, setIsVisible] = React.useState(false);
     const handleChange = (dataScreen, setDataScreen, id) => {
@@ -126,8 +163,39 @@ const Step1 = () => {
                                     }} />
                         </View>
                       <RadioButton.Item
+                        label="الأجهزة الالكترونية"
+                        value="second"
+                        mode="android"
+                        color={Colors.fernGreen}
+                        style={styles.radioButton}
+                        uncheckedColor={Colors.iconTune}
+                        labelStyle={styles.labelRadio} />
+                          <View
+                            style={styles.checkeContainer}
+                            pointerEvents={value === 'second' ? 'auto' : 'none'}>
+                              <FlatList
+                                data={dataSm}
+                                keyExtractor={(item) => item.id}
+                                numColumns={2}
+                                renderItem={({item}) =>
+                                {
+                                  return (
+                                    <Checkbox.Item
+                                      status={item.checked ? 'checked' : 'unchecked'}
+                                      mode="android"
+                                      color={Colors.fernGreen}
+                                      label={item.name}
+                                      labelStyle={styles.labelRadio}
+                                      style={[styles.checkeButton]}
+                                      onPress={() => handleChange(dataSm,setDataSm,item.id)}
+                                      theme={{
+                                          colors:{text:Colors.iconTune, disabled: styles.iconTune}}} />
+                                        );
+                                      }} />
+                            </View>
+                      <RadioButton.Item
                       label="الملابس والاحذية"
-                      value="second"
+                      value="third"
                       mode="android"
                       color={Colors.fernGreen}
                       style={styles.radioButton}
@@ -135,7 +203,7 @@ const Step1 = () => {
                       labelStyle={styles.labelRadio} />
                          <View
                           style={styles.checkeContainer}
-                          pointerEvents={value === 'second' ? 'auto' : 'none'}>
+                          pointerEvents={value === 'third' ? 'auto' : 'none'}>
                             <FlatList
                               data={dataCloth}
                               keyExtractor={(item) => item.id}
@@ -155,7 +223,38 @@ const Step1 = () => {
                                         colors:{text:Colors.iconTune, disabled: styles.iconTune}}} />
                                       );
                                     }} />
-                        </View>
+                           </View>
+                      <RadioButton.Item
+                        label="الوجبات الغذائية"
+                        value="forth"
+                        mode="android"
+                        color={Colors.fernGreen}
+                        style={styles.radioButton}
+                        uncheckedColor={Colors.iconTune}
+                        labelStyle={styles.labelRadio} />
+                          <View
+                            style={styles.checkeContainer}
+                            pointerEvents={value === 'forth' ? 'auto' : 'none'}>
+                              <FlatList
+                                data={dataFood}
+                                keyExtractor={(item) => item.id}
+                                numColumns={2}
+                                renderItem={({item}) =>
+                                {
+                                  return (
+                                    <Checkbox.Item
+                                      status={item.checked ? 'checked' : 'unchecked'}
+                                      mode="android"
+                                      color={Colors.fernGreen}
+                                      label={item.name}
+                                      labelStyle={styles.labelRadio}
+                                      style={[styles.checkeButton]}
+                                      onPress={() => handleChange(dataFood,setDataFood,item.id)}
+                                      theme={{
+                                          colors:{text:Colors.iconTune, disabled: styles.iconTune}}} />
+                                        );
+                                      }} />
+                          </View>
                     </RadioButton.Group>
                 </View>
             </Choose>

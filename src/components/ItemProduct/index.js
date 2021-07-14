@@ -13,7 +13,7 @@ const ItemProduct = ({item, navigation, onChange,
                       navigate_name}) =>
     {
         const [favorite, setFavorite] = React.useState(item.favorite);
-        const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+        const [isSwitchOn, setIsSwitchOn] = React.useState(true);
 
         const onToggleSwitch = () =>
         {

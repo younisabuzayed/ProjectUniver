@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     },
     bodyContainer:
     {
-        marginTop: hp(3),
+        marginTop: hp(5),
         flex: 1,
     },
     strok:

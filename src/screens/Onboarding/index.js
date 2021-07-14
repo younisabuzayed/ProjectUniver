@@ -105,11 +105,7 @@ const Onboarding = () => {
           setCurrentIndex(currentIndex + 1);
         }
     };
-    // const onPressButtonPrev = () =>
-    // {
-    //     ref.current?.scrollToIndex({index: counter - 1, animated: true});
-    //     setCounter(counter - 1);
-    // };
+
     return (
         <SafeAreaView
           style={styles.container}>

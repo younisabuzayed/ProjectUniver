@@ -6,22 +6,16 @@ import styles from './styles';
 import Colors from '../../../assets/colors';
 export const {width, height} = Dimensions.get('window');
 const ENTRIES1 = [
-  {
-      title: 'Beautiful and dramatic Antelope Canyon',
-      subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-      illustration: 'https://i.imgur.com/UYiroysl.jpg',
-  },
-  {
-      title: 'Earlier this morning, NYC',
-      subtitle: 'Lorem ipsum dolor sit amet',
-      illustration: 'https://i.imgur.com/UPrs1EWl.jpg',
-  },
-  {
-      title: 'White Pocket Sunset',
-      subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
-      illustration: 'https://i.imgur.com/MABUbpDl.jpg',
-  },
-];
+    {
+        illustration: require('../../../assets/images/slider1.png'),
+    },
+    {
+        illustration: require('../../../assets/images/slider2.png'),
+    },
+    {
+        illustration: require('../../../assets/images/slider1.png'),
+    },
+  ];
 const SliderContainer = () =>
     {
         const sliderRef = React.useRef();
@@ -43,7 +37,7 @@ const SliderContainer = () =>
                   return (
                       <View>
                         <Image
-                          source={{uri: item.illustration}}
+                          source={item.illustration}
                           style={styles.imageCarousel} />
                       </View>
                   );

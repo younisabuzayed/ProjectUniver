@@ -10,7 +10,7 @@
  import React from 'react';
  import { I18nManager } from 'react-native';
  import { Provider } from 'react-redux';
- import { Provider as PaperProvider } from 'react-native-paper';
+ import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
  import store from './src/redux/store';
  import AsyncStorage from '@react-native-async-storage/async-storage';
  import { ToastProvider } from 'react-native-fast-toast';
@@ -21,6 +21,10 @@
  const App = () => {
    const [token, setToken] = React.useState(null);
    const [isLoggedIn, setIsloggedIn] = React.useState(false);
+   const theme = {
+    ...DefaultTheme,
+    dark: false,
+  };
   //Hide Splash screen on app load.
     React.useEffect(() => {
       SplashScreen.hide();
@@ -53,7 +57,7 @@
      <Provider
        store={store} >
        <ToastProvider>
-         <PaperProvider>
+         <PaperProvider theme={theme}>
            <MainTabNavigator
               isLoggedIn={isLoggedIn}
               setIsloggedIn={(bool) => setIsloggedIn(bool)} />

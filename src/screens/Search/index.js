@@ -18,6 +18,7 @@ import ProductsAction from '../../redux/actions/ProductsAction';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { AirbnbRating } from 'react-native-ratings';
 import { useToast } from 'react-native-fast-toast';
+import Fonts from '../../../assets/fonts';
 
 const Search = ({products, productsAction, categories, categoriesAction}) => {
     const [dataSearch, setDataSearch] = React.useState(null);
@@ -103,6 +104,7 @@ const Search = ({products, productsAction, categories, categoriesAction}) => {
                       style={styles.searchbar}
                       inputStyle={styles.textInput}
                       selectionColor={Colors.balck}
+                      theme={{fonts:{regular: {fontFamily: Fonts.Cairo_Regular}}}}
                       clearIcon={<Ionicons
                                    name="search" size={10}
                                    color="#8E8E93"

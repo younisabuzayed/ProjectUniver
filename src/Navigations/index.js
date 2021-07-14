@@ -425,6 +425,10 @@ const RootNavigation = ({extraData}) =>
 
 export const NoneTokenNavigation = ({extraData}) =>
 {
+  const titleStyle = {
+    fontSize: 18,
+    fontFamily: Fonts.Cairo_Bold,
+  };
   const opacityTransition =
   {
     gestureDirection: 'horizontal',
@@ -513,6 +517,123 @@ export const NoneTokenNavigation = ({extraData}) =>
               headerTransparent: true,
               headerLeftContainerStyle:{
                   paddingLeft: 15,
+                },
+              })} />
+              <Stack.Screen
+                name="AboutUs"
+                component={AboutUs}
+                options={({navigation}) => ({
+                  headerTitle: () => {
+                    return (
+                        <Text
+                          style={titleStyle} >السياسات والشروط</Text>
+                    );
+                },
+                  headerLeft: () => {
+                    return (
+                      <TouchableOpacity
+                        onPress={() => navigation.goBack()} >
+                         <MaterialIcons name="arrow-forward" size={25} color={'#AFAFAF'} />
+                      </TouchableOpacity>
+                    );
+                },
+                headerTransparent: true,
+                headerLeftContainerStyle:{
+                  paddingLeft: 15,
+                },
+                headerStyle: {
+                  backgroundColor: Colors.fernGreen,
+                  height: height / (Platform.OS === 'ios' ?  9 : 12),
+                },
+                headerRightContainerStyle:
+                {
+                  marginRight: 24,
+                },
+                headerTitleAlign: 'center',
+                headerTitleStyle:
+                {
+                  color: Colors.white,
+                  fontFamily: Fonts.Cairo_Bold,
+                  fontSize: 18,
+                  lineHeight: 30,
+                },
+              })} />
+              <Stack.Screen
+                name="Support"
+                component={Support}
+                options={({navigation}) => ({
+                  headerTitle: () => {
+                    return (
+                        <Text
+                          style={titleStyle} >الدعم الفني</Text>
+                    );
+                },
+                  headerLeft: () => {
+                    return (
+                      <TouchableOpacity
+                        onPress={() => navigation.goBack()} >
+                         <MaterialIcons name="arrow-forward" size={25} color={'#AFAFAF'} />
+                      </TouchableOpacity>
+                    );
+                },
+                headerTransparent: true,
+                headerLeftContainerStyle:{
+                  paddingLeft: 15,
+                },
+                headerStyle: {
+                  backgroundColor: Colors.fernGreen,
+                  height: height / (Platform.OS === 'ios' ?  9 : 12),
+                },
+                headerRightContainerStyle:
+                {
+                  marginRight: 24,
+                },
+                headerTitleAlign: 'center',
+                headerTitleStyle:
+                {
+                  color: Colors.white,
+                  fontFamily: Fonts.Cairo_Bold,
+                  fontSize: 18,
+                  lineHeight: 30,
+                },
+              })} />
+              <Stack.Screen
+                name="AboutUsSeller"
+                component={AboutUsSeller}
+                options={({navigation}) => ({
+                  headerTitle: () => {
+                    return (
+                        <Text
+                          style={titleStyle} >السياسات والشروط</Text>
+                    );
+                },
+                  headerLeft: () => {
+                    return (
+                      <TouchableOpacity
+                        onPress={() => navigation.goBack()} >
+                         <MaterialIcons name="arrow-forward" size={25} color={'#AFAFAF'} />
+                      </TouchableOpacity>
+                    );
+                },
+                headerTransparent: true,
+                headerLeftContainerStyle:{
+                  paddingLeft: 15,
+                },
+                headerStyle: {
+                  backgroundColor: Colors.fernGreen,
+                  height: height / (Platform.OS === 'ios' ?  9 : 12),
+                },
+                headerRightContainerStyle:
+                {
+                  marginRight: 24,
+                },
+                headerTitleAlign: 'center',
+                headerTitleStyle:
+                {
+                  color: Colors.white,
+                  fontFamily: Fonts.Cairo_Bold,
+                  fontSize: 18,
+                  lineHeight: 30,
                 },
               })} />
             <Stack.Screen
@@ -617,6 +738,12 @@ export const NoneTokenNavigation = ({extraData}) =>
                     lineHeight: 30,
                 },
               })} />
+            <Stack.Screen
+              name="SearchShop"
+              component={SearchShops}
+              options={{
+                headerShown: false,
+              }} />
             <Stack.Screen
               name="Access"
               component={Access}

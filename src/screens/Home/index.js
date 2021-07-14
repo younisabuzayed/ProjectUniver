@@ -17,21 +17,15 @@ import ItemProduct from '../../components/ItemProduct';
 
 
 const ENTRIES1 = [
-    {
-        title: 'Beautiful and dramatic Antelope Canyon',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-        illustration: 'https://i.imgur.com/UYiroysl.jpg',
-    },
-    {
-        title: 'Earlier this morning, NYC',
-        subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/UPrs1EWl.jpg',
-    },
-    {
-        title: 'White Pocket Sunset',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
-        illustration: 'https://i.imgur.com/MABUbpDl.jpg',
-    },
+  {
+      illustration: require('../../../assets/images/slider1.png'),
+  },
+  {
+      illustration: require('../../../assets/images/slider2.png'),
+  },
+  {
+      illustration: require('../../../assets/images/slider1.png'),
+  },
 ];
 const Home = ({categories,categoriesAction,
                products, productsAction}) => {
@@ -77,7 +71,7 @@ const Home = ({categories,categoriesAction,
                   return (
                       <View>
                         <Image
-                          source={{uri: item.illustration}}
+                          source={item.illustration}
                           style={styles.imageCarousel} />
                       </View>
                   );

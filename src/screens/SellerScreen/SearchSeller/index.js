@@ -20,6 +20,7 @@ import { AirbnbRating } from 'react-native-ratings';
 import ProfileShopAction from '../../../redux/actions/ProfileShopAction';
 import ProfileAction from '../../../redux/actions/ProfileAction';
 import { useToast } from 'react-native-fast-toast';
+import Fonts from '../../../../assets/fonts';
 
 const SearchSeller = ({ profileShop, profileShopAction, profile, profileAction}) => {
     const [dataSearch, setDataSearch] = React.useState(null);
@@ -82,10 +83,12 @@ const SearchSeller = ({ profileShop, profileShopAction, profile, profileAction})
                   style={styles.searchbarAndVioceContainer}>
                     <Searchbar
                       placeholder="ابحث عن المنتج الذي تريده"
+                      placeholderTextColor="#6D6D6D"
                       onChangeText={onChangeSearch}
                       value={searchQuery}
                       style={styles.searchbar}
                       inputStyle={styles.textInput}
+                      theme={{fonts:{regular: {fontFamily: Fonts.Cairo_Regular}}}}
                       clearIcon={<Ionicons name="search" size={10}  style={{transform: [{rotateY: '180deg'}]}}/>} />
                     <View
                       style={styles.iconVoiceContainer} >
@@ -132,7 +135,7 @@ const SearchSeller = ({ profileShop, profileShopAction, profile, profileAction})
               maxToRenderPerBatch={5}
               disableVirtualization={true}
               showsHorizontalScrollIndicator={false}
-              renderItem={({item}) =><ItemProduct item={item} navigation={navigation} />} />}
+              renderItem={({item}) =><ItemProduct item={item} navigation={navigation} navigate_name="AddPrdouct" />} />}
         </SafeAreaView>
     );
 };
